@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * This file is part of the Bono CMS
+ * 
+ * Copyright (c) No Global State Lab
+ * 
+ * For the full copyright and license information, please view
+ * the license file that was distributed with this source code.
+ */
+
+namespace Polls\Controller\Admin\Answer;
+
+use Cms\Controller\Admin\AbstractController;
+
+final class Browser extends AbstractController
+{
+	/**
+	 * Show tables
+	 * 
+	 * @param integer $page
+	 * @return string
+	 */
+	public function indexAction($page = 1)
+	{
+	}
+
+	/**
+	 * Saves the form
+	 * 
+	 * @return string
+	 */
+	public function saveAction()
+	{
+		if ($this->request->hasPost('published') && $this->request->isAjax()) {
+			
+		}
+	}
+
+	/**
+	 * Delete selected items
+	 * 
+	 * @return string
+	 */
+	public function deleteSelectedAction()
+	{
+	}
+
+	/**
+	 * Deletes an item by its associated id
+	 * 
+	 * @return string
+	 */
+	public function deleteAction()
+	{
+		if ($this->request->hasPost('id') && $this->request->isAjax()) {
+			
+		}
+	}
+}
