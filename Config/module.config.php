@@ -15,6 +15,6 @@ return array(
 		'url'	=> '/admin/module/polls',
 		'icon'	=> '/module/Polls/Assets/polls.png',
 		'order' => 1,
-		'description' => 'Polls module allows you to create online polls on your web-site',
+		'description' => 'Polls module lets you to easily manage polls on your site',
 	)
 );
