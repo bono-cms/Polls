@@ -11,29 +11,50 @@
 
 namespace Polls\Service;
 
-use Admin\Service\AbstractManager;
-use Polls\Storage\AnswerMapperInterface;
+use Cms\Service\AbstractManager;
+use Polls\Storage\CategoryMapperInterface;
+use Krystal\Stdlib\VirtualEntity;
 
-final class CategoryManager extends AbstractManager
+final class CategoryManager extends AbstractManager implements CategoryManagerInterface
 {
 	/**
-	 * @var CategoryMapperInterface
+	 * Any compliant category mapper
+	 * 
+	 * @var \Polls\Storage\CategoryMapperInterface
 	 */
 	private $categoryMapper;
 
 	/**
 	 * State initialization
 	 * 
-	 * @param CategoryMapperInterface $categoryMapper
+	 * @param \Polls\Storage\CategoryMapperInterface $categoryMapper
 	 * @return void
 	 */
-	public function __construct($categoryMapper)
+	public function __construct(CategoryMapperInterface $categoryMapper)
 	{
 		$this->categoryMapper = $categoryMapper;
 	}
 
 	/**
-	 * Deletes a record by its associated id
+	 * {@inheritDoc}
+	 */
+	protected function toEntity(array $category)
+	{
+		$category = new VirtualEntity();
+		return $category;
+	}
+
+	/**
+	 * Fetches all categories
+	 * 
+	 * @return array
+	 */
+	public function fetchAll()
+	{
+	}
+
+	/**
+	 * Deletes a category by its associated id
 	 * 
 	 * @param string $id
 	 * @return boolean
@@ -43,22 +64,22 @@ final class CategoryManager extends AbstractManager
 	}
 
 	/**
-	 * Adds a record
+	 * Adds a category
 	 * 
-	 * @param stdclass $container
+	 * @param array $input Raw input data
 	 * @return boolean
 	 */
-	public function add(stdclass $container)
+	public function add(array $input)
 	{
 	}
 
 	/**
-	 * Updates a record
+	 * Updates a category
 	 * 
-	 * @param stdclass $container
+	 * @param array $input Raw input data
 	 * @return boolean
 	 */
-	public function update(stdclass $container)
+	public function update(array $input)
 	{
 	}
 }

@@ -11,43 +11,42 @@
 
 namespace Polls\Storage\MySQL;
 
-use Admin\Storage\MySQL\AbstractMapper;
+use Cms\Storage\MySQL\AbstractMapper;
+use Polls\Storage\CategoryMapperInterface;
 
-final class CategoryMapper extends AbstractMapper
+final class CategoryMapper extends AbstractMapper implements CategoryMapperInterface
 {
 	/**
-	 * Fetch all by page
+	 * Fetches all categories
 	 * 
-	 * @param integer $page
-	 * @param integer $itemsPerPage
 	 * @return array
 	 */
-	public function fetchAllByPage($page, $itemsPerPage)
-	{
-	}
-	
-	/**
-	 * Inserts a record
-	 * 
-	 * @param stdclass $container
-	 * @return boolean
-	 */
-	public function insert(stdclass $container)
+	public function fetchAll()
 	{
 	}
 
 	/**
-	 * Updates a record
+	 * Adds a category
 	 * 
-	 * @param stdclass $container
+	 * @param array $input Raw input data
 	 * @return boolean
 	 */
-	public function update(stdclass $container)
+	public function insert(array $input)
 	{
 	}
 
 	/**
-	 * Fetches a record by its associated id
+	 * Updates a category
+	 * 
+	 * @param array $input Raw input data
+	 * @return boolean
+	 */
+	public function update(array $input)
+	{
+	}
+
+	/**
+	 * Fetches a category by its associated id
 	 * 
 	 * @param string $id
 	 * @return array
@@ -57,7 +56,7 @@ final class CategoryMapper extends AbstractMapper
 	}
 
 	/**
-	 * Deletes a record by its associated id
+	 * Deletes a category by its associated id
 	 * 
 	 * @param string $id
 	 * @return boolean
