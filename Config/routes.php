@@ -12,7 +12,7 @@
 return array(
 	
 	'/admin/module/polls' => array(
-		'controller' => 'Admin:Answer:Browser@indexAction'
+		'controller' => 'Admin:Browser@indexAction'
 	),
 	
 	'/admin/module/polls/answer/add' => array(

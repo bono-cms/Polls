@@ -9,20 +9,26 @@
  * the license file that was distributed with this source code.
  */
 
-namespace Polls\Controller\Admin\Answer;
+namespace Polls\Controller\Admin;
 
 use Cms\Controller\Admin\AbstractController;
 
 final class Browser extends AbstractController
 {
 	/**
-	 * Show tables
+	 * Display grids
 	 * 
 	 * @param integer $page
 	 * @return string
 	 */
 	public function indexAction($page = 1)
 	{
+		$this->loadPlugins();
+
+		return $this->view->render('browser', array(
+			'title' => 'Polls',
+			'categories' => array()
+		));
 	}
 
 	/**
@@ -56,5 +62,20 @@ final class Browser extends AbstractController
 		if ($this->request->hasPost('id') && $this->request->isAjax()) {
 			
 		}
+	}
+	
+	/**
+	 * Loads plugins for a view
+	 * 
+	 * @return void
+	 */
+	private function loadPlugins()
+	{
+		$this->view->getBreadcrumbBag()->add(array(
+			array(
+				'link' => '#',
+				'name' => 'Polls'
+			)
+		));
 	}
 }
