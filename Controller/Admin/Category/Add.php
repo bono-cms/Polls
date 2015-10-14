@@ -11,10 +11,9 @@
 
 namespace Polls\Controller\Admin\Category;
 
-use Cms\Controller\Admin\AbstractController;
 use Krystal\Stdlib\VirtualEntity;
 
-final class Add extends AbstractController
+final class Add extends AbstractCategory
 {
 	/**
 	 * Shows adding form
