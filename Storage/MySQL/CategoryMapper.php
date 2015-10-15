@@ -55,6 +55,7 @@ final class CategoryMapper extends AbstractMapper implements CategoryMapperInter
 	 */
 	public function update(array $input)
 	{
+		return $this->persist($input);
 	}
 
 	/**
