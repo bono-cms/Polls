@@ -65,6 +65,7 @@ final class CategoryMapper extends AbstractMapper implements CategoryMapperInter
 	 */
 	public function fetchById($id)
 	{
+		return $this->findByPk($id);
 	}
 
 	/**
