@@ -45,6 +45,7 @@ final class CategoryMapper extends AbstractMapper implements CategoryMapperInter
 	 */
 	public function insert(array $input)
 	{
+		return $this->persist($this->getWithLang($input));
 	}
 
 	/**
