@@ -17,6 +17,14 @@ use Polls\Storage\CategoryMapperInterface;
 final class CategoryMapper extends AbstractMapper implements CategoryMapperInterface
 {
 	/**
+	 * {@inheritDoc}
+	 */
+	public static function getTableName()
+	{
+		return 'bono_module_polls_categories';
+	}
+
+	/**
 	 * Fetches all categories
 	 * 
 	 * @return array
