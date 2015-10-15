@@ -76,5 +76,6 @@ final class CategoryMapper extends AbstractMapper implements CategoryMapperInter
 	 */
 	public function deleteById($id)
 	{
+		return $this->deleteByPk($id);
 	}
 }
