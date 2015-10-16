@@ -17,6 +17,26 @@ use Krystal\Validate\Pattern;
 abstract class AbstractCategory extends AbstractController
 {
 	/**
+	 * Loads breadcrumbs
+	 * 
+	 * @param string $title Title of the last one
+	 * @return void
+	 */
+	final protected function loadBreadcrumbs($title)
+	{
+		$this->view->getBreadcrumbBag()->add(array(
+			array(
+				'name' => 'Polls',
+				'link' => 'Polls:Admin:Browser@indexAction'
+			),
+			array(
+				'name' => $title,
+				'link' => '#'
+			)
+		));
+	}
+
+	/**
 	 * Returns prepared validator instance
 	 * 
 	 * @param array $input Raw input data
