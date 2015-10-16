@@ -37,8 +37,18 @@ final class Add extends AbstractCategory
 	 */
 	public function addAction()
 	{
-		if ($this->request->isPost() && $this->request->isAjax()) {
-			
+		$formValidator = $this->getValidator($this->request->getPost('category'));
+
+		if ($formValidator->isValid()) {
+			$categoryManager = $this->getCategoryManager();
+
+			if ($categoryManager->add($this->request->getPost())) {
+				$this->flashBag->set('success', 'The category has been created successfully');
+				return $categoryManager->getLastId();
+			}
+
+		} else {
+			return $formValidator->getErrors();
 		}
 	}
 }
