@@ -22,6 +22,7 @@ final class Add extends AbstractCategory
 	 */
 	public function indexAction()
 	{
+		$this->loadBreadcrumbs('Add a category');
 		$category = new VirtualEntity();
 
 		return $this->view->render('category.form', array(
