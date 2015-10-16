@@ -43,7 +43,7 @@ final class Add extends AbstractCategory
 		if ($formValidator->isValid()) {
 			$categoryManager = $this->getCategoryManager();
 
-			if ($categoryManager->add($this->request->getPost())) {
+			if ($categoryManager->add($this->request->getPost('category'))) {
 				$this->flashBag->set('success', 'The category has been created successfully');
 				return $categoryManager->getLastId();
 			}
