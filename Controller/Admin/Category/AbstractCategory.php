@@ -33,4 +33,14 @@ abstract class AbstractCategory extends AbstractController
 			)
 		));
 	}
+
+	/**
+	 * Returns category manager service
+	 * 
+	 * @return \Polls\Service\CategoryManager
+	 */
+	final protected function getCategoryManager()
+	{
+		return $this->getModuleService('categoryManager');
+	}
 }
