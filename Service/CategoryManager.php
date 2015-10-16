@@ -41,6 +41,9 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
 	protected function toEntity(array $category)
 	{
 		$category = new VirtualEntity();
+		$category->setId($category['id'])
+				 ->setName($category['name']);
+
 		return $category;
 	}
 
@@ -51,6 +54,7 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
 	 */
 	public function fetchAll()
 	{
+		return $this->prepareResults($this->categoryMapper->fetchAll());
 	}
 
 	/**
@@ -61,6 +65,7 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
 	 */
 	public function deleteById($id)
 	{
+		return $this->categoryMapper->deleteById($id);
 	}
 
 	/**
@@ -71,6 +76,7 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
 	 */
 	public function add(array $input)
 	{
+		return $this->categoryMapper->insert($input);
 	}
 
 	/**
@@ -81,5 +87,6 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
 	 */
 	public function update(array $input)
 	{
+		return $this->categoryMapper->update($input);
 	}
 }
