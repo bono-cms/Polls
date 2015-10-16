@@ -13,4 +13,41 @@ namespace Polls\Service;
 
 interface CategoryManagerInterface
 {
+	/**
+	 * Returns last category id
+	 * 
+	 * @return integer
+	 */
+	public function getLastId();
+
+	/**
+	 * Fetches all categories
+	 * 
+	 * @return array
+	 */
+	public function fetchAll();
+
+	/**
+	 * Deletes a category by its associated id
+	 * 
+	 * @param string $id
+	 * @return boolean
+	 */
+	public function deleteById($id);
+
+	/**
+	 * Adds a category
+	 * 
+	 * @param array $input Raw input data
+	 * @return boolean
+	 */
+	public function add(array $input);
+
+	/**
+	 * Updates a category
+	 * 
+	 * @param array $input Raw input data
+	 * @return boolean
+	 */
+	public function update(array $input);
 }
