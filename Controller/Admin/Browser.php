@@ -71,11 +71,6 @@ final class Browser extends AbstractController
 	 */
 	private function loadPlugins()
 	{
-		$this->view->getBreadcrumbBag()->add(array(
-			array(
-				'link' => '#',
-				'name' => 'Polls'
-			)
-		));
+		$this->view->getBreadcrumbBag()->addOne('Polls');
 	}
 }
