@@ -48,6 +48,16 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
 	}
 
 	/**
+	 * Returns last category id
+	 * 
+	 * @return integer
+	 */
+	public function getLastId()
+	{
+		return $this->categoryMapper->getLastId();
+	}
+
+	/**
 	 * Fetches all categories
 	 * 
 	 * @return array
