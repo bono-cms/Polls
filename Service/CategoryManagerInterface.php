@@ -21,6 +21,14 @@ interface CategoryManagerInterface
 	public function getLastId();
 
 	/**
+	 * Fetches category's entity by its associated id
+	 * 
+	 * @param string $id
+	 * @return \Krystal\Stdlib\VirtualEntity
+	 */
+	public function fetchById($id);
+
+	/**
 	 * Fetches all categories
 	 * 
 	 * @return array

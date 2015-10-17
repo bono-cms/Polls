@@ -48,6 +48,17 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
 	}
 
 	/**
+	 * Fetches category's entity by its associated id
+	 * 
+	 * @param string $id
+	 * @return \Krystal\Stdlib\VirtualEntity
+	 */
+	public function fetchById($id)
+	{
+		return $this->prepareResult($this->categoryMapper->fetchById($id));
+	}
+
+	/**
 	 * Returns last category id
 	 * 
 	 * @return integer
