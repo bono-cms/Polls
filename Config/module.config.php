@@ -10,11 +10,11 @@
  */
 
 return array(
-	'module' => array(
-		'name'	=> 'Polls',
-		'url'	=> '/admin/module/polls',
-		'icon'	=> '/module/Polls/Assets/polls.png',
-		'order' => 1,
-		'description' => 'Polls module lets you to easily manage polls on your site',
-	)
+    'module' => array(
+        'name'  => 'Polls',
+        'url'   => '/admin/module/polls',
+        'icon'  => '/module/Polls/Assets/polls.png',
+        'order' => 1,
+        'description' => 'Polls module lets you to easily manage polls on your site',
+    )
 );

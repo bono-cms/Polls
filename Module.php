@@ -16,16 +16,16 @@ use Cms\Service\CategoryManager;
 
 final class Module extends AbstractCmsModule
 {
-	/**
-	 * {@inhertiDco}
-	 */
-	public function getServiceProviders()
-	{
-		$categoryMapper = $this->getMapper('/Polls/Storage/MySQL/CategoryMapper');
-		$categoryManager = new CategoryManager($categoryMapper);
+    /**
+     * {@inhertiDco}
+     */
+    public function getServiceProviders()
+    {
+        $categoryMapper = $this->getMapper('/Polls/Storage/MySQL/CategoryMapper');
+        $categoryManager = new CategoryManager($categoryMapper);
 
-		return array(
-			'categoryManager' => $categoryManager
-		);
-	}
+        return array(
+            'categoryManager' => $categoryManager
+        );
+    }
 }

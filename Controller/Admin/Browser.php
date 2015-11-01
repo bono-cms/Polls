@@ -15,62 +15,62 @@ use Cms\Controller\Admin\AbstractController;
 
 final class Browser extends AbstractController
 {
-	/**
-	 * Display grids
-	 * 
-	 * @param integer $page
-	 * @return string
-	 */
-	public function indexAction($page = 1)
-	{
-		$this->loadPlugins();
+    /**
+     * Display grids
+     * 
+     * @param integer $page
+     * @return string
+     */
+    public function indexAction($page = 1)
+    {
+        $this->loadPlugins();
 
-		return $this->view->render('browser', array(
-			'title' => 'Polls',
-			'categories' => array()
-		));
-	}
+        return $this->view->render('browser', array(
+            'title' => 'Polls',
+            'categories' => array()
+        ));
+    }
 
-	/**
-	 * Saves the form
-	 * 
-	 * @return string
-	 */
-	public function saveAction()
-	{
-		if ($this->request->hasPost('published') && $this->request->isAjax()) {
-			
-		}
-	}
+    /**
+     * Saves the form
+     * 
+     * @return string
+     */
+    public function saveAction()
+    {
+        if ($this->request->hasPost('published') && $this->request->isAjax()) {
+            
+        }
+    }
 
-	/**
-	 * Delete selected items
-	 * 
-	 * @return string
-	 */
-	public function deleteSelectedAction()
-	{
-	}
+    /**
+     * Delete selected items
+     * 
+     * @return string
+     */
+    public function deleteSelectedAction()
+    {
+    }
 
-	/**
-	 * Deletes an item by its associated id
-	 * 
-	 * @return string
-	 */
-	public function deleteAction()
-	{
-		if ($this->request->hasPost('id') && $this->request->isAjax()) {
-			
-		}
-	}
-	
-	/**
-	 * Loads plugins for a view
-	 * 
-	 * @return void
-	 */
-	private function loadPlugins()
-	{
-		$this->view->getBreadcrumbBag()->addOne('Polls');
-	}
+    /**
+     * Deletes an item by its associated id
+     * 
+     * @return string
+     */
+    public function deleteAction()
+    {
+        if ($this->request->hasPost('id') && $this->request->isAjax()) {
+            
+        }
+    }
+    
+    /**
+     * Loads plugins for a view
+     * 
+     * @return void
+     */
+    private function loadPlugins()
+    {
+        $this->view->getBreadcrumbBag()->addOne('Polls');
+    }
 }

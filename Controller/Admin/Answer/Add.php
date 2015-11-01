@@ -15,21 +15,21 @@ use Cms\Controller\Admin\AbstractController;
 
 final class Add extends AbstractController
 {
-	/**
-	 * Default action
-	 * 
-	 * @return string
-	 */
-	public function indexAction()
-	{
-	}
+    /**
+     * Default action
+     * 
+     * @return string
+     */
+    public function indexAction()
+    {
+    }
 
-	/**
-	 * Adds a record
-	 * 
-	 * @return string
-	 */
-	public function addAction()
-	{
-	}
+    /**
+     * Adds a record
+     * 
+     * @return string
+     */
+    public function addAction()
+    {
+    }
 }

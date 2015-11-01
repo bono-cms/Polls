@@ -16,68 +16,68 @@ use Polls\Storage\CategoryMapperInterface;
 
 final class CategoryMapper extends AbstractMapper implements CategoryMapperInterface
 {
-	/**
-	 * {@inheritDoc}
-	 */
-	public static function getTableName()
-	{
-		return 'bono_module_polls_categories';
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public static function getTableName()
+    {
+        return 'bono_module_polls_categories';
+    }
 
-	/**
-	 * Fetches all categories
-	 * 
-	 * @return array
-	 */
-	public function fetchAll()
-	{
-		return $this->db->select('*')
-						->from(self::getTableName())
-						->whereEquals('lang_id', $this->getLangId())
-						->queryAll();
-	}
+    /**
+     * Fetches all categories
+     * 
+     * @return array
+     */
+    public function fetchAll()
+    {
+        return $this->db->select('*')
+                        ->from(self::getTableName())
+                        ->whereEquals('lang_id', $this->getLangId())
+                        ->queryAll();
+    }
 
-	/**
-	 * Adds a category
-	 * 
-	 * @param array $input Raw input data
-	 * @return boolean
-	 */
-	public function insert(array $input)
-	{
-		return $this->persist($this->getWithLang($input));
-	}
+    /**
+     * Adds a category
+     * 
+     * @param array $input Raw input data
+     * @return boolean
+     */
+    public function insert(array $input)
+    {
+        return $this->persist($this->getWithLang($input));
+    }
 
-	/**
-	 * Updates a category
-	 * 
-	 * @param array $input Raw input data
-	 * @return boolean
-	 */
-	public function update(array $input)
-	{
-		return $this->persist($input);
-	}
+    /**
+     * Updates a category
+     * 
+     * @param array $input Raw input data
+     * @return boolean
+     */
+    public function update(array $input)
+    {
+        return $this->persist($input);
+    }
 
-	/**
-	 * Fetches a category by its associated id
-	 * 
-	 * @param string $id
-	 * @return array
-	 */
-	public function fetchById($id)
-	{
-		return $this->findByPk($id);
-	}
+    /**
+     * Fetches a category by its associated id
+     * 
+     * @param string $id
+     * @return array
+     */
+    public function fetchById($id)
+    {
+        return $this->findByPk($id);
+    }
 
-	/**
-	 * Deletes a category by its associated id
-	 * 
-	 * @param string $id
-	 * @return boolean
-	 */
-	public function deleteById($id)
-	{
-		return $this->deleteByPk($id);
-	}
+    /**
+     * Deletes a category by its associated id
+     * 
+     * @param string $id
+     * @return boolean
+     */
+    public function deleteById($id)
+    {
+        return $this->deleteByPk($id);
+    }
 }

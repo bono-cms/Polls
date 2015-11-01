@@ -13,24 +13,24 @@ namespace Polls\Controller\Admin\Category;
 
 final class Edit extends AbstractCategory
 {
-	/**
-	 * Shows edit form
-	 * 
-	 * @param string $id
-	 * @return string
-	 */
-	public function indexAction($id)
-	{
-	}
+    /**
+     * Shows edit form
+     * 
+     * @param string $id
+     * @return string
+     */
+    public function indexAction($id)
+    {
+    }
 
-	/**
-	 * Updates a record
-	 * 
-	 * @return string
-	 */
-	public function updateAction()
-	{
-		if ($this->request->isPost() && $this->request->isAjax()) {
-		}
-	}
+    /**
+     * Updates a record
+     * 
+     * @return string
+     */
+    public function updateAction()
+    {
+        if ($this->request->isPost() && $this->request->isAjax()) {
+        }
+    }
 }

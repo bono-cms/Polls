@@ -13,42 +13,42 @@ namespace Polls\Storage;
 
 interface CategoryMapperInterface
 {
-	/**
-	 * Fetches all categories
-	 * 
-	 * @return array
-	 */
-	public function fetchAll();
+    /**
+     * Fetches all categories
+     * 
+     * @return array
+     */
+    public function fetchAll();
 
-	/**
-	 * Adds a category
-	 * 
-	 * @param array $input Raw input data
-	 * @return boolean
-	 */
-	public function insert(array $input);
+    /**
+     * Adds a category
+     * 
+     * @param array $input Raw input data
+     * @return boolean
+     */
+    public function insert(array $input);
 
-	/**
-	 * Updates a category
-	 * 
-	 * @param array $input Raw input data
-	 * @return boolean
-	 */
-	public function update(array $input);
+    /**
+     * Updates a category
+     * 
+     * @param array $input Raw input data
+     * @return boolean
+     */
+    public function update(array $input);
 
-	/**
-	 * Fetches a category by its associated id
-	 * 
-	 * @param string $id
-	 * @return array
-	 */
-	public function fetchById($id);
+    /**
+     * Fetches a category by its associated id
+     * 
+     * @param string $id
+     * @return array
+     */
+    public function fetchById($id);
 
-	/**
-	 * Deletes a category by its associated id
-	 * 
-	 * @param string $id
-	 * @return boolean
-	 */
-	public function deleteById($id);
+    /**
+     * Deletes a category by its associated id
+     * 
+     * @param string $id
+     * @return boolean
+     */
+    public function deleteById($id);
 }

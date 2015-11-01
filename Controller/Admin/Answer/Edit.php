@@ -15,25 +15,25 @@ use Cms\Controller\Admin\AbstractController;
 
 final class Edit extends AbstractController
 {
-	/**
-	 * Shows edit form
-	 * 
-	 * @param string $id
-	 * @return string
-	 */
-	public function indexAction($id)
-	{
-	}
+    /**
+     * Shows edit form
+     * 
+     * @param string $id
+     * @return string
+     */
+    public function indexAction($id)
+    {
+    }
 
-	/**
-	 * Updates a record
-	 * 
-	 * @return string
-	 */
-	public function updateAction()
-	{
-		if ($this->request->isPost() && $this->request->isAjax()) {
-			
-		}
-	}
+    /**
+     * Updates a record
+     * 
+     * @return string
+     */
+    public function updateAction()
+    {
+        if ($this->request->isPost() && $this->request->isAjax()) {
+            
+        }
+    }
 }

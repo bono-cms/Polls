@@ -11,23 +11,23 @@
 
 return array(
 
-	'/admin/module/polls' => array(
-		'controller' => 'Admin:Browser@indexAction'
-	),
+    '/admin/module/polls' => array(
+        'controller' => 'Admin:Browser@indexAction'
+    ),
 
-	'/admin/module/polls/category/add' => array(
-		'controller' => 'Admin:Category:Add@indexAction'
-	),
+    '/admin/module/polls/category/add' => array(
+        'controller' => 'Admin:Category:Add@indexAction'
+    ),
 
-	'/admin/module/polls/category/add.ajax' => array(
-		'controller' => 'Admin:Category:Add@addAction'
-	),
+    '/admin/module/polls/category/add.ajax' => array(
+        'controller' => 'Admin:Category:Add@addAction'
+    ),
 
-	'/admin/module/polls/answer/add' => array(
-		'controller' => 'Admin:Answer:Add@indexAction'
-	),
+    '/admin/module/polls/answer/add' => array(
+        'controller' => 'Admin:Answer:Add@indexAction'
+    ),
 
-	'/admin/module/polls/answer/add.ajax' => array(
-		'Admin:Answer:Add' => 'addAction'
-	),
+    '/admin/module/polls/answer/add.ajax' => array(
+        'Admin:Answer:Add' => 'addAction'
+    ),
 );
