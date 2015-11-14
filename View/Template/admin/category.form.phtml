@@ -11,6 +11,16 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="form-group clearfix">
+			<label class="col-lg-2 control-label"><?php $this->show('Class'); ?></label>
+			<div class="col-lg-10">
+				<div class="input-group">
+					<input type="text" name="category[class]" value="<?php echo $category->getName(); ?>" class="form-control" placeholder="<?php $this->show('Class name to be used when rendering on site'); ?>" />
+					<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<?php if (!$category->getId()): ?>
