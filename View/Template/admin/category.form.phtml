@@ -1,12 +1,17 @@
+<?php
+
+use Krystal\Form\Element;
+
+?>
 <form>
 	<div class="well clearfix">
-		<input type="hidden" name="category[id]" value="<?php echo $category->getId(); ?>" />
+        <?php echo Element::hidden('category[id]', $category->getId()); ?>
 
 		<div class="form-group clearfix">
 			<label class="col-lg-2 control-label"><?php $this->show('Name'); ?></label>
 			<div class="col-lg-10">
 				<div class="input-group">
-					<input type="text" name="category[name]" value="<?php echo $category->getName(); ?>" class="form-control" placeholder="<?php $this->show('Category name'); ?>" />
+                    <?php echo Element::text('category[name]', $category->getName(), array('class' => 'form-control', 'placeholder' => $this->translate('Category name'))); ?>
 					<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
 				</div>
 			</div>
@@ -16,7 +21,7 @@
 			<label class="col-lg-2 control-label"><?php $this->show('Class'); ?></label>
 			<div class="col-lg-10">
 				<div class="input-group">
-					<input type="text" name="category[class]" value="<?php echo $category->getName(); ?>" class="form-control" placeholder="<?php $this->show('Class name to be used when rendering on site'); ?>" />
+                    <?php echo Element::text('category[class]', $category->getClass(), array('class' => 'form-control', 'placeholder' => $this->translate('Class name to be used when rendering on site'))); ?>
 					<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
 				</div>
 			</div>
