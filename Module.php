@@ -12,7 +12,7 @@
 namespace Polls;
 
 use Cms\AbstractCmsModule;
-use Cms\Service\CategoryManager;
+use Polls\Service\CategoryManager;
 
 final class Module extends AbstractCmsModule
 {
