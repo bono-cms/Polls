@@ -24,16 +24,8 @@ abstract class AbstractCategory extends AbstractController
      */
     final protected function loadBreadcrumbs($title)
     {
-        $this->view->getBreadcrumbBag()->add(array(
-            array(
-                'name' => 'Polls',
-                'link' => 'Polls:Admin:Browser@indexAction'
-            ),
-            array(
-                'name' => $title,
-                'link' => '#'
-            )
-        ));
+        $this->view->getBreadcrumbBag()->addOne('Polls', 'Polls:Admin:Browser@indexAction')
+                                       ->addOne($title);
     }
 
     /**
