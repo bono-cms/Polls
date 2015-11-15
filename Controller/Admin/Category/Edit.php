@@ -36,13 +36,24 @@ final class Edit extends AbstractCategory
     }
 
     /**
-     * Updates a record
+     * Updates a category
      * 
      * @return string
      */
     public function updateAction()
     {
-        if ($this->request->isPost() && $this->request->isAjax()) {
+        $formValidator = $this->getValidator($this->request->getPost('category'));
+
+        if ($formValidator->isValid()) {
+
+            $categoryManager = $this->getModuleService('categoryManager');
+            $categoryManager->update($this->request->getPost('category'));
+
+            $this->flashBag->set('success', 'The category has been updated successfully');
+            return '1';
+
+        } else {
+            return $formValidator->getErrors();
         }
     }
 }
