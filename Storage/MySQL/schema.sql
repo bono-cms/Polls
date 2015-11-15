@@ -18,6 +18,7 @@ CREATE TABLE `bono_module_polls_categories` (
 
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`lang_id` INT NOT NULL,
-	`name` varchar(254) NOT NULL
+	`name` varchar(254) NOT NULL,
+    `class` varchar(50) NOT NULL
 	
 ) DEFAULT CHARSET = UTF8;
