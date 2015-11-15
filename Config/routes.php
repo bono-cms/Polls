@@ -23,6 +23,14 @@ return array(
         'controller' => 'Admin:Category:Add@addAction'
     ),
 
+    '/admin/module/polls/category/edit/(:var)' => array(
+        'controller' => 'Admin:Category:Edit@indexAction'
+    ),
+    
+    '/admin/module/polls/category/edit.ajax' => array(
+        'controller' => 'Admin:Category:Edit@updateAction'
+    ),
+
     '/admin/module/polls/answer/add' => array(
         'controller' => 'Admin:Answer:Add@indexAction'
     ),
