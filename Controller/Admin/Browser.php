@@ -27,7 +27,7 @@ final class Browser extends AbstractController
 
         return $this->view->render('browser', array(
             'title' => 'Polls',
-            'categories' => array()
+            'categories' => $this->getModuleService('categoryManager')->fetchAll()
         ));
     }
 
