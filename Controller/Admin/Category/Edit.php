@@ -14,13 +14,25 @@ namespace Polls\Controller\Admin\Category;
 final class Edit extends AbstractCategory
 {
     /**
-     * Shows edit form
+     * Shows the edit form
      * 
-     * @param string $id
+     * @param string $id Category id
      * @return string
      */
     public function indexAction($id)
     {
+        $category = $this->getModuleService('categoryManager')->fetchById($id);
+
+        if ($category !== false) {
+            $this->loadBreadcrumbs('Edit the category');
+
+            return $this->view->render('category.form', array(
+                'category' => $category,
+                'title' => 'Edit the category'
+            ));
+        } else {
+            return false;
+        }
     }
 
     /**
