@@ -12,6 +12,7 @@
 namespace Polls\Controller\Admin\Answer;
 
 use Cms\Controller\Admin\AbstractController;
+use Krystal\Stdlib\VirtualEntity;
 
 final class Add extends AbstractController
 {
@@ -22,6 +23,11 @@ final class Add extends AbstractController
      */
     public function indexAction()
     {
+        return $this->view->render('option.form', array(
+            'title' => 'Add new option',
+            'option' => new VirtualEntity(),
+            'categories' => array()
+        ));
     }
 
     /**
