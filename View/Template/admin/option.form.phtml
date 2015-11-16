@@ -5,6 +5,8 @@ use Krystal\Form\Element;
 ?>
 <form>
     <div class="well">
+        <?php echo Element::hidden('id', $option->getId()); ?>
+        
         <div class="form-group clearfix">
             <label class="col-lg-2 control-label"><?php $this->show('Answer'); ?></label>
             <div class="col-lg-10">
