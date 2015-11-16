@@ -1,10 +1,15 @@
+<?php
+
+use Krystal\Form\Element;
+
+?>
 <form>
     <div class="well">
         <div class="form-group clearfix">
             <label class="col-lg-2 control-label"><?php echo $this->translate('Answer'); ?><b>*</b></label>
             <div class="col-lg-10">
                 <div class="input-group">
-                    <input type="text" name="title" class="form-control" placeholder="<?php echo $this->translate('Target answer'); ?>" />
+                    <?php echo Element::text('title', $option->getTitle(), array('class' => 'form-control', 'placeholder' => 'Target answer')); ?>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                 </div>
             </div>
@@ -13,13 +18,7 @@
         <div class="form-group clearfix">
             <label class="col-lg-2 control-label"><?php echo $this->translate('Category'); ?></label>
             <div class="col-lg-10">
-                <select name="categoryId" class="form-control">
-                    <option value="1">None</option>
-                    
-                    <?php foreach($categories as $category): ?>
-                    <option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <?php echo Element::select('categoryId', $categories, $option->getCategoryId(), array('class' => 'form-control')); ?>
             </div>
         </div>
         
@@ -27,7 +26,7 @@
             <label class="col-lg-2 control-label"><?php echo $this->translate('Order'); ?><b>*</b></label>
             <div class="col-lg-10">
                 <div class="input-group">
-                    <input type="text" name="order" class="form-control" placeholder="<?php echo $this->translate('Order of this answer to be displayed in a category'); ?>" />
+                    <?php echo Element::text('order', $option->getOrder(), array('class' => 'form-control', 'placeholder' => 'Order of this answer to be displayed in a category')); ?>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                 </div>
             </div>
@@ -36,8 +35,7 @@
         <div class="form-group clearfix">
             <label class="col-lg-2 control-label"><?php echo $this->translate('Published'); ?><b>*</b></label>
             <div class="col-lg-10">
-                <input type="hidden" name="published" value="0" />
-                <input type="checkbox" name="published" value="1" class="form-control" checked="checked" />
+                <?php echo Element::checkbox('published', $option->getPublished(), array('class' => 'form-control')); ?>
             </div>
         </div>
     </div>
