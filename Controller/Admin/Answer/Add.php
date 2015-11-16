@@ -9,7 +9,7 @@
  * the license file that was distributed with this source code.
  */
 
-namespace Polls\Answer\Controller\Admin;
+namespace Polls\Controller\Admin\Answer;
 
 use Cms\Controller\Admin\AbstractController;
 
