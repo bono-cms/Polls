@@ -6,7 +6,7 @@ use Krystal\Form\Element;
 <form>
     <div class="well">
         <div class="form-group clearfix">
-            <label class="col-lg-2 control-label"><?php echo $this->translate('Answer'); ?><b>*</b></label>
+            <label class="col-lg-2 control-label"><?php echo $this->translate('Answer'); ?></label>
             <div class="col-lg-10">
                 <div class="input-group">
                     <?php echo Element::text('title', $option->getTitle(), array('class' => 'form-control', 'placeholder' => 'Target answer')); ?>
@@ -23,7 +23,7 @@ use Krystal\Form\Element;
         </div>
         
         <div class="form-group clearfix">
-            <label class="col-lg-2 control-label"><?php echo $this->translate('Order'); ?><b>*</b></label>
+            <label class="col-lg-2 control-label"><?php echo $this->translate('Order'); ?></label>
             <div class="col-lg-10">
                 <div class="input-group">
                     <?php echo Element::text('order', $option->getOrder(), array('class' => 'form-control', 'placeholder' => 'Order of this answer to be displayed in a category')); ?>
@@ -33,7 +33,7 @@ use Krystal\Form\Element;
         </div>
         
         <div class="form-group clearfix">
-            <label class="col-lg-2 control-label"><?php echo $this->translate('Published'); ?><b>*</b></label>
+            <label class="col-lg-2 control-label"><?php echo $this->translate('Published'); ?></label>
             <div class="col-lg-10">
                 <?php echo Element::checkbox('published', $option->getPublished(), array('class' => 'form-control')); ?>
             </div>
