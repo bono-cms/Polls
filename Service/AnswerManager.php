@@ -19,14 +19,14 @@ final class AnswerManager extends AbstractManager
     /**
      * Answer mapper
      * 
-     * @var object
+     * @var \Polls\Storage\AnswerMapperInterface
      */
     private $answerMapper;
 
     /**
      * State initialization
      * 
-     * @param AnswerMapperInterface $answerMapper
+     * @param \Polls\Storage\AnswerMapperInterface $answerMapper
      * @return void
      */
     public function __construct(AnswerMapperInterface $answerMapper)
@@ -66,7 +66,7 @@ final class AnswerManager extends AbstractManager
     /**
      * Returns paginator instance
      * 
-     * @return object
+     * @return \Krystal\Paginate\Paginator
      */ 
     public function getPaginator()
     {
@@ -74,7 +74,7 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
-     * Adds a record
+     * Adds an answer
      * 
      * @param stdclass $container
      * @return boolean
@@ -85,7 +85,7 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
-     * Update a record
+     * Update an answer
      * 
      * @param stdclass $container
      * @return boolean
@@ -96,7 +96,7 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
-     * Fetches a record by its associated id
+     * Fetches answer's enttiy by its associated id
      * 
      * @param string $id
      * @return array
@@ -107,7 +107,7 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
-     * Deletes a record by its associated id
+     * Deletes an answer by its associated id
      * 
      * @param string $id
      * @return boolean
