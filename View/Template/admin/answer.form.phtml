@@ -3,7 +3,7 @@
 use Krystal\Form\Element;
 
 ?>
-<form>
+<form data-group="answer">
     <div class="well">
         <?php echo Element::hidden('id', $option->getId()); ?>
         
@@ -11,7 +11,7 @@ use Krystal\Form\Element;
             <label class="col-lg-2 control-label"><?php $this->show('Answer'); ?></label>
             <div class="col-lg-10">
                 <div class="input-group">
-                    <?php echo Element::text('title', $option->getTitle(), array('class' => 'form-control', 'placeholder' => 'Target answer')); ?>
+                    <?php echo Element::text('answer[title]', $option->getTitle(), array('class' => 'form-control', 'placeholder' => 'Target answer')); ?>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                 </div>
             </div>
@@ -20,7 +20,7 @@ use Krystal\Form\Element;
         <div class="form-group clearfix">
             <label class="col-lg-2 control-label"><?php $this->show('Category'); ?></label>
             <div class="col-lg-10">
-                <?php echo Element::select('categoryId', $categories, $option->getCategoryId(), array('class' => 'form-control')); ?>
+                <?php echo Element::select('answer[categoryId]', $categories, $option->getCategoryId(), array('class' => 'form-control')); ?>
             </div>
         </div>
         
@@ -28,7 +28,7 @@ use Krystal\Form\Element;
             <label class="col-lg-2 control-label"><?php $this->show('Order'); ?></label>
             <div class="col-lg-10">
                 <div class="input-group">
-                    <?php echo Element::text('order', $option->getOrder(), array('class' => 'form-control', 'placeholder' => 'Order of this answer to be displayed in a category')); ?>
+                    <?php echo Element::text('answer[order]', $option->getOrder(), array('class' => 'form-control', 'placeholder' => 'Order of this answer to be displayed in a category')); ?>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                 </div>
             </div>
@@ -37,7 +37,7 @@ use Krystal\Form\Element;
         <div class="form-group clearfix">
             <label class="col-lg-2 control-label"><?php $this->show('Published'); ?></label>
             <div class="col-lg-10">
-                <?php echo Element::checkbox('published', $option->getPublished(), array('class' => 'form-control')); ?>
+                <?php echo Element::checkbox('answer[published]', $option->getPublished(), array('class' => 'form-control')); ?>
             </div>
         </div>
     </div>
