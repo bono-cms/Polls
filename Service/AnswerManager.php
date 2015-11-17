@@ -96,7 +96,7 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
-     * Fetches answer's enttiy by its associated id
+     * Fetches answer's entity by its associated id
      * 
      * @param string $id
      * @return array
