@@ -13,6 +13,7 @@ namespace Polls;
 
 use Cms\AbstractCmsModule;
 use Polls\Service\CategoryManager;
+use Polls\Service\AnswerManager;
 
 final class Module extends AbstractCmsModule
 {
@@ -21,11 +22,15 @@ final class Module extends AbstractCmsModule
      */
     public function getServiceProviders()
     {
+        $answerMapper = $this->getMapper('/Polls/Storage/MySQL/AnswerMapper');
+        $answerManager = new AnswerManager($answerMapper);
+
         $categoryMapper = $this->getMapper('/Polls/Storage/MySQL/CategoryMapper');
         $categoryManager = new CategoryManager($categoryMapper);
 
         return array(
-            'categoryManager' => $categoryManager
+            'categoryManager' => $categoryManager,
+            'answerManager' => $answerManager
         );
     }
 }
