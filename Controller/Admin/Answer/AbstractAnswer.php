@@ -31,7 +31,7 @@ abstract class AbstractAnswer extends AbstractController
     /**
      * Returns prepared form validator
      * 
-     * @param array $input
+     * @param array $input Raw input data
      * @return \Krystal\Validate\ValidatorChain
      */
     final protected function getValidator(array $input)
