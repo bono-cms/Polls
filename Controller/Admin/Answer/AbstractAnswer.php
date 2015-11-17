@@ -12,6 +12,7 @@
 namespace Polls\Controller\Admin\Answer;
 
 use Cms\Controller\Admin\AbstractController;
+use Krystal\Validate\Pattern;
 
 abstract class AbstractAnswer extends AbstractController
 {
@@ -25,5 +26,23 @@ abstract class AbstractAnswer extends AbstractController
     {
         $this->view->getBreadcrumbBag()->addOne('Polls', 'Polls:Admin:Browser@indexAction')
                                        ->addOne($title);
+    }
+
+    /**
+     * Returns prepared form validator
+     * 
+     * @param array $input
+     * @return \Krystal\Validate\ValidatorChain
+     */
+    final protected function getValidator(array $input)
+    {
+        return $this->validatorFactory->build(array(
+            'input' => array(
+                'source' => $input,
+                'definition' => array(
+                    'title' => new Pattern\Title()
+                )
+            )
+        ));
     }
 }
