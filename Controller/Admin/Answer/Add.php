@@ -26,7 +26,7 @@ final class Add extends AbstractController
         return $this->view->render('answer.form', array(
             'title' => 'Add new option',
             'option' => new VirtualEntity(),
-            'categories' => array()
+            'categories' => $this->getModuleService('categoryManager')->fetchAsList()
         ));
     }
 
