@@ -76,23 +76,23 @@ final class AnswerManager extends AbstractManager
     /**
      * Adds an answer
      * 
-     * @param stdclass $container
+     * @param array $input Raw input data
      * @return boolean
      */
-    public function add(stdclass $container)
+    public function add(array $input)
     {
-        return $this->answerMapper->insert($container);
+        return $this->answerMapper->insert($input);
     }
 
     /**
      * Update an answer
      * 
-     * @param stdclass $container
+     * @param array $input Raw input data
      * @return boolean
      */
-    public function update(stdclass $container)
+    public function update(array $input)
     {
-        return $this->answerMapper->update($container);
+        return $this->answerMapper->update($input);
     }
 
     /**
