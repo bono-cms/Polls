@@ -80,6 +80,23 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
     }
 
     /**
+     * Fetch categories as a list
+     * 
+     * @return array
+     */
+    public function fetchAsList()
+    {
+        $result = array();
+        $entities = $this->fetchAll();
+
+        foreach ($entities as $category) {
+            $result[$category->getId()] = $category->getName();
+        }
+
+        return $result;
+    }
+
+    /**
      * Deletes a category by its associated id
      * 
      * @param string $id
