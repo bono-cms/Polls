@@ -15,5 +15,15 @@ use Cms\Controller\Admin\AbstractController;
 
 abstract class AbstractAnswer extends AbstractController
 {
-    
+    /**
+     * Loads breadcrumbs
+     * 
+     * @param string $title
+     * @return void
+     */
+    final protected function loadBreadcrumbs($title)
+    {
+        $this->view->getBreadcrumbBag()->addOne('Polls', 'Polls:Admin:Browser@indexAction')
+                                       ->addOne($title);
+    }
 }
