@@ -23,7 +23,7 @@ final class Add extends AbstractController
      */
     public function indexAction()
     {
-        return $this->view->render('option.form', array(
+        return $this->view->render('answer.form', array(
             'title' => 'Add new option',
             'option' => new VirtualEntity(),
             'categories' => array()
