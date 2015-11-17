@@ -22,6 +22,8 @@ final class Add extends AbstractAnswer
      */
     public function indexAction()
     {
+        $this->loadBreadcrumbs('Add new option');
+
         return $this->view->render('answer.form', array(
             'title' => 'Add new option',
             'option' => new VirtualEntity(),
