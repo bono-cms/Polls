@@ -11,7 +11,7 @@
 
 namespace Polls\Service;
 
-use Admin\Service\AbstractManager;
+use Cms\Service\AbstractManager;
 use Polls\Storage\AnswerMapperInterface;
 
 final class AnswerManager extends AbstractManager

@@ -11,7 +11,7 @@
 
 namespace Polls\Storage\MySQL;
 
-use Admin\Storage\MySQL\AbstractMapper;
+use Cms\Storage\MySQL\AbstractMapper;
 use Polls\Storage\AnswerMapperInterface;
 
 final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
