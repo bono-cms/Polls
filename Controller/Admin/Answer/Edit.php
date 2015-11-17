@@ -11,9 +11,7 @@
 
 namespace Polls\Controller\Admin\Answer;
 
-use Cms\Controller\Admin\AbstractController;
-
-final class Edit extends AbstractController
+final class Edit extends AbstractAnswer
 {
     /**
      * Shows edit form
