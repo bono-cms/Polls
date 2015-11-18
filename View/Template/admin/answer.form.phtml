@@ -5,7 +5,7 @@ use Krystal\Form\Element;
 ?>
 <form data-group="answer">
     <div class="well">
-        <?php echo Element::hidden('id', $answer->getId()); ?>
+        <?php echo Element::hidden('answer[id]', $answer->getId()); ?>
         
         <div class="form-group clearfix">
             <label class="col-lg-2 control-label"><?php $this->show('Answer'); ?></label>
