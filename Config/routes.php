@@ -39,4 +39,11 @@ return array(
         'controller' => 'Admin:Answer:Add@addAction'
     ),
     
+    '/admin/module/polls/answer/edit/(:var)' => array(
+        'controller' => 'Admin:Answer:Edit@indexAction'
+    ),
+    
+    '/admin/module/polls/answer/edit.ajax' => array(
+        'controller' => 'Admin:Answer:Edit@updateAction'
+    )
 );
