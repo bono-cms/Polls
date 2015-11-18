@@ -36,6 +36,7 @@ return array(
     ),
 
     '/admin/module/polls/answer/add.ajax' => array(
-        'Admin:Answer:Add' => 'Admin:Answer:Add@addAction'
+        'controller' => 'Admin:Answer:Add@addAction'
     ),
+    
 );
