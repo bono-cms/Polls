@@ -1,14 +1,13 @@
 
 DROP TABLE IF EXISTS `bono_module_polls_answers`;
-
 CREATE TABLE `bono_module_polls_answers` (
 	
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`lang_id` INT NOT NULL,
-	`categoryId` INT NOT NULL,
+	`category_id` INT NOT NULL,
+	`title` varchar(50) NOT NULL,
 	`order` INT NOT NULL,
-	`published` varchar(1) NOT NULL,
-	`answer` TEXT
+	`published` varchar(1) NOT NULL
 	
 ) DEFAULT CHARSET=UTF8;
 
