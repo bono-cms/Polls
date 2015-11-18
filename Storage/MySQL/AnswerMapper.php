@@ -69,16 +69,18 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
      */
     public function insert(array $data)
     {
+        return $this->persist($data);
     }
 
     /**
-     * Updates an answer
+     * Updates an answer`
      * 
      * @param array $data
      * @return boolean
      */
     public function update(array $data)
     {
+        return $this->persist($data);
     }
 
     /**
