@@ -17,6 +17,14 @@ use Polls\Storage\AnswerMapperInterface;
 final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
 {
     /**
+     * {@inheritDoc}
+     */
+    public static function getTableName()
+    {
+        return 'bono_module_polls_answers';
+    }
+
+    /**
      * Fetch all by page
      * 
      * @param integer $page
