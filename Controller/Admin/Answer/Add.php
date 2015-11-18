@@ -16,7 +16,7 @@ use Krystal\Stdlib\VirtualEntity;
 final class Add extends AbstractAnswer
 {
     /**
-     * Default action
+     * Displays adding form
      * 
      * @return string
      */
