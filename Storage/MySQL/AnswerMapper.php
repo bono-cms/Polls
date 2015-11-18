@@ -62,22 +62,22 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
-     * Inserts a record
+     * Adds new answer
      * 
-     * @param stdclass $container
+     * @param array $data
      * @return boolean
      */
-    public function insert(stdclass $container)
+    public function insert(array $data)
     {
     }
 
     /**
-     * Updates a record
+     * Updates an answer
      * 
-     * @param stdclass $container
+     * @param array $data
      * @return boolean
      */
-    public function update(stdclass $container)
+    public function update(array $data)
     {
     }
 
