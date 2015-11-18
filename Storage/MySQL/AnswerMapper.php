@@ -92,13 +92,14 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
-     * Fetches a record by its associated id
+     * Fetches answer's data by its associated id
      * 
      * @param string $id
      * @return array
      */
     public function fetchById($id)
     {
+        return $this->findByPk($id);
     }
 
     /**
