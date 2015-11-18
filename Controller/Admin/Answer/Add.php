@@ -32,11 +32,23 @@ final class Add extends AbstractAnswer
     }
 
     /**
-     * Adds a record
+     * Adds an answer
      * 
      * @return string
      */
     public function addAction()
     {
+        $formValidator = $this->getValidator($this->request->getPost('answer'));
+
+        if ($formValidator->isValid()) {
+            $answerManager = $this->getModuleService('answerManager');
+            $answerManager->add($this->request->getPost('answer'));
+
+            $this->flashBag->set('success', 'An answer has been added successfully');
+            return $answerManager->getLastId();
+
+        } else {
+            return $formValidator->getErrors();
+        }
     }
 }
