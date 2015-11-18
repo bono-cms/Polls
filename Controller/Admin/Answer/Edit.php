@@ -38,14 +38,23 @@ final class Edit extends AbstractAnswer
     }
 
     /**
-     * Updates a record
+     * Updates an answer
      * 
      * @return string
      */
     public function updateAction()
     {
-        if ($this->request->isPost() && $this->request->isAjax()) {
-            
+        $formValidator = $this->getValidator($this->request->getPost('answer'));
+
+        if ($formValidator->isValid()) {
+            $answerManager = $this->getModuleService('answerManager');
+            $answerManager->update($this->request->getPost('answer'));
+
+            $this->flashBag->set('success', 'An answer has been added successfully');
+            return '1';
+
+        } else {
+            return $formValidator->getErrors();
         }
     }
 }
