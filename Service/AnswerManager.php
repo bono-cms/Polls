@@ -13,6 +13,7 @@ namespace Polls\Service;
 
 use Cms\Service\AbstractManager;
 use Polls\Storage\AnswerMapperInterface;
+use Krystal\Stdlib\VirtualEntity;
 
 final class AnswerManager extends AbstractManager
 {
@@ -51,6 +52,13 @@ final class AnswerManager extends AbstractManager
      */
     protected function toEntity(array $answer)
     {
+        $entity = new VirtualEntity();
+        $entity->setId((int) $answer['id'])
+               ->setPublished((bool) $answer['published'])
+               ->setTitle($answer['title'])
+               ->setOrder((int) $answer['order']);
+
+        return $entity;
     }
 
     /**
