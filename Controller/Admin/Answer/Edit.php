@@ -21,6 +21,20 @@ final class Edit extends AbstractAnswer
      */
     public function indexAction($id)
     {
+        $answer = $this->getModuleService('answerManager')->fetchById($id);
+
+        if ($answer !== false) {
+            $this->loadBreadcrumbs('Edit the answer');
+
+            return $this->view->render('answer.form', array(
+                'title' => 'Edit the answer',
+                'answer' => $answer,
+                'categories' => $this->getModuleService('categoryManager')->fetchAsList()
+            ));
+
+        } else {
+            return false;
+        }
     }
 
     /**
