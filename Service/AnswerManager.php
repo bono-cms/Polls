@@ -18,7 +18,7 @@ use Krystal\Stdlib\VirtualEntity;
 final class AnswerManager extends AbstractManager
 {
     /**
-     * Answer mapper
+     * Any compliant Answer's mapper
      * 
      * @var \Polls\Storage\AnswerMapperInterface
      */
