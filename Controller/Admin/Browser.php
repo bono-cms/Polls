@@ -74,17 +74,23 @@ final class Browser extends AbstractController
     }
 
     /**
-     * Deletes an item by its associated id
+     * Deletes an answer by its associated id
      * 
      * @return string
      */
     public function deleteAction()
     {
         if ($this->request->hasPost('id') && $this->request->isAjax()) {
-            
+            $id = $this->request->getPost('id');
+
+            $answerManager = $this->getModuleService('answerManager');
+            $answerManager->deleteById($id);
+
+            $this->flashBag->set('success', 'An answer has been removed successfully');
+            return '1';
         }
     }
-    
+
     /**
      * Loads plugins for a view
      * 
@@ -93,5 +99,6 @@ final class Browser extends AbstractController
     private function loadPlugins()
     {
         $this->view->getBreadcrumbBag()->addOne('Polls');
+        $this->view->getPluginBag()->appendScript('@Polls/admin/browser.js');
     }
 }
