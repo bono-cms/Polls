@@ -78,12 +78,13 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
-     * Deletes a record by its associated id
+     * Deletes an answer by its associated id
      * 
      * @param string $id
      * @return boolean
      */
     public function deleteById($id)
     {
+        return $this->deleteByPk($id);
     }
 }
