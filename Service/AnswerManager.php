@@ -48,18 +48,6 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
-     * Fetch all by page
-     * 
-     * @param integer $page
-     * @param integer $itemsPerPage
-     * @return array
-     */
-    public function fetchAllByPage($page, $itemsPerPage)
-    {
-        return $this->prepareResults($this->answerMapper->fetchAllByPage($page, $itemsPerPage));
-    }
-
-    /**
      * {@inheritDoc}
      */
     protected function toEntity(array $answer)
