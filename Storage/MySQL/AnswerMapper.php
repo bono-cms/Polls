@@ -25,6 +25,20 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
+     * Fetches all answers by associated category id
+     * 
+     * @param string $categoryId
+     * @return array
+     */
+    public function fetchAllByCategoryId($categoryId)
+    {
+        return $this->db->select('*')
+                        ->from(self::getTableName())
+                        ->whereEquals('category_id', $categoryId)
+                        ->queryAll();
+    }
+
+    /**
      * Fetch all by page
      * 
      * @param integer $page

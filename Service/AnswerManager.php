@@ -36,6 +36,17 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
+     * Fetches all answers by associated category id
+     * 
+     * @param string $categoryId
+     * @return array
+     */
+    public function fetchAllByCategoryId($categoryId)
+    {
+        return $this->prepareResults($this->answerMapper->fetchAllByCategoryId($categoryId));
+    }
+
+    /**
      * Fetch all by page
      * 
      * @param integer $page
