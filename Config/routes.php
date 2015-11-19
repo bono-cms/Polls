@@ -49,5 +49,9 @@ return array(
     
     '/admin/module/polls/answer/edit.ajax' => array(
         'controller' => 'Admin:Answer:Edit@updateAction'
+    ),
+    
+    '/admin/module/polls/answer/delete.ajax' => array(
+        'controller' => 'Admin:Browser@deleteAction'
     )
 );
