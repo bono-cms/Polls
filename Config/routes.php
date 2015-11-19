@@ -15,6 +15,10 @@ return array(
         'controller' => 'Admin:Browser@indexAction'
     ),
 
+    '/admin/module/polls/category/(:var)' => array(
+        'controller' => 'Admin:Browser@categoryAction'
+    ),
+    
     '/admin/module/polls/category/add' => array(
         'controller' => 'Admin:Category:Add@indexAction'
     ),
