@@ -39,51 +39,6 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
-     * Fetch all by page
-     * 
-     * @param integer $page
-     * @param integer $itemsPerPage
-     * @return array
-     */
-    public function fetchAllByPage($page, $itemsPerPage)
-    {
-    }
-
-    /**
-     * Fetch all published answers
-     * 
-     * @param string $categoryId
-     * @return array
-     */
-    public function fetchAllPublishedByCategoryId($categoryId)
-    {
-    }
-
-    /**
-     * Fetch all published record associated with category id
-     * 
-     * @param string $categoryId
-     * @param integer $page
-     * @param integer $itemsPerPage
-     * @return array
-     */
-    public function fetchAllPublishedByCategoryIdAndPage($categoryId, $page, $itemsPerPage)
-    {
-    }
-
-    /**
-     * Fetch all records associated with given category id
-     * 
-     * @param string $categoryId
-     * @param integer $page
-     * @param integer $itemsPerPage
-     * @return array
-     */
-    public function fetchAllByCategoryIdAndPage($categoryId, $page, $itemsPerPage)
-    {
-    }
-
-    /**
      * Adds new answer
      * 
      * @param array $data
