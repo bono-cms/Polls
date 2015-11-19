@@ -34,35 +34,37 @@ use Krystal\Form\Element;
 <form>
 	<div class="row">
 		<div class="col-lg-6">
-			<h4><i class="glyphicon glyphicon-th-list"></i> <?php $this->show('Options'); ?> (<?php echo count($categories); ?>)</h4>
+			<h4><i class="glyphicon glyphicon-th-list"></i> <?php $this->show('Options'); ?> (<?php echo count($answers); ?>)</h4>
 			<div class="table-responsive">
 				<table class="table table-hover table-bordered table-striped table-condensed">
 					<thead>
 						<tr>
 							<th class="text-center">
-								<?php if (!empty($posts)): ?>
+								<?php if (!empty($answers)): ?>
 								<input type="checkbox" />
 								<?php endif; ?>
 							</th>
 							<th class="text-center"><?php $this->show('#'); ?></th>
 							<th class="text-center"><?php $this->show('Title'); ?></th>
-							<th class="text-center"><?php $this->show('Date'); ?></th>
+							<th class="text-center"><?php $this->show('Order'); ?></th>
 							<th class="text-center"><?php $this->show('Published'); ?></th>
 							<th class="text-center"><?php $this->show('Actions'); ?></th>
 						</tr>
 					</thead>
 					
-					<?php if (!empty($posts)): ?>
+					<?php if (!empty($answers)): ?>
 					<tbody>
 						
-						<?php foreach ($posts as $post): ?>
+						<?php foreach ($answers as $post): ?>
 						<tr>
 							<td class="text-center">
 								<input type="checkbox" name="toDelete[<?php echo $post->getId(); ?>]" />
 							</td>
 							<td class="text-center text-muted"><?php echo $post->getId(); ?></td>
 							<td class="text-center"><?php echo $post->getTitle(); ?></td>
-							<td class="text-center"><?php ?></td>
+							<td class="text-center col-lg-2">
+                                <?php echo Element::number(sprintf('order[%s]', $post->getId()), $post->getOrder(), array('class' => 'form-control', 'min' => '0')); ?>
+                            </td>
 							<td class="text-center">
                                 <?php echo Element::checkbox(sprintf('published[%s]', $post->getId()), $post->getPublished()); ?>
 							</td>
@@ -78,7 +80,7 @@ use Krystal\Form\Element;
 					<?php endif; ?>
 				</table>
 				
-				<?php if (empty($posts)): ?>
+				<?php if (empty($answers)): ?>
 				<div class="center-block">
 					<h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No options'); ?></h2>
 				</div>
