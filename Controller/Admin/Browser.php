@@ -18,11 +18,10 @@ final class Browser extends AbstractController
     /**
      * Display grids
      * 
-     * @param integer $page
      * @param integer $categoryId Category id to be selected
      * @return string
      */
-    public function indexAction($page = 1, $categoryId = null)
+    public function indexAction($categoryId = null)
     {
         $this->loadPlugins();
 
@@ -50,7 +49,7 @@ final class Browser extends AbstractController
      */
     public function categoryAction($categoryId)
     {
-        return $this->indexAction(1, $categoryId);
+        return $this->indexAction($categoryId);
     }
 
     /**
