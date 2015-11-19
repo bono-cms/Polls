@@ -19,20 +19,38 @@ final class Browser extends AbstractController
      * Display grids
      * 
      * @param integer $page
+     * @param integer $categoryId Category id to be selected
      * @return string
      */
-    public function indexAction($page = 1)
+    public function indexAction($page = 1, $categoryId = null)
     {
         $this->loadPlugins();
 
         $categoryManager = $this->getModuleService('categoryManager');
         $answerManager = $this->getModuleService('answerManager');
 
+        // If no explicit id specified, then use the latest
+        if (is_null($categoryId)) {
+            $categoryId = $categoryManager->getLastId();
+        }
+
         return $this->view->render('browser', array(
             'title' => 'Polls',
-            'answers' => $answerManager->fetchAllByCategoryId($categoryManager->getLastId()),
-            'categories' => $categoryManager->fetchAll()
+            'answers' => $answerManager->fetchAllByCategoryId($categoryId),
+            'categories' => $categoryManager->fetchAll(),
+            'categoryId' => $categoryId
         ));
+    }
+
+    /**
+     * Filters by category id
+     * 
+     * @param string $category id
+     * @return string
+     */
+    public function categoryAction($categoryId)
+    {
+        return $this->indexAction(1, $categoryId);
     }
 
     /**
