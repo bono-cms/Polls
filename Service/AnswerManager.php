@@ -39,11 +39,12 @@ final class AnswerManager extends AbstractManager
      * Fetches all answers by associated category id
      * 
      * @param string $categoryId
+     * @param boolean $published Whether to filter by published only
      * @return array
      */
-    public function fetchAllByCategoryId($categoryId)
+    public function fetchAllByCategoryId($categoryId, $published)
     {
-        return $this->prepareResults($this->answerMapper->fetchAllByCategoryId($categoryId));
+        return $this->prepareResults($this->answerMapper->fetchAllByCategoryId($categoryId, $published));
     }
 
     /**

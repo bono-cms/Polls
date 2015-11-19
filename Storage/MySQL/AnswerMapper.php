@@ -28,14 +28,20 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
      * Fetches all answers by associated category id
      * 
      * @param string $categoryId
+     * @param boolean $published Whether to filter by published only
      * @return array
      */
-    public function fetchAllByCategoryId($categoryId)
+    public function fetchAllByCategoryId($categoryId, $published)
     {
-        return $this->db->select('*')
-                        ->from(self::getTableName())
-                        ->whereEquals('category_id', $categoryId)
-                        ->queryAll();
+        $db = $this->db->select('*')
+                       ->from(self::getTableName())
+                       ->whereEquals('category_id', $categoryId);
+
+        if ($published === true) {
+            $db->andWhereEquals('published', '1');
+        }
+
+        return $db->queryAll();
     }
 
     /**
