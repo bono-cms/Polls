@@ -23,7 +23,12 @@ final class Browser extends AbstractController
      */
     public function indexAction($categoryId = null)
     {
-        $this->loadPlugins();
+        // Load view plugins
+        $this->view->getBreadcrumbBag()
+                   ->addOne('Polls');
+
+        $this->view->getPluginBag()
+                   ->appendScript('@Polls/admin/browser.js');
 
         $categoryManager = $this->getModuleService('categoryManager');
         $answerManager = $this->getModuleService('answerManager');
@@ -89,16 +94,5 @@ final class Browser extends AbstractController
             $this->flashBag->set('success', 'An answer has been removed successfully');
             return '1';
         }
-    }
-
-    /**
-     * Loads plugins for a view
-     * 
-     * @return void
-     */
-    private function loadPlugins()
-    {
-        $this->view->getBreadcrumbBag()->addOne('Polls');
-        $this->view->getPluginBag()->appendScript('@Polls/admin/browser.js');
     }
 }
