@@ -14,6 +14,14 @@ return array(
     '/admin/module/polls' => array(
         'controller' => 'Admin:Browser@indexAction'
     ),
+    
+    '/admin/module/polls/save.ajax' => array(
+        'controller' => 'Admin:Browser@saveAction'
+    ),
+    
+    '/admin/module/polls/delete-selected.ajax' => array(
+        'controller' => 'Admin:Browser@deleteSelectedAction'
+    ),
 
     '/admin/module/polls/category/(:var)' => array(
         'controller' => 'Admin:Browser@categoryAction'
