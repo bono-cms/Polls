@@ -36,6 +36,23 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
+     * Update orders by their associated ids
+     * 
+     * @param array $pair
+     * @return boolean
+     */
+    public function updateOrders(array $pair)
+    {
+        foreach ($pair as $id => $order) {
+            if ($this->answerMapper->updateOrder($id, $order)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Update published states by their associated ids
      * 
      * @param array $pair
