@@ -90,6 +90,7 @@ final class AnswerManager extends AbstractManager
         $entity->setId((int) $answer['id'])
                ->setPublished((bool) $answer['published'])
                ->setTitle($answer['title'])
+               ->setCategoryId((int) $answer['category_id'])
                ->setOrder((int) $answer['order']);
 
         return $entity;
