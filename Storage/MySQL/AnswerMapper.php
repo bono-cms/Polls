@@ -25,6 +25,18 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
+     * Updates sorting order
+     * 
+     * @param string $id
+     * @param string $order
+     * @return boolean
+     */
+    public function updateOrder($id, $order)
+    {
+        return $this->updateColumnByPk($id, 'order', $order);
+    }
+
+    /**
      * Updates published state
      * 
      * @param string $id
