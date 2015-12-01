@@ -65,7 +65,9 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
             $db->andWhereEquals('published', '1');
         }
 
-        return $db->queryAll();
+        return $db->orderBy('id')
+                  ->desc()
+                  ->queryAll();
     }
 
     /**
