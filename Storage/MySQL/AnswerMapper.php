@@ -25,6 +25,18 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
+     * Updates published state
+     * 
+     * @param string $id
+     * @param string $state
+     * @return boolean
+     */
+    public function updatePublished($id, $state)
+    {
+        return $this->updateColumnByPk($id, 'published', $state);
+    }
+
+    /**
      * Fetches all answers by associated category id
      * 
      * @param string $categoryId
