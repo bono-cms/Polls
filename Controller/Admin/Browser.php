@@ -64,8 +64,17 @@ final class Browser extends AbstractController
      */
     public function saveAction()
     {
-        if ($this->request->hasPost('published') && $this->request->isAjax()) {
-            
+        if ($this->request->hasPost('published', 'order') && $this->request->isAjax()) {
+            $published = $this->request->getPost('published');
+            $orders = $this->request->getPost('order');
+
+            // Do update
+            $answerManager = $this->getModuleService('answerManager');
+            $answerManager->updatePublishedStates($published);
+            $answerManager->updateOrders($orders);
+
+            $this->flashBag->set('success', 'Settings have been updated successfully');
+            return '1';
         }
     }
 
