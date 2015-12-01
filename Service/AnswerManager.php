@@ -36,6 +36,23 @@ final class AnswerManager extends AbstractManager
     }
 
     /**
+     * Update published states by their associated ids
+     * 
+     * @param array $pair
+     * @return boolean
+     */
+    public function updatePublishedStates(array $pair)
+    {
+        foreach ($pair as $id => $state) {
+            if (!$this->answerMapper->updatePublished($id, $state)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Fetches all answers by associated category id
      * 
      * @param string $categoryId
