@@ -25,6 +25,17 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
+     * Gets amount of voting options by associated category id
+     * 
+     * @param string $categoryId
+     * @return integer
+     */
+    public function countByCategoryId($categoryId)
+    {
+        return $this->countByColumn('category_id', $categoryId);
+    }
+
+    /**
      * Updates sorting order
      * 
      * @param string $id
