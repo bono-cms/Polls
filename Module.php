@@ -26,7 +26,7 @@ final class Module extends AbstractCmsModule
         $answerManager = new AnswerManager($answerMapper);
 
         $categoryMapper = $this->getMapper('/Polls/Storage/MySQL/CategoryMapper');
-        $categoryManager = new CategoryManager($categoryMapper);
+        $categoryManager = new CategoryManager($categoryMapper, $answerMapper);
 
         return array(
             'categoryManager' => $categoryManager,

@@ -13,6 +13,7 @@ namespace Polls\Service;
 
 use Cms\Service\AbstractManager;
 use Polls\Storage\CategoryMapperInterface;
+use Polls\Storage\AnswerMapperInterface;
 use Krystal\Stdlib\VirtualEntity;
 
 final class CategoryManager extends AbstractManager implements CategoryManagerInterface
@@ -25,14 +26,23 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
     private $categoryMapper;
 
     /**
+     * Any compliant answer mapper
+     * 
+     * @var \Polls\Storage\AnswerMapperInterface
+     */
+    private $answerMapper;
+
+    /**
      * State initialization
      * 
      * @param \Polls\Storage\CategoryMapperInterface $categoryMapper
+     * @param \Polls\Storage\AnswerMapperInterface $answerMapper
      * @return void
      */
-    public function __construct(CategoryMapperInterface $categoryMapper)
+    public function __construct(CategoryMapperInterface $categoryMapper, AnswerMapperInterface $answerMapper)
     {
         $this->categoryMapper = $categoryMapper;
+        $this->answerMapper = $answerMapper;
     }
 
     /**
@@ -43,7 +53,8 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
         $entity = new VirtualEntity();
         $entity->setId($category['id'])
                ->setName($category['name'])
-               ->setClass($category['class']);
+               ->setClass($category['class'])
+               ->setOptionsCount($this->answerMapper->countByCategoryId($category['id']));
 
         return $entity;
     }
