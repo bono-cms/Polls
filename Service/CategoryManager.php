@@ -115,7 +115,7 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
      */
     public function deleteById($id)
     {
-        return $this->categoryMapper->deleteById($id);
+        return $this->answerMapper->deleteAllByCategoryId($id) && $this->categoryMapper->deleteById($id);
     }
 
     /**
