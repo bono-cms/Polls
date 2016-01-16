@@ -23,8 +23,12 @@ return array(
         'controller' => 'Admin:Browser@deleteSelectedAction'
     ),
 
-    '/admin/module/polls/category/(:var)' => array(
+    '/admin/module/polls/category/view/(:var)' => array(
         'controller' => 'Admin:Browser@categoryAction'
+    ),
+    
+    '/admin/module/polls/category/delete.ajax' => array(
+        'controller' => 'Admin:Browser@deleteCategoryAction'
     ),
     
     '/admin/module/polls/category/add' => array(
@@ -42,6 +46,7 @@ return array(
     '/admin/module/polls/category/edit.ajax' => array(
         'controller' => 'Admin:Category:Edit@updateAction'
     ),
+    
 
     '/admin/module/polls/answer/add' => array(
         'controller' => 'Admin:Answer:Add@indexAction'
