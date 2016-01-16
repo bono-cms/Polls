@@ -115,6 +115,17 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
+     * Deletes all answers associated with particular category id
+     * 
+     * @param string $id Category id
+     * @return boolean
+     */
+    public function deleteAllByCategoryId($id)
+    {
+        return $this->deleteByColumn('category_id', $id);
+    }
+
+    /**
      * Deletes an answer by its associated id
      * 
      * @param string $id
