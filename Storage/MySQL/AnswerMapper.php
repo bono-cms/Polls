@@ -93,7 +93,7 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
-     * Updates an answer`
+     * Updates an answer
      * 
      * @param array $data
      * @return boolean
