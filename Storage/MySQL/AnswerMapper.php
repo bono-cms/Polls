@@ -89,7 +89,7 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
      */
     public function insert(array $data)
     {
-        return $this->persist($data);
+        return $this->persist($this->getWithLang($data));
     }
 
     /**
