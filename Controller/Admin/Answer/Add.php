@@ -22,13 +22,13 @@ final class Add extends AbstractAnswer
      */
     public function indexAction()
     {
-        $this->loadBreadcrumbs('Add new option');
+        $this->loadBreadcrumbs('Add new answer');
 
         $answer = new VirtualEntity();
         $answer->setPublished(true);
 
         return $this->view->render('answer.form', array(
-            'title' => 'Add new option',
+            'title' => 'Add new answer',
             'answer' => $answer,
             'categories' => $this->getModuleService('categoryManager')->fetchAsList()
         ));
