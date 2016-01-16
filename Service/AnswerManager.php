@@ -159,7 +159,7 @@ final class AnswerManager extends AbstractManager
     {
         return $this->answerMapper->deleteById($id);
     }
-    
+
     /**
      * Deletes a collection of answers by their associated ids
      * 
