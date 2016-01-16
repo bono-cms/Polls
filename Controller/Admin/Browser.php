@@ -85,6 +85,15 @@ final class Browser extends AbstractController
      */
     public function deleteSelectedAction()
     {
+        if ($this->request->hasPost('toDelete')) {
+            $ids = array_keys($this->request->getPost('toDelete'));
+
+            $answerManager = $this->getModuleService('answerManager');
+            $answerManager->deleteByIds($ids);
+
+            $this->flashBag->set('success', 'Selected answers have been removed successfully');
+            return '1';
+        }
     }
 
     /**
@@ -104,7 +113,7 @@ final class Browser extends AbstractController
             return '1';
         }
     }
-    
+
     /**
      * Deletes a category by its associated id
      * 
