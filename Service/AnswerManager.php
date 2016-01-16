@@ -15,7 +15,7 @@ use Cms\Service\AbstractManager;
 use Polls\Storage\AnswerMapperInterface;
 use Krystal\Stdlib\VirtualEntity;
 
-final class AnswerManager extends AbstractManager
+final class AnswerManager extends AbstractManager implements AnswerManagerInterface
 {
     /**
      * Any compliant Answer's mapper
