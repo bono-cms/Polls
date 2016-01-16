@@ -44,7 +44,7 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
     public function updateOrders(array $pair)
     {
         foreach ($pair as $id => $order) {
-            if ($this->answerMapper->updateOrder($id, $order)) {
+            if (!$this->answerMapper->updateOrder($id, $order)) {
                 return false;
             }
         }
