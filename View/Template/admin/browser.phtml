@@ -82,7 +82,7 @@ use Krystal\Form\Element;
                 
                 <?php if (empty($answers)): ?>
                 <div class="center-block">
-                    <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No options'); ?></h2>
+                    <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No answers'); ?></h2>
                 </div>
                 <?php endif; ?>
                 
@@ -100,7 +100,7 @@ use Krystal\Form\Element;
                             <tr>
                                 <th class="text-center"><?php $this->show('#'); ?></th>
                                 <th class="text-center"><?php $this->show('Name'); ?></th>
-                                <th class="text-center"><?php $this->show('Amount of options'); ?></th>
+                                <th class="text-center"><?php $this->show('Amount of answers'); ?></th>
                                 <th class="text-center"><?php $this->show('Actions'); ?></th>
                             </tr>
                         </thead>
