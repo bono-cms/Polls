@@ -104,4 +104,22 @@ final class Browser extends AbstractController
             return '1';
         }
     }
+    
+    /**
+     * Deletes a category by its associated id
+     * 
+     * @return string
+     */
+    public function deleteCategoryAction()
+    {
+        if ($this->request->hasPost('id') && $this->request->isAjax()) {
+            $id = $this->request->getPost('id');
+
+            $categoryManager = $this->getModuleService('categoryManager');
+            $categoryManager->deleteById($id);
+
+            $this->flashBag->set('success', 'The category has been removed successfully');
+            return '1';
+        }
+    }
 }
