@@ -14,6 +14,7 @@ namespace Polls;
 use Cms\AbstractCmsModule;
 use Polls\Service\CategoryManager;
 use Polls\Service\AnswerManager;
+use Polls\Service\SiteService;
 
 final class Module extends AbstractCmsModule
 {
@@ -30,7 +31,8 @@ final class Module extends AbstractCmsModule
 
         return array(
             'categoryManager' => $categoryManager,
-            'answerManager' => $answerManager
+            'answerManager' => $answerManager,
+            'siteService' => new SiteService($answerManager)
         );
     }
 }
