@@ -53,7 +53,6 @@ use Krystal\Form\Element;
                     
                     <?php if (!empty($answers)): ?>
                     <tbody>
-                        
                         <?php foreach ($answers as $answer): ?>
                         <tr>
                             <td class="text-center">
@@ -72,9 +71,7 @@ use Krystal\Form\Element;
                                 <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Remove this option'); ?>" data-button="delete" href="#" data-id="<?php echo $answer->getId(); ?>" data-category="answer"><i class="glyphicon glyphicon-remove"></i></a>
                             </td>
                         </tr>
-                        
                         <?php endforeach; ?>
-                        
                     </tbody>
                     <?php endif; ?>
                 </table>
@@ -127,7 +124,6 @@ use Krystal\Form\Element;
                             <?php endforeach; ?>
                         </tbody>
                         <?php endif; ?>
-                        
                     </table>
                     
                     <?php if (empty($categories)): ?>
@@ -135,10 +131,8 @@ use Krystal\Form\Element;
                         <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No categories'); ?></h2>
                     </div>
                     <?php endif; ?>
-                    
                 </div>
             </div>
         </div>
-        
     </div>
 </form>
