@@ -1,12 +1,12 @@
 $(function(){
-	$.delete({
-		categories : {
-			answer : {
-				url : "/admin/module/polls/answer/delete.ajax"
-			},
+    $.delete({
+        categories : {
+            answer : {
+                url : "/admin/module/polls/answer/delete"
+            },
             category : {
-                url : "/admin/module/polls/category/delete.ajax"
+                url : "/admin/module/polls/category/delete"
             }
-		}
-	});
+        }
+    });
 });

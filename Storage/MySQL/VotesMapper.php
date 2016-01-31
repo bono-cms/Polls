@@ -1,26 +1,60 @@
 <?php
 
+/**
+ * This file is part of the Bono CMS
+ * 
+ * Copyright (c) No Global State Lab
+ * 
+ * For the full copyright and license information, please view
+ * the license file that was distributed with this source code.
+ */
+
 namespace Polls\Storage\MySQL;
 
-use Admin\Storage\MySQL\AbstractMapper;
+use Cms\Storage\MySQL\AbstractMapper;
 
 final class VotesMapper extends AbstractMapper
 {
     /**
-     * Inserts a record
-     * 
-     * @return boolean
+     * {@inheritDoc}
      */
-    public function insert()
+    public static function getTableName()
     {
+        return 'bono_module_polls_votes';
     }
 
     /**
-     * Updates 
+     * {@inheritDoc}
+     */
+    public static function getPk()
+    {
+        return 'answer_id';
+    }
+
+    /**
+     * Increments a vote
      * 
+     * @param string $id Answer's id
      * @return boolean
      */
-    public function update()
+    public function incrementVote($id)
     {
+        return $this->incrementColumnByPk($id, 'answer_id');
+    }
+
+    /**
+     * Inserts a record
+     * 
+     * @param string $id Answer id
+     * @param string $ip User's IP
+     * @return boolean
+     */
+    public function insert($id, $ip)
+    {
+        return $this->persist(array(
+            'answer_id' => $id,
+            'user_ip' => $ip,
+            'count' => 0
+        ));
     }
 }

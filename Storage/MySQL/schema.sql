@@ -12,6 +12,16 @@ CREATE TABLE `bono_module_polls_answers` (
 ) DEFAULT CHARSET=UTF8;
 
 
+DROP TABLE IF EXISTS `bono_module_polls_votes`;
+CREATE TABLE `bono_module_polls_votes` (
+
+	`answer_id` INT NOT NULL,
+    `user_ip` varchar(30) NOT NULL,
+	`count` INT NOT NULL
+
+) DEFAULT CHARSET=UTF8;
+
+
 DROP TABLE IF EXISTS `bono_module_polls_categories`;
 CREATE TABLE `bono_module_polls_categories` (
 
