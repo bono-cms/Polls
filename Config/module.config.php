@@ -13,7 +13,7 @@ return array(
     'module' => array(
         'name'  => 'Polls',
         'url'   => '/admin/module/polls',
-        'icon'  => '/module/Polls/Assets/polls.png',
+        'icon'  => 'fa fa-star-o fa-5x',
         'order' => 1,
         'description' => 'Polls module lets you to easily manage polls on your site',
     )

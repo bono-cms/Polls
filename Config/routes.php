@@ -23,7 +23,7 @@ return array(
     ),
     
     '/admin/module/polls/category/delete' => array(
-        'controller' => 'Admin:Answer@deleteAction'
+        'controller' => 'Admin:Category@deleteAction'
     ),
     
     '/admin/module/polls/category/add' => array(

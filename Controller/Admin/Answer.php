@@ -72,25 +72,7 @@ final class Answer extends AbstractController
      */
     public function deleteAction()
     {
-        if ($this->request->hasPost('toDelete')) {
-            $ids = array_keys($this->request->getPost('toDelete'));
-
-            $answerManager = $this->getModuleService('answerManager');
-            $answerManager->deleteByIds($ids);
-
-            $this->flashBag->set('success', 'Selected answers have been removed successfully');
-        }
-
-        if ($this->request->hasPost('id') && $this->request->isAjax()) {
-            $id = $this->request->getPost('id');
-
-            $answerManager = $this->getModuleService('answerManager');
-            $answerManager->deleteById($id);
-
-            $this->flashBag->set('success', 'An answer has been removed successfully');
-        }
-
-        return '1';
+        return $this->invokeRemoval('answerManager');
     }
 
     /**
@@ -123,7 +105,7 @@ final class Answer extends AbstractController
     {
         $input = $this->request->getPost('answer');
 
-        $formValidator = $this->validatorFactory->build(array(
+        return $this->invokeSave('answerManager', $input['id'], $input, array(
             'input' => array(
                 'source' => $input,
                 'definition' => array(
@@ -131,23 +113,5 @@ final class Answer extends AbstractController
                 )
             )
         ));
-
-        if ($formValidator->isValid()) {
-            $answerManager = $this->getModuleService('answerManager');
-
-            if ($input['id']) {
-                $answerManager->update($input);
-                $this->flashBag->set('success', 'An answer has been added successfully');
-                return '1';
-
-            } else {
-                $answerManager->add($input);
-                $this->flashBag->set('success', 'An answer has been added successfully');
-                return $answerManager->getLastId();
-            }
-
-        } else {
-            return $formValidator->getErrors();
-        }
     }
 }
