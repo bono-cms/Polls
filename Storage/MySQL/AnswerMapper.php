@@ -21,7 +21,7 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
      */
     public static function getTableName()
     {
-        return 'bono_module_polls_answers';
+        return self::getWithPrefix('bono_module_polls_answers');
     }
 
     /**
