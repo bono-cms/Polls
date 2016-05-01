@@ -22,7 +22,7 @@ return array(
         'controller' => 'Admin:Browser@categoryAction'
     ),
     
-    '/admin/module/polls/category/delete' => array(
+    '/admin/module/polls/category/delete/(:var)' => array(
         'controller' => 'Admin:Category@deleteAction'
     ),
     
@@ -50,7 +50,7 @@ return array(
         'controller' => 'Admin:Answer@saveAction'
     ),
     
-    '/admin/module/polls/answer/delete' => array(
+    '/admin/module/polls/answer/delete/(:var)' => array(
         'controller' => 'Admin:Answer@deleteAction'
     )
 );

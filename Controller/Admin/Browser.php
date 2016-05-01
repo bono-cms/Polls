@@ -27,9 +27,6 @@ final class Browser extends AbstractController
         $this->view->getBreadcrumbBag()
                    ->addOne('Polls');
 
-        $this->view->getPluginBag()
-                   ->appendScript('@Polls/admin/browser.js');
-
         $categoryManager = $this->getModuleService('categoryManager');
         $answerManager = $this->getModuleService('answerManager');
 

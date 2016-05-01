@@ -68,11 +68,12 @@ final class Answer extends AbstractController
     /**
      * Deletes an answer by its associated id
      * 
+     * @param string $id
      * @return string
      */
-    public function deleteAction()
+    public function deleteAction($id)
     {
-        return $this->invokeRemoval('answerManager');
+        return $this->invokeRemoval('answerManager', $id);
     }
 
     /**
