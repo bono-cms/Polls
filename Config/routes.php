@@ -10,47 +10,47 @@
  */
 
 return array(
-    '/admin/module/polls' => array(
+    '/%s/module/polls' => array(
         'controller' => 'Admin:Browser@indexAction'
     ),
     
-    '/admin/module/polls/tweak' => array(
+    '/%s/module/polls/tweak' => array(
         'controller' => 'Admin:Answer@tweakAction'
     ),
 
-    '/admin/module/polls/category/view/(:var)' => array(
+    '/%s/module/polls/category/view/(:var)' => array(
         'controller' => 'Admin:Browser@categoryAction'
     ),
     
-    '/admin/module/polls/category/delete/(:var)' => array(
+    '/%s/module/polls/category/delete/(:var)' => array(
         'controller' => 'Admin:Category@deleteAction'
     ),
     
-    '/admin/module/polls/category/add' => array(
+    '/%s/module/polls/category/add' => array(
         'controller' => 'Admin:Category@addAction'
     ),
 
-    '/admin/module/polls/category/edit/(:var)' => array(
+    '/%s/module/polls/category/edit/(:var)' => array(
         'controller' => 'Admin:Category@editAction'
     ),
     
-    '/admin/module/polls/category/save' => array(
+    '/%s/module/polls/category/save' => array(
         'controller' => 'Admin:Category@saveAction'
     ),
     
-    '/admin/module/polls/answer/add' => array(
+    '/%s/module/polls/answer/add' => array(
         'controller' => 'Admin:Answer@addAction'
     ),
     
-    '/admin/module/polls/answer/edit/(:var)' => array(
+    '/%s/module/polls/answer/edit/(:var)' => array(
         'controller' => 'Admin:Answer@editAction'
     ),
     
-    '/admin/module/polls/answer/save' => array(
+    '/%s/module/polls/answer/save' => array(
         'controller' => 'Admin:Answer@saveAction'
     ),
     
-    '/admin/module/polls/answer/delete/(:var)' => array(
+    '/%s/module/polls/answer/delete/(:var)' => array(
         'controller' => 'Admin:Answer@deleteAction'
     )
 );
