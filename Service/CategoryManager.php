@@ -54,7 +54,7 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
         $entity->setId($category['id'], VirtualEntity::FILTER_INT)
                ->setName($category['name'], VirtualEntity::FILTER_TAGS)
                ->setClass($category['class'], VirtualEntity::FILTER_TAGS)
-               ->setOptionsCount($this->answerMapper->countByCategoryId($category['id']), FILTER_INT);
+               ->setOptionsCount($this->answerMapper->countByCategoryId($category['id']), VirtualEntity::FILTER_INT);
 
         return $entity;
     }
