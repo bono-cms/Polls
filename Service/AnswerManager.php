@@ -87,11 +87,11 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
     protected function toEntity(array $answer)
     {
         $entity = new VirtualEntity();
-        $entity->setId((int) $answer['id'])
-               ->setPublished((bool) $answer['published'])
-               ->setTitle($answer['title'])
-               ->setCategoryId((int) $answer['category_id'])
-               ->setOrder((int) $answer['order']);
+        $entity->setId($answer['id'], VirtualEntity::FILTER_INT)
+               ->setPublished($answer['published'], VirtualEntity::FILTER_BOOL)
+               ->setTitle($answer['title'], VirtualEntity::FILTER_TAGS)
+               ->setCategoryId($answer['category_id'], VirtualEntity::FILTER_INT)
+               ->setOrder($answer['order'], VirtualEntity::FILTER_INT);
 
         return $entity;
     }
