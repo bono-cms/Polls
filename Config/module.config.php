@@ -2,6 +2,7 @@
 
 return array(
  'name'  => 'Polls',
+ 'caption'  => 'Polls',
  'route'  => 'Polls:Admin:Browser@indexAction',
  'icon'  => 'fa fa-star-o fa-5x',
  'order' => 1,
