@@ -26,7 +26,7 @@ final class VotesMapper extends AbstractMapper
     /**
      * {@inheritDoc}
      */
-    public static function getPk()
+    protected function getPk()
     {
         return 'answer_id';
     }
