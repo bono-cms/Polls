@@ -45,7 +45,7 @@ use Krystal\Form\Element;
     
     <?php if (!$answer->getId()): ?>
     <button data-button="add" data-back-url="<?php echo $this->url('Polls:Admin:Answer@editAction', null); ?>" data-url="<?php echo $this->url('Polls:Admin:Answer@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add'); ?></button>
-    <button data-button="add-create" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add & Create new'); ?></button>
+    <button data-button="add-create" data-back-url="<?php echo $this->url('Polls:Admin:Answer@addAction'); ?>" data-url="<?php echo $this->url('Polls:Admin:Answer@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add & Create new'); ?></button>
     
     <?php else: ?>
     <button data-button="save" data-url="<?php echo $this->url('Polls:Admin:Answer@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button>
