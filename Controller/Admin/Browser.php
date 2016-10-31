@@ -36,7 +36,6 @@ final class Browser extends AbstractController
         }
 
         return $this->view->render('browser', array(
-            'title' => 'Polls',
             'answers' => $answerManager->fetchAllByCategoryId($categoryId, false),
             'categories' => $categoryManager->fetchAll(),
             'categoryId' => $categoryId
