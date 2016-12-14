@@ -105,9 +105,9 @@ use Krystal\Form\HtmlHelper;
                         <?php if (!empty($categories)): ?>
                         <tbody>
                             <?php foreach ($categories as $category): ?>
-                            <tr>
+                            <tr class="<?php echo HtmlHelper::addOnDemand(isset($categoryId) && $categoryId == $category->getId(), 'success'); ?>">
                                 <td class="text-center text-muted"><?php echo $category->getId(); ?></td>
-                                <td class="text-center <?php echo HtmlHelper::addOnDemand(isset($categoryId) && $categoryId == $category->getId(), 'success'); ?>">
+                                <td class="text-center">
                                     <a href="<?php echo $this->url('Polls:Admin:Browser@categoryAction', $category->getId()); ?>">
                                         <?php echo $category->getName(); ?>
                                     </a>
