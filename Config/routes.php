@@ -38,7 +38,7 @@ return array(
         'controller' => 'Admin:Category@saveAction'
     ),
     
-    '/%s/module/polls/answer/add' => array(
+    '/%s/module/polls/answer/add/(:var)' => array(
         'controller' => 'Admin:Answer@addAction'
     ),
     

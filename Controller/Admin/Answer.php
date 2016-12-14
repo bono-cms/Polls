@@ -38,12 +38,14 @@ final class Answer extends AbstractController
     /**
      * Renders empty form
      * 
+     * @param string $categoryId Category id
      * @return string
      */
-    public function addAction()
+    public function addAction($categoryId)
     {
         $answer = new VirtualEntity();
-        $answer->setPublished(true);
+        $answer->setPublished(true)
+               ->setCategoryId($categoryId);
 
         return $this->createForm($answer, 'Add new answer');
     }
