@@ -49,6 +49,7 @@ use Krystal\Form\HtmlHelper;
                             <th class="text-center"><?php $this->show('Title'); ?></th>
                             <th class="text-center"><?php $this->show('Order'); ?></th>
                             <th class="text-center"><?php $this->show('Published'); ?></th>
+                            <th class="text-center"><?php $this->show('Votes'); ?></th>
                             <th class="text-center"><?php $this->show('Actions'); ?></th>
                         </tr>
                     </thead>
@@ -68,6 +69,7 @@ use Krystal\Form\HtmlHelper;
                             <td class="text-center">
                                 <?php echo Element::checkbox(sprintf('published[%s]', $answer->getId()), $answer->getPublished()); ?>
                             </td>
+                            <td class="text-center"><?php echo $answer->getVotes(); ?></td>
                             <td class="text-center">
                                 <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this option'); ?>" data-button="edit" href="<?php echo $this->url('Polls:Admin:Answer@editAction', $answer->getId()); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
                                 <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Remove this option'); ?>" data-button="delete" href="#" data-url="<?php echo $this->url('Polls:Admin:Answer@deleteAction', $answer->getId()); ?>"><i class="glyphicon glyphicon-remove"></i></a>

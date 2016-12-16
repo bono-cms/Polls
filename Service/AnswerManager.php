@@ -124,7 +124,8 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
                ->setPublished($answer['published'], VirtualEntity::FILTER_BOOL)
                ->setTitle($answer['title'], VirtualEntity::FILTER_HTML)
                ->setCategoryId($answer['category_id'], VirtualEntity::FILTER_INT)
-               ->setOrder($answer['order'], VirtualEntity::FILTER_INT);
+               ->setOrder($answer['order'], VirtualEntity::FILTER_INT)
+               ->setVotes($answer['votes'], VirtualEntity::FILTER_INT);
 
         return $entity;
     }
