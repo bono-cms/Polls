@@ -7,6 +7,7 @@ CREATE TABLE `bono_module_polls_answers` (
 	`category_id` INT NOT NULL COMMENT 'Associciated category id',
 	`title` varchar(50) NOT NULL COMMENT 'Answer title`',
 	`order` INT NOT NULL COMMENT 'Sorting order',
+	`published` varchar(1) NOT NULL COMMENT 'Boolean value indicated published state',
     `votes` INT NOT NULL COMMENT 'Vote count'
 	
 ) DEFAULT CHARSET=UTF8;
