@@ -20,7 +20,7 @@ final class VotesMapper extends AbstractMapper
      */
     public static function getTableName()
     {
-        return 'bono_module_polls_votes';
+        return self::getWithPrefix('bono_module_polls_votes');
     }
 
     /**
