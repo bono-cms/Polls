@@ -13,26 +13,59 @@ namespace Polls\Service;
 
 use Cms\Service\AbstractManager;
 use Polls\Storage\AnswerMapperInterface;
+use Polls\Storage\VotesMapperInterface;
 use Krystal\Stdlib\VirtualEntity;
 
 final class AnswerManager extends AbstractManager implements AnswerManagerInterface
 {
     /**
-     * Any compliant Answer's mapper
+     * Any compliant Answer mapper
      * 
      * @var \Polls\Storage\AnswerMapperInterface
      */
     private $answerMapper;
 
     /**
+     * Any compliant Votes mapper
+     * 
+     * @var \Polls\Storage\VotesMapperInterface
+     */
+    private $votesMapper;
+
+    /**
      * State initialization
      * 
      * @param \Polls\Storage\AnswerMapperInterface $answerMapper
+     * @param \Polls\Storage\VotesMapperInterface $votesMapper
      * @return void
      */
-    public function __construct(AnswerMapperInterface $answerMapper)
+    public function __construct(AnswerMapperInterface $answerMapper, VotesMapperInterface $votesMapper)
     {
         $this->answerMapper = $answerMapper;
+        $this->votesMapper = $votesMapper;
+    }
+
+    /**
+     * Tracks a vote
+     * 
+     * @param string $categoryId Category id
+     * @param string $answerId Answer id
+     * @param string $ip User IP
+     * @return boolean Depending on success
+     */
+    public function vote($categoryId, $answerId, $ip)
+    {
+        // One user is allowed to vote only once
+        if ($this->votesMapper->hasVoted($categoryId, $ip)) {
+            // If already voted - fail
+            return false;
+        } else {
+            // If not voted before, then track it
+            $this->votesMapper->track($categoryId, $ip);
+            $this->answerMapper->incrementVoteCount($answerId);
+
+            return true;
+        }
     }
 
     /**

@@ -24,7 +24,9 @@ final class Module extends AbstractCmsModule
     public function getServiceProviders()
     {
         $answerMapper = $this->getMapper('/Polls/Storage/MySQL/AnswerMapper');
-        $answerManager = new AnswerManager($answerMapper);
+        $votesMapper = $this->getMapper('/Polls/Storage/MySQL/VotesMapper');
+
+        $answerManager = new AnswerManager($answerMapper, $votesMapper);
 
         $categoryMapper = $this->getMapper('/Polls/Storage/MySQL/CategoryMapper');
         $categoryManager = new CategoryManager($categoryMapper, $answerMapper);

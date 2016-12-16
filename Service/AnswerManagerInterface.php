@@ -14,6 +14,16 @@ namespace Polls\Service;
 interface AnswerManagerInterface
 {
     /**
+     * Tracks a vote
+     * 
+     * @param string $categoryId Category id
+     * @param string $answerId Answer id
+     * @param string $ip User IP
+     * @return boolean Depending on success
+     */
+    public function vote($categoryId, $answerId, $ip);
+
+    /**
      * Update orders by their associated ids
      * 
      * @param array $pair
