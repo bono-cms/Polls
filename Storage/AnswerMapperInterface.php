@@ -14,6 +14,14 @@ namespace Polls\Storage;
 interface AnswerMapperInterface
 {
     /**
+     * Increments vote count by answer id
+     * 
+     * @param string $id Answer id
+     * @return boolean
+     */
+    public function incrementVoteCount($id);
+
+    /**
      * Gets amount of voting options by associated category id
      * 
      * @param string $categoryId

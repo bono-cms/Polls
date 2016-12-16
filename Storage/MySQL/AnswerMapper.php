@@ -25,6 +25,17 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
+     * Increments vote count by answer id
+     * 
+     * @param string $id Answer id
+     * @return boolean
+     */
+    public function incrementVoteCount($id)
+    {
+        return $this->incrementColumnByPk($id, 'votes');
+    }
+
+    /**
      * Gets amount of voting options by associated category id
      * 
      * @param string $categoryId
