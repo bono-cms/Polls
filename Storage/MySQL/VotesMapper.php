@@ -12,8 +12,9 @@
 namespace Polls\Storage\MySQL;
 
 use Cms\Storage\MySQL\AbstractMapper;
+use Polls\Storage\VotesMapperInterface;
 
-final class VotesMapper extends AbstractMapper
+final class VotesMapper extends AbstractMapper implements VotesMapperInterface
 {
     /**
      * {@inheritDoc}
@@ -24,37 +25,37 @@ final class VotesMapper extends AbstractMapper
     }
 
     /**
-     * {@inheritDoc}
-     */
-    protected function getPk()
-    {
-        return 'answer_id';
-    }
-
-    /**
-     * Increments a vote
+     * Tracks a category ID and user's IP
      * 
-     * @param string $id Answer's id
+     * @param string $categoryId
+     * @param string $ip
      * @return boolean
      */
-    public function incrementVote($id)
-    {
-        return $this->incrementColumnByPk($id, 'answer_id');
-    }
-
-    /**
-     * Inserts a record
-     * 
-     * @param string $id Answer id
-     * @param string $ip User's IP
-     * @return boolean
-     */
-    public function insert($id, $ip)
+    public function track($categoryId, $ip)
     {
         return $this->persist(array(
-            'answer_id' => $id,
-            'user_ip' => $ip,
-            'count' => 0
+            'category_id' => $categoryId, 
+            'user_ip' => $ip
         ));
+    }
+
+    /**
+     * Checks whether category and IP has been already registered
+     * 
+     * @param string $categoryId
+     * @param string $ip
+     * @return boolean
+     */
+    public function hasVoted($categoryId, $ip)
+    {
+        $alias = 'count';
+        $result = $this->db->select()
+                           ->count('user_ip', $alias)
+                           ->from(self::getTableName())
+                           ->whereEquals('category_id', $categoryId)
+                           ->andWhereEquals('user_ip', $ip)
+                           ->query($alias);
+
+        return $result > 0;
     }
 }
