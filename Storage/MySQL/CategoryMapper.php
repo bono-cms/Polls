@@ -73,6 +73,21 @@ final class CategoryMapper extends AbstractMapper implements CategoryMapperInter
     }
 
     /**
+     * Fetches random category ID with active = 1
+     * 
+     * @return string
+     */
+    public function fetchRandomActiveId()
+    {
+        return $this->db->select('id')
+                        ->from(self::getTableName())
+                        ->whereEquals('active', '1')
+                        ->orderBy()
+                        ->rand()
+                        ->query('id');
+    }
+
+    /**
      * Fetches a category by its associated id
      * 
      * @param string $id

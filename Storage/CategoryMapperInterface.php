@@ -45,6 +45,13 @@ interface CategoryMapperInterface
     public function fetchNameById($id);
 
     /**
+     * Fetches random category ID with active = 1
+     * 
+     * @return string
+     */
+    public function fetchRandomActiveId();
+
+    /**
      * Fetches a category by its associated id
      * 
      * @param string $id
