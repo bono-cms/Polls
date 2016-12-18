@@ -11,6 +11,9 @@
 
 namespace Polls\Service;
 
+use Krystal\Stdlib\VirtualEntity;
+use Polls\Storage\CategoryMapperInterface;
+
 final class SiteService implements SiteServiceInterface
 {
     /**
@@ -21,14 +24,23 @@ final class SiteService implements SiteServiceInterface
     private $answerManager;
 
     /**
+     * Any compliant category mapper
+     * 
+     * @var \Polls\Storage\CategoryMapperInterface
+     */
+    private $categoryMapper;
+
+    /**
      * State initialization
      * 
      * @param \Polls\Service\AnswerManagerInterface $answerManager
+     * @param \Polls\Storage\CategoryMapperInterface $categoryMapper
      * @return void
      */
-    public function __construct(AnswerManagerInterface $answerManager)
+    public function __construct(AnswerManagerInterface $answerManager, CategoryMapperInterface $categoryMapper)
     {
         $this->answerManager = $answerManager;
+        $this->categoryMapper = $categoryMapper;
     }
 
     /**
@@ -39,6 +51,11 @@ final class SiteService implements SiteServiceInterface
      */
     public function getAnswersByCategoryId($id)
     {
-        return $this->answerManager->fetchAllByCategoryId($id, true);
+        $entity = new VirtualEntity();
+        $entity->setName($this->categoryMapper->fetchNameById($id), VirtualEntity::FILTER_TAGS)
+               ->setCategoryId($id, VirtualEntity::FILTER_INT)
+               ->setAnswers($this->answerManager->fetchAllByCategoryId($id, true));
+
+        return $entity;
     }
 }

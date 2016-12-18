@@ -34,7 +34,7 @@ final class Module extends AbstractCmsModule
         return array(
             'categoryManager' => $categoryManager,
             'answerManager' => $answerManager,
-            'siteService' => new SiteService($answerManager)
+            'siteService' => new SiteService($answerManager, $categoryMapper)
         );
     }
 }
