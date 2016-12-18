@@ -136,7 +136,7 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
         // Append new virtual getter
         foreach ($answers as $answer) {
             // Votes in percentage
-            $percentage = Math::percentage($count, $answer->getVotes());
+            $percentage = (int) Math::percentage($count, $answer->getVotes());
 
             // Append new getter getVotesPercentage()
             $answer->setVotesPercentage($percentage);
