@@ -14,6 +14,13 @@ namespace Polls\Service;
 interface SiteServiceInterface
 {
     /**
+     * Return answer entities by random category id
+     * 
+     * @return array
+     */
+    public function getAnswersByRandomActiveCategory();
+
+    /**
      * Returns all answer entities associated with particular category id
      * 
      * @param string $id Category id

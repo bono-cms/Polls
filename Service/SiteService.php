@@ -44,6 +44,17 @@ final class SiteService implements SiteServiceInterface
     }
 
     /**
+     * Return answer entities by random category id
+     * 
+     * @return array
+     */
+    public function getAnswersByRandomActiveCategory()
+    {
+        $id = $this->categoryMapper->fetchRandomActiveId();
+        return $this->getAnswersByCategoryId($id);
+    }
+
+    /**
      * Returns all answer entities associated with particular category id
      * 
      * @param string $id Category id
