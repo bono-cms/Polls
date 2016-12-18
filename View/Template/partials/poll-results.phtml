@@ -1,0 +1,17 @@
+<?php if (!empty($answers)): ?>
+
+<h4><?php echo $category; ?></h4>
+
+<?php foreach ($answers as $answer): ?>
+<div class="progress">
+    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $answer->getVotesPercentage(); ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $answer->getVotesPercentage(); ?>%">
+        <?php echo $answer->getTitle(); ?>
+    </div>
+</div>
+<?php endforeach; ?>
+
+<p><?php $this->show('Total votes'); ?>: <?php echo $total; ?></p>
+
+<?php else: ?>
+<p class="text-muted"><?php $this->show('No votes at the moment'); ?></p>
+<?php endif; ?>

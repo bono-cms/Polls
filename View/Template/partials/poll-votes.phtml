@@ -1,0 +1,24 @@
+<?php $poll = $polls->getAnswersByCategoryId($id); ?>
+
+<div class="polls-wrapper">
+    <h4><?php echo $poll->getName(); ?></h4>
+
+    <form data-type="polls" action="<?php echo $this->url('Polls:Vote@voteAction'); ?>" method="POST">
+        <input type="hidden" name="category_id" value="<?php echo $poll->getCategoryId(); ?>" />
+        
+        <div class="form-group">
+            <div class="col-lg-10">
+                <?php foreach ($poll->getAnswers() as $answer): ?>
+                <div class="radio">
+                    <input type="radio" name="answer_id" value="<?php echo $answer->getId(); ?>" /> <?php echo $answer->getTitle(); ?>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" disabled="true"><i class="glyphicon glyphicon-ok"></i> <?php $this->show('Vote'); ?></button>
+            <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-signal"></i> <?php $this->show('Results'); ?></button>
+        </div>
+    </form>
+</div>
