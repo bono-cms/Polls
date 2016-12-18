@@ -37,6 +37,14 @@ interface CategoryMapperInterface
     public function update(array $input);
 
     /**
+     * Returns category name by its associated id
+     * 
+     * @param string $id Category id
+     * @return string
+     */
+    public function fetchNameById($id);
+
+    /**
      * Fetches a category by its associated id
      * 
      * @param string $id
