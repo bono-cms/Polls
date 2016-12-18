@@ -15,6 +15,7 @@ use Cms\Service\AbstractManager;
 use Polls\Storage\AnswerMapperInterface;
 use Polls\Storage\VotesMapperInterface;
 use Krystal\Stdlib\VirtualEntity;
+use Krystal\Text\Math;
 
 final class AnswerManager extends AbstractManager implements AnswerManagerInterface
 {
@@ -115,11 +116,44 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
     }
 
     /**
+     * Fetches the result-set by category id
+     * 
+     * @param string $categoryId
+     * @return array
+     */
+    public function fetchResultSet($categoryId)
+    {
+        $answers = $this->fetchAllByCategoryId($categoryId, true);
+
+        // Total votes counter
+        $count = 0;
+
+        // Iterate the get the total count
+        foreach ($answers as $answer) {
+            $count += $answer->getVotes();
+        }
+
+        // Append new virtual getter
+        foreach ($answers as $answer) {
+            // Votes in percentage
+            $percentage = Math::percentage($count, $answer->getVotes());
+
+            // Append new getter getVotesPercentage()
+            $answer->setVotesPercentage($percentage);
+        }
+
+        return array(
+            'answers' => $answers,
+            'total' => $count
+        );
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function toEntity(array $answer)
     {
-        $entity = new VirtualEntity();
+        $entity = new VirtualEntity(false);
         $entity->setId($answer['id'], VirtualEntity::FILTER_INT)
                ->setPublished($answer['published'], VirtualEntity::FILTER_BOOL)
                ->setTitle($answer['title'], VirtualEntity::FILTER_HTML)

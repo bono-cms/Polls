@@ -49,6 +49,14 @@ interface AnswerManagerInterface
     public function fetchAllByCategoryId($categoryId, $published);
 
     /**
+     * Fetches the result-set by category id
+     * 
+     * @param string $categoryId
+     * @return array
+     */
+    public function fetchResultSet($categoryId);
+
+    /**
      * Returns last inserted id
      * 
      * @return integer
