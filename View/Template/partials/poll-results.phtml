@@ -3,9 +3,10 @@
 <h4><?php echo $category; ?></h4>
 
 <?php foreach ($answers as $answer): ?>
+<strong><?php echo $answer->getTitle(); ?></strong><span class="pull-right"><?php echo $answer->getVotes(); ?></span>
+
 <div class="progress">
     <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $answer->getVotesPercentage(); ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $answer->getVotesPercentage(); ?>%">
-        <?php printf('%s (%s) ', $answer->getTitle(), $answer->getVotes()); ?>
     </div>
 </div>
 <?php endforeach; ?>

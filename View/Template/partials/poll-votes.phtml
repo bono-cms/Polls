@@ -4,8 +4,8 @@ $poll = isset($id) ? $polls->getAnswersByCategoryId($id) : $polls->getAnswersByR
 
 ?>
 
+<?php if ($poll !== false): ?>
 <div class="polls-wrapper">
-    <?php if ($poll !== false): ?>
     <h4><?php echo $poll->getName(); ?></h4>
 
     <form data-type="polls" action="<?php echo $this->url('Polls:Vote@voteAction'); ?>" method="POST">
@@ -26,8 +26,5 @@ $poll = isset($id) ? $polls->getAnswersByCategoryId($id) : $polls->getAnswersByR
             <button type="results" data-url="<?php echo $this->url('Polls:Vote@resultsAction', $poll->getCategoryId()); ?>" class="btn btn-info"><i class="glyphicon glyphicon-signal"></i> <?php $this->show('Results'); ?></button>
         </div>
     </form>
-    
-    <?php else: ?>
-    <p class="text-muted"><?php $this->show('Can not load data from specified category'); ?></p>
-    <?php endif; ?>
 </div>
+<?php endif; ?>
