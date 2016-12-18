@@ -99,6 +99,7 @@ use Krystal\Form\HtmlHelper;
                             <tr>
                                 <th class="text-center"><?php $this->show('#'); ?></th>
                                 <th class="text-center"><?php $this->show('Name'); ?></th>
+                                <th class="text-center"><?php $this->show('Active'); ?></th>
                                 <th class="text-center"><?php $this->show('Amount of answers'); ?></th>
                                 <th class="text-center"><?php $this->show('Actions'); ?></th>
                             </tr>
@@ -114,6 +115,7 @@ use Krystal\Form\HtmlHelper;
                                         <?php echo $category->getName(); ?>
                                     </a>
                                 </td>
+                                <td class="text-center"><?php $this->show($category->getActive() ? 'Yes' : 'No'); ?></td>
                                 <td class="text-center"><?php echo $category->getOptionsCount(); ?></td>
                                 <td class="text-center">
                                     <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this category'); ?>" data-button="edit" href="<?php echo $this->url('Polls:Admin:Category@editAction', $category->getId()); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
