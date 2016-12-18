@@ -62,11 +62,18 @@ final class SiteService implements SiteServiceInterface
      */
     public function getAnswersByCategoryId($id)
     {
-        $entity = new VirtualEntity();
-        $entity->setName($this->categoryMapper->fetchNameById($id), VirtualEntity::FILTER_TAGS)
-               ->setCategoryId($id, VirtualEntity::FILTER_INT)
-               ->setAnswers($this->answerManager->fetchAllByCategoryId($id, true));
+        $name = $this->categoryMapper->fetchNameById($id);
+        $answers = $this->answerManager->fetchAllByCategoryId($id, true);
 
-        return $entity;
+        if (!empty($name) && !empty($answers)) {
+            $entity = new VirtualEntity();
+            $entity->setName($name, VirtualEntity::FILTER_TAGS)
+                   ->setCategoryId($id, VirtualEntity::FILTER_INT)
+                   ->setAnswers($answers);
+
+            return $entity;
+        } else {
+            return false;
+        }
     }
 }
