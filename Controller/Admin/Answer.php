@@ -68,6 +68,21 @@ final class Answer extends AbstractController
     }
 
     /**
+     * Reset votes count associated with given category id
+     * 
+     * @param string $id Category id
+     * @return string
+     */
+    public function resetVotesAction($id)
+    {
+        if ($this->getModuleService('answerManager')->resetVoteCountByCategoryId($id)) {
+            $this->flashBag->set('success', 'Votes have been successfully reset');
+        }
+
+        return '1';
+    }
+
+    /**
      * Deletes an answer by its associated id
      * 
      * @param string $id

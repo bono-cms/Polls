@@ -118,6 +118,7 @@ use Krystal\Form\HtmlHelper;
                                 <td class="text-center"><?php $this->show($category->getActive() ? 'Yes' : 'No'); ?></td>
                                 <td class="text-center"><?php echo $category->getOptionsCount(); ?></td>
                                 <td class="text-center">
+                                    <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Reset votes count'); ?>" data-button="delete" href="#" data-url="<?php echo $this->url('Polls:Admin:Answer@resetVotesAction', $category->getId()); ?>" data-message="<?php $this->show('Do you really want to reset votes count in this category?'); ?>"><i class="glyphicon glyphicon-fire"></i></a>
                                     <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this category'); ?>" data-button="edit" href="<?php echo $this->url('Polls:Admin:Category@editAction', $category->getId()); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
                                     <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Remove this category'); ?>" data-button="delete" data-url="<?php echo $this->url('Polls:Admin:Category@deleteAction', $category->getId()); ?>" href="#"><i class="glyphicon glyphicon-remove"></i></a>
                                 </td>

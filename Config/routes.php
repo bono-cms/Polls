@@ -61,5 +61,9 @@ return array(
     
     '/%s/module/polls/answer/delete/(:var)' => array(
         'controller' => 'Admin:Answer@deleteAction'
+    ),
+
+    '/%s/module/polls/answer/reset/(:var)' => array(
+        'controller' => 'Admin:Answer@resetVotesAction'
     )
 );
