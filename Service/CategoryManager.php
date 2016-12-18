@@ -60,6 +60,17 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
     }
 
     /**
+     * Returns category name by its associated id
+     * 
+     * @param string $id Category id
+     * @return string
+     */
+    public function fetchNameById($id)
+    {
+        return $this->categoryMapper->fetchNameById($id);
+    }
+
+    /**
      * Fetches category's entity by its associated id
      * 
      * @param string $id

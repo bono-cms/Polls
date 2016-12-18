@@ -21,6 +21,14 @@ interface CategoryManagerInterface
     public function getLastId();
 
     /**
+     * Returns category name by its associated id
+     * 
+     * @param string $id Category id
+     * @return string
+     */
+    public function fetchNameById($id);
+
+    /**
      * Fetches category's entity by its associated id
      * 
      * @param string $id
