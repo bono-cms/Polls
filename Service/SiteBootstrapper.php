@@ -20,6 +20,13 @@ final class SiteBootstrapper extends AbstractSiteBootstrapper
      */
     public function bootstrap()
     {
-        $this->view->addVariable('polls', $this->moduleManager->getModule('Polls')->getService('siteService'));
+        // Inject the $polls service in view, and append the UI script to the queue
+        $this->view->addVariable('polls', $this->moduleManager->getModule('Polls')->getService('siteService'))
+                   ->getPluginBag()
+                   ->appendScript('@Polls/site.polls.js');
+
+        // Append blocks
+        $this->view->getPartialBag()
+                   ->addPartialDir($this->view->createThemePath('Polls', 'partials'));
     }
 }
