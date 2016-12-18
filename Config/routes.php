@@ -10,6 +10,15 @@
  */
 
 return array(
+    
+    '/module/polls/vote' => array(
+        'controller' => 'Vote@voteAction'
+    ),
+
+    '/module/polls/results/(:var)' => array(
+        'controller' => 'Vote@resultsAction'
+    ),
+    
     '/%s/module/polls' => array(
         'controller' => 'Admin:Browser@indexAction'
     ),
