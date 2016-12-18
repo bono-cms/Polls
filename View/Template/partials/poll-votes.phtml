@@ -23,7 +23,7 @@ $poll = isset($id) ? $polls->getAnswersByCategoryId($id) : $polls->getAnswersByR
         
         <div class="form-group">
             <button type="submit" class="btn btn-primary" disabled="true"><i class="glyphicon glyphicon-ok"></i> <?php $this->show('Vote'); ?></button>
-            <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-signal"></i> <?php $this->show('Results'); ?></button>
+            <button type="results" data-url="<?php echo $this->url('Polls:Vote@resultsAction', $poll->getCategoryId()); ?>" class="btn btn-info"><i class="glyphicon glyphicon-signal"></i> <?php $this->show('Results'); ?></button>
         </div>
     </form>
     

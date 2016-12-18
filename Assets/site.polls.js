@@ -32,4 +32,22 @@ $(function(){
             }
         });
     });
+    
+    // A handler for "View results" button
+    $form.find("button[type='results']").click(function(event){
+        event.preventDefault();
+
+        // Get the URL from the target
+        var url = $(this).attr('data-url');
+
+        // Send the request
+        $.ajax({
+            url: url,
+            cache: true,
+            success: function(response){
+                // Remove all child elements
+                $wrapper.empty().append(response);
+            }
+        });
+    });
 });
