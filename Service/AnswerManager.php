@@ -47,6 +47,17 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
     }
 
     /**
+     * Resets vote count by associated category id
+     * 
+     * @param string $categoryId
+     * @return boolean
+     */
+    public function resetVoteCountByCategoryId($categoryId)
+    {
+        return $this->answerMapper->resetVoteCountByCategoryId($categoryId);
+    }
+
+    /**
      * Tracks a vote
      * 
      * @param string $categoryId Category id

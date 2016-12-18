@@ -14,6 +14,14 @@ namespace Polls\Storage;
 interface AnswerMapperInterface
 {
     /**
+     * Resets vote count by associated category id
+     * 
+     * @param string $categoryId
+     * @return boolean
+     */
+    public function resetVoteCountByCategoryId($categoryId);
+
+    /**
      * Increments vote count by answer id
      * 
      * @param string $id Answer id

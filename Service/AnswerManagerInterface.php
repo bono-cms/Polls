@@ -14,6 +14,14 @@ namespace Polls\Service;
 interface AnswerManagerInterface
 {
     /**
+     * Resets vote count by associated category id
+     * 
+     * @param string $categoryId
+     * @return boolean
+     */
+    public function resetVoteCountByCategoryId($categoryId);
+
+    /**
      * Tracks a vote
      * 
      * @param string $categoryId Category id

@@ -25,6 +25,19 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
     }
 
     /**
+     * Resets vote count by associated category id
+     * 
+     * @param string $categoryId
+     * @return boolean
+     */
+    public function resetVoteCountByCategoryId($categoryId)
+    {
+        return $this->db->update(self::getTableName(), array('votes' => '0'))
+                        ->whereEquals('category_id', $categoryId)
+                        ->execute();
+    }
+
+    /**
      * Increments vote count by answer id
      * 
      * @param string $id Answer id
