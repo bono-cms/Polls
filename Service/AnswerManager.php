@@ -203,6 +203,10 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
      */
     public function add(array $input)
     {
+        // Defaults
+        $input['order'] = (int) $input['order'];
+        $input['votes'] = 0;
+
         return $this->answerMapper->insert($input);
     }
 
@@ -214,6 +218,7 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
      */
     public function update(array $input)
     {
+        $input['order'] = (int) $input['order'];
         return $this->answerMapper->update($input);
     }
 
