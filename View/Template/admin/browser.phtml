@@ -61,7 +61,7 @@ use Krystal\Form\HtmlHelper;
                                 <input type="checkbox" name="toDelete[<?php echo $answer->getId(); ?>]" />
                             </td>
                             <td class="text-center text-muted"><?php echo $answer->getId(); ?></td>
-                            <td class="text-center"><?php echo $answer->getTitle(); ?></td>
+                            <td><?php echo $answer->getTitle(); ?></td>
                             <td class="text-center col-lg-2">
                                 <?php echo Element::number(sprintf('order[%s]', $answer->getId()), $answer->getOrder(), array('class' => 'form-control', 'min' => '0')); ?>
                             </td>
@@ -109,7 +109,7 @@ use Krystal\Form\HtmlHelper;
                             <?php foreach ($categories as $category): ?>
                             <tr class="<?php echo HtmlHelper::addOnDemand(isset($categoryId) && $categoryId == $category->getId(), 'info'); ?>">
                                 <td class="text-center text-muted"><?php echo $category->getId(); ?></td>
-                                <td class="text-center">
+                                <td>
                                     <a href="<?php echo $this->url('Polls:Admin:Browser@categoryAction', $category->getId()); ?>">
                                         <?php echo $category->getName(); ?>
                                     </a>
