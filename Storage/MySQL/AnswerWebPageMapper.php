@@ -23,4 +23,18 @@ final class AnswerWebPageMapper extends AbstractMapper implements AnswerWebPageM
     {
         return self::getWithPrefix('bono_module_polls_web_page_answers');
     }
+
+    /**
+     * Find all answers by attached web page ID
+     * 
+     * @param int $webPageId
+     * @return array
+     */
+    public function findAllByWebPageId($webPageId)
+    {
+        return $this->db->select('*')
+                        ->from(self::getTableName())
+                        ->whereEquals('web_page_id', $webPageId)
+                        ->queryAll();
+    }
 }

@@ -13,5 +13,11 @@ namespace Polls\Storage;
 
 interface AnswerWebPageMapperInterface
 {
-    
+    /**
+     * Find all answers by attached web page ID
+     * 
+     * @param int $webPageId
+     * @return array
+     */
+    public function findAllByWebPageId($webPageId);
 }
