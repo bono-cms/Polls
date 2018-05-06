@@ -12,8 +12,10 @@
 namespace Polls\Service;
 
 use Polls\Storage\AnswerWebPageMapperInterface;
+use Cms\Service\AbstractManager;
+use Krystal\Stdlib\VirtualEntity;
 
-final class WebPageAnswerService
+final class WebPageAnswerService extends AbstractManager
 {
     /**
      * Any compliant web page mapper
@@ -31,5 +33,21 @@ final class WebPageAnswerService
     public function __construct(AnswerWebPageMapperInterface $answerWebPageMapper)
     {
         $this->answerWebPageMapper = $answerWebPageMapper;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function toEntity(array $answer)
+    {
+        $entity = new VirtualEntity(false);
+        $entity->setId($answer['id'], VirtualEntity::FILTER_INT)
+               ->setPublished($answer['published'], VirtualEntity::FILTER_BOOL)
+               ->setTitle($answer['title'], VirtualEntity::FILTER_HTML)
+               ->setWebPageId($answer['web_page_id'], VirtualEntity::FILTER_INT)
+               ->setOrder($answer['order'], VirtualEntity::FILTER_INT)
+               ->setVotes($answer['votes'], VirtualEntity::FILTER_INT);
+
+        return $entity;
     }
 }
