@@ -89,6 +89,17 @@ final class WebPageAnswerService extends AbstractManager
     }
 
     /**
+     * Fetches answer entity by its associated ID
+     * 
+     * @param int $id Answer ID
+     * @return \Krystal\Stdlib\VirtualEntity|boolean
+     */
+    public function fetchById($id)
+    {
+        return $this->prepareResult($this->answerWebPageMapper->findByPk($id));
+    }
+
+    /**
      * Find all answers by attached web page ID
      * 
      * @param int $webPageId
