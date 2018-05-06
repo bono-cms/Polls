@@ -37,4 +37,26 @@ final class AnswerWebPageMapper extends AbstractMapper implements AnswerWebPageM
                         ->whereEquals('web_page_id', $webPageId)
                         ->queryAll();
     }
+
+    /**
+     * Adds new answer
+     * 
+     * @param array $data
+     * @return boolean
+     */
+    public function insert(array $data)
+    {
+        return $this->persist($this->getWithLang($data));
+    }
+
+    /**
+     * Updates an answer
+     * 
+     * @param array $data
+     * @return boolean
+     */
+    public function update(array $data)
+    {
+        return $this->persist($data);
+    }
 }

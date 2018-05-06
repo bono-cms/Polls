@@ -52,6 +52,33 @@ final class WebPageAnswerService extends AbstractManager
     }
 
     /**
+     * Adds an answer
+     * 
+     * @param array $input Raw input data
+     * @return boolean
+     */
+    public function add(array $input)
+    {
+        // Defaults
+        $input['order'] = (int) $input['order'];
+        $input['votes'] = 0;
+
+        return $this->answerWebPageMapper->insert($input);
+    }
+
+    /**
+     * Update an answer
+     * 
+     * @param array $input Raw input data
+     * @return boolean
+     */
+    public function update(array $input)
+    {
+        $input['order'] = (int) $input['order'];
+        return $this->answerWebPageMapper->update($input);
+    }
+
+    /**
      * Find all answers by attached web page ID
      * 
      * @param int $webPageId
