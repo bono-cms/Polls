@@ -11,7 +11,10 @@
 
 namespace Polls\Storage\MySQL;
 
-final class AnswerWebPageMapper extends AbstractMapper
+use Polls\Storage\AnswerWebPageMapperInterface;
+use Cms\Storage\MySQL\AbstractMapper;
+
+final class AnswerWebPageMapper extends AbstractMapper implements AnswerWebPageMapperInterface
 {
     /**
      * {@inheritDoc}

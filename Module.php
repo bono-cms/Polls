@@ -15,6 +15,7 @@ use Cms\AbstractCmsModule;
 use Polls\Service\CategoryManager;
 use Polls\Service\AnswerManager;
 use Polls\Service\SiteService;
+use Polls\Service\WebPageAnswerService;
 
 final class Module extends AbstractCmsModule
 {
@@ -31,7 +32,10 @@ final class Module extends AbstractCmsModule
         $categoryMapper = $this->getMapper('/Polls/Storage/MySQL/CategoryMapper');
         $categoryManager = new CategoryManager($categoryMapper, $answerMapper);
 
+        $webPageAnswerService = new WebPageAnswerService($this->getMapper('/Polls/Storage/MySQL/AnswerWebPageMapper'));
+
         return array(
+            'webPageAnswerService' => $webPageAnswerService,
             'categoryManager' => $categoryManager,
             'answerManager' => $answerManager,
             'siteService' => new SiteService($answerManager, $categoryMapper)
