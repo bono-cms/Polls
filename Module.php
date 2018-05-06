@@ -20,7 +20,7 @@ use Polls\Service\WebPageAnswerService;
 final class Module extends AbstractCmsModule
 {
     /**
-     * {@inhertiDco}
+     * {@inhertiDoc}
      */
     public function getServiceProviders()
     {
