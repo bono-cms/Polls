@@ -50,4 +50,15 @@ final class WebPageAnswerService extends AbstractManager
 
         return $entity;
     }
+
+    /**
+     * Find all answers by attached web page ID
+     * 
+     * @param int $webPageId
+     * @return array
+     */
+    public function findAllByWebPageId($webPageId)
+    {
+        return $this->prepareResults($this->answerWebPageMapper->findAllByWebPageId($webPageId));
+    }
 }
