@@ -20,4 +20,20 @@ interface AnswerWebPageMapperInterface
      * @return array
      */
     public function findAllByWebPageId($webPageId);
+
+    /**
+     * Adds new answer
+     * 
+     * @param array $data
+     * @return boolean
+     */
+    public function insert(array $data);
+
+    /**
+     * Updates an answer
+     * 
+     * @param array $data
+     * @return boolean
+     */
+    public function update(array $data);
 }
