@@ -79,6 +79,16 @@ final class WebPageAnswerService extends AbstractManager
     }
 
     /**
+     * Returns last answer ID
+     * 
+     * @return int
+     */
+    public function getLastId()
+    {
+        return $this->answerWebPageMapper->getMaxId();
+    }
+
+    /**
      * Find all answers by attached web page ID
      * 
      * @param int $webPageId
