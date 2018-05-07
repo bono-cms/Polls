@@ -79,6 +79,17 @@ final class WebPageAnswerService extends AbstractManager
     }
 
     /**
+     * Removes an answer by its ID
+     * 
+     * @param int $id Answer ID
+     * @return boolean
+     */
+    public function deleteById($id)
+    {
+        return $this->answerWebPageMapper->deleteByPk($id);
+    }
+
+    /**
      * Returns last answer ID
      * 
      * @return int
