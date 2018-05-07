@@ -78,6 +78,7 @@ final class WebPage extends AbstractController
         $service = $this->getModuleService('webPageAnswerService');
         $service->deleteById($id);
 
+        $this->flashBag->set('success', 'Selected element has been removed successfully');
         return 1;
     }
 
@@ -95,9 +96,14 @@ final class WebPage extends AbstractController
 
         if ($input['id']) {
             $service->update($input);
+
+            $this->flashBag->set('success', 'The element has been updated successfully');
             return 1;
+
         } else {
             $service->add($input);
+
+            $this->flashBag->set('success', 'The element has been created successfully');
             return $service->getLastId();
         }
     }
