@@ -1,0 +1,88 @@
+<?php
+
+use Krystal\Form\Element;
+defined('KRYSTAL') or die;
+
+?>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h2 class="page-header"><i class="fa fa-bar-chart"></i> <?php $this->show('Answers'); ?> (<?php echo count($answers); ?>)</h2>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th><? $this->show('Title'); ?></th>
+                    <th><? $this->show('Order'); ?></th>
+                    <th><? $this->show('Published'); ?></th>
+                    <th><? $this->show('Votes'); ?></th>
+                    <th><? $this->show('Actions'); ?></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php foreach ($answers as $answer): ?>
+                <tr class="<?php echo $answer->getId() == $entity->getId() ? 'success' : ''; ?>">
+                    <td><?php echo $answer->getId(); ?></td>
+                    <td><?php echo $answer->getTitle(); ?></td>
+                    <td><?php echo $answer->getOrder(); ?></td>
+                    <td><?php echo $answer->getPublished(); ?></td>
+                    <td><?php echo $answer->getVotes(); ?></td>
+                    <td>
+                        <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this answer'); ?>" data-button="edit" href="<?php echo $this->url('Polls:Admin:WebPage@editAction', $answer->getId()); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Remove this answer'); ?>" data-button="delete" href="#" data-url="<?php echo $this->url('Polls:Admin:WebPage@deleteAction', $answer->getId()); ?>"><i class="glyphicon glyphicon-remove"></i></a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>        
+    </div>
+
+    <div class="col-lg-6">
+        <h2 class="page-header"><i class="glyphicon glyphicon-pencil"></i> <?php $this->show($entity->getId() ? 'Edit the answer' : 'Add new answer'); ?></h2>
+
+        <form data-group="answer">
+            <?php echo Element::hidden('answer[id]', $entity->getId()); ?>
+            <?php echo Element::hidden('answer[web_page_id]', $entity->getWebPageId()); ?>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label"><?php $this->show('Answer'); ?></label>
+                <div class="col-lg-10">
+                    <div class="input-group">
+                        <?php echo Element::text('answer[title]', $entity->getTitle(), array('class' => 'form-control', 'placeholder' => $this->translate('Option name'))); ?>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label"><?php $this->show('Order'); ?></label>
+                <div class="col-lg-10">
+                    <div class="input-group">
+                        <?php echo Element::text('answer[order]', $entity->getOrder(), array('class' => 'form-control', 'placeholder' => $this->translate('Sorting order'))); ?>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label"><?php $this->show('Published'); ?></label>
+                <div class="col-lg-10">
+                    <?php echo Element::checkbox('answer[published]', $entity->getPublished(), array('class' => 'form-control')); ?>
+                </div>
+            </div>
+
+            <?php if (!$entity->getId()): ?>
+            <button data-button="add" data-back-url="<?php echo $this->url('Polls:Admin:WebPage@indexAction', $entity->getWebPageId()); ?>" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add'); ?></button>
+            <button data-button="add-create" data-back-url="<?php echo $this->url('Polls:Admin:WebPage@addAction'); ?>" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add & Create new'); ?></button>
+
+            <?php else: ?>
+            <button data-button="save" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button>
+
+            <?php endif; ?>
+            <button data-button="cancel" data-url="<?php echo $this->url('Polls:Admin:Browser@indexAction'); ?>" class="btn btn-default"><i class="glyphicon glyphicon-floppy-remove"></i> <?php $this->show('Cancel'); ?></button>
+        </form>
+    </div>
+</div>
+
