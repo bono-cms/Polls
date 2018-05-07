@@ -18,6 +18,23 @@ return array(
     '/module/polls/results/(:var)' => array(
         'controller' => 'Vote@resultsAction'
     ),
+
+    // Web page related routes
+    '/%s/module/polls/web-page/index/(:var)' => array(
+        'controller' => 'Admin:WebPage@indexAction'
+    ),
+
+    '/%s/module/polls/web-page/save' => array(
+        'controller' => 'Admin:WebPage@saveAction'
+    ),
+
+    '/%s/module/polls/web-page/edit/(:var)' => array(
+        'controller' => 'Admin:WebPage@editAction'
+    ),
+
+    '/%s/module/polls/web-page/delete/(:var)' => array(
+        'controller' => 'Admin:WebPage@deleteAction'
+    ),
     
     '/%s/module/polls' => array(
         'controller' => 'Admin:Browser@indexAction'
