@@ -22,4 +22,21 @@ final class WebPageSettingsMapper extends AbstractMapper
     {
         return self::getWithPrefix('bono_module_polls_web_page_settings');
     }
+
+    /**
+     * Checks whether entry for web page ID already exists
+     * 
+     * @param int $webPageId
+     * @return boolean
+     */
+    public function hasEntry($webPageId)
+    {
+        $result = $this->db->select()
+                           ->count('id')
+                           ->from(self::getTableName())
+                           ->whereEquals('web_page_id', $webPageId)
+                           ->queryScalar();
+
+        return $result > 0;
+    }
 }
