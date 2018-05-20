@@ -11,12 +11,21 @@
 
 return array(
     
+    // Regular
     '/module/polls/vote' => array(
         'controller' => 'Vote@voteAction'
     ),
 
     '/module/polls/results/(:var)' => array(
         'controller' => 'Vote@resultsAction'
+    ),
+
+    '/module/polls/web-page/vote' => array(
+        'controller' => 'WebPage@voteAction'
+    ),
+
+    '/module/polls/web-page/results/(:var)' => array(
+        'controller' => 'WebPage@resultsAction'
     ),
 
     // Web page related routes
