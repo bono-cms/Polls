@@ -27,7 +27,18 @@ CREATE TABLE `bono_module_polls_web_page_answers` (
     FOREIGN KEY (web_page_id) REFERENCES bono_module_cms_webpages(id) ON DELETE CASCADE
 
 ) DEFAULT CHARSET=UTF8 ENGINE = InnoDB;
- 
+
+
+DROP TABLE IF EXISTS `bono_module_polls_web_page_votes`;
+CREATE TABLE `bono_module_polls_web_page_votes` (
+
+    `web_page_id` INT NOT NULL COMMENT 'Attached Web Page ID',
+    `user_ip` varchar(30) NOT NULL,
+
+    FOREIGN KEY (web_page_id) REFERENCES bono_module_cms_webpages(id) ON DELETE CASCADE
+
+) DEFAULT CHARSET=UTF8 ENGINE = InnoDB;
+
 
 DROP TABLE IF EXISTS `bono_module_polls_votes`;
 CREATE TABLE `bono_module_polls_votes` (
