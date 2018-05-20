@@ -39,6 +39,19 @@ CREATE TABLE `bono_module_polls_web_page_votes` (
 
 ) DEFAULT CHARSET=UTF8 ENGINE = InnoDB;
 
+DROP TABLE IF EXISTS `bono_module_polls_web_page_settings`;
+CREATE TABLE `bono_module_polls_web_page_settings` (
+
+    `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `web_page_id` INT NOT NULL COMMENT 'Attached Web Page ID',
+    `lang_id` INT NOT NULL COMMENT 'Attached language ID',
+    `published` BOOLEAN NOT NULL COMMENT 'Whether this poll on the webpage is enabled',
+    `name` varchar(255) NOT NULL COMMENT 'Poll name',
+
+    FOREIGN KEY (lang_id) REFERENCES bono_module_cms_languages(id) ON DELETE CASCADE,
+    FOREIGN KEY (web_page_id) REFERENCES bono_module_cms_webpages(id) ON DELETE CASCADE
+
+) DEFAULT CHARSET=UTF8 ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `bono_module_polls_votes`;
 CREATE TABLE `bono_module_polls_votes` (
