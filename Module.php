@@ -32,7 +32,10 @@ final class Module extends AbstractCmsModule
         $categoryMapper = $this->getMapper('/Polls/Storage/MySQL/CategoryMapper');
         $categoryManager = new CategoryManager($categoryMapper, $answerMapper);
 
-        $webPageAnswerService = new WebPageAnswerService($this->getMapper('/Polls/Storage/MySQL/AnswerWebPageMapper'));
+        $webPageAnswerService = new WebPageAnswerService(
+            $this->getMapper('/Polls/Storage/MySQL/AnswerWebPageMapper'),
+            $this->getMapper('/Polls/Storage/MySQL/WebPageVotesMapper')
+        );
 
         return array(
             'webPageAnswerService' => $webPageAnswerService,

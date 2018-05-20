@@ -12,6 +12,7 @@
 namespace Polls\Service;
 
 use Polls\Storage\AnswerWebPageMapperInterface;
+use Polls\Storage\VotesMapperInterface;
 use Cms\Service\AbstractManager;
 use Krystal\Stdlib\VirtualEntity;
 
@@ -25,14 +26,23 @@ final class WebPageAnswerService extends AbstractManager
     private $answerWebPageMapper;
 
     /**
+     * Any compliant votes mapper
+     * 
+     * @var \Polls\Storage\VotesMapperInterface
+     */
+    private $webPageVotesMapper;
+
+    /**
      * State initialization
      * 
      * @param $answerWebPageMapper \Polls\Storage\AnswerWebPageMapperInterface
+     * @param $webPageVotesMapper \Polls\Storage\VotesMapperInterface
      * @return void
      */
-    public function __construct(AnswerWebPageMapperInterface $answerWebPageMapper)
+    public function __construct(AnswerWebPageMapperInterface $answerWebPageMapper, VotesMapperInterface $webPageVotesMapper)
     {
         $this->answerWebPageMapper = $answerWebPageMapper;
+        $this->webPageVotesMapper = $webPageVotesMapper;
     }
 
     /**
