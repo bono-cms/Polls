@@ -25,6 +25,17 @@ final class AnswerWebPageMapper extends AbstractMapper implements AnswerWebPageM
     }
 
     /**
+     * Increments vote count by answer id
+     * 
+     * @param string $id Answer id
+     * @return boolean
+     */
+    public function incrementVoteCount($id)
+    {
+        return $this->incrementColumnByPk($id, 'votes');
+    }
+
+    /**
      * Find all answers by attached web page ID
      * 
      * @param int $webPageId
