@@ -22,6 +22,16 @@ final class WebPage extends AbstractController
      */
     public function voteAction()
     {
+        if ($this->request->hasPost('answer_id', 'web_page_id')) {
+            // Request vars
+            $webPageId = $this->request->getPost('web_page_id');
+            $answerId = $this->request->getPost('answer_id');
+
+            $webPageAnswerService = $this->getModuleService('webPageAnswerService');
+            $webPageAnswerService->vote($webPageId, $answerId, $this->request->getClientIP());
+
+            return $this->resultsAction($webPageId);
+        }
     }
 
     /**
