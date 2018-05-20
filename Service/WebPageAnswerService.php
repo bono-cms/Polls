@@ -46,6 +46,29 @@ final class WebPageAnswerService extends AbstractManager
     }
 
     /**
+     * Tracks a vote
+     * 
+     * @param string $webPageId Web Page ID
+     * @param string $answerId Answer id
+     * @param string $ip User IP
+     * @return boolean Depending on success
+     */
+    public function vote($webPageId, $answerId, $ip)
+    {
+        // One user is allowed to vote only once
+        if ($this->webPageVotesMapper->hasVoted($webPageId, $ip)) {
+            // If already voted - fail
+            return false;
+        } else {
+            // If not voted before, then track it
+            $this->webPageVotesMapper->track($webPageId, $ip);
+            $this->answerWebPageMapper->incrementVoteCount($answerId);
+
+            return true;
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function toEntity(array $answer)
