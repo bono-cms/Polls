@@ -31,16 +31,36 @@ final class SiteService implements SiteServiceInterface
     private $categoryMapper;
 
     /**
+     * Web page answer service
+     * 
+     * @var \Site\Service\WebPageAnswerService
+     */
+    private $webPageAnswerService;
+
+    /**
      * State initialization
      * 
      * @param \Polls\Service\AnswerManagerInterface $answerManager
      * @param \Polls\Storage\CategoryMapperInterface $categoryMapper
+     * @param \Site\Service\WebPageAnswerService $webPageAnswerService
      * @return void
      */
-    public function __construct(AnswerManagerInterface $answerManager, CategoryMapperInterface $categoryMapper)
+    public function __construct(AnswerManagerInterface $answerManager, CategoryMapperInterface $categoryMapper, WebPageAnswerService $webPageAnswerService)
     {
         $this->answerManager = $answerManager;
         $this->categoryMapper = $categoryMapper;
+        $this->webPageAnswerService = $webPageAnswerService;
+    }
+
+    /**
+     * Returns all answers associated with web page ID
+     * 
+     * @param int $webPageId
+     * @return array
+     */
+    public function getAllByWebPageId($webPageId)
+    {
+        return $this->webPageAnswerService->findAllByWebPageId($webPageId);
     }
 
     /**
