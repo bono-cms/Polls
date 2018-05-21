@@ -12,8 +12,9 @@
 namespace Polls\Storage\MySQL;
 
 use Cms\Storage\MySQL\AbstractMapper;
+use Polls\Storage\WebPageSettingsMapperInterface;
 
-final class WebPageSettingsMapper extends AbstractMapper
+final class WebPageSettingsMapper extends AbstractMapper implements WebPageSettingsMapperInterface
 {
     /**
      * {@inheritDoc}
@@ -24,19 +25,24 @@ final class WebPageSettingsMapper extends AbstractMapper
     }
 
     /**
-     * Checks whether entry for web page ID already exists
+     * Persists a record
      * 
-     * @param int $webPageId
+     * @param array $input
      * @return boolean
      */
-    public function hasEntry($webPageId)
+    public function save(array $input)
     {
-        $result = $this->db->select()
-                           ->count('id')
-                           ->from(self::getTableName())
-                           ->whereEquals('web_page_id', $webPageId)
-                           ->queryScalar();
+        return $this->persist($this->getWithLang($input));
+    }
 
-        return $result > 0;
+    /**
+     * Finds by web column id
+     * 
+     * @param int $webPageId
+     * @return array
+     */
+    public function findByWebPageId($webPageId)
+    {
+        return $this->fetchByColumn('web_page_id', $webPageId);
     }
 }
