@@ -24,7 +24,9 @@ final class Dropper extends AbstractStorageDropper
             AnswerMapper::getTableName(),
             CategoryMapper::getTableName(),
             VotesMapper::getTableName(),
-            AnswerWebPageMapper::getTableName()
+            AnswerWebPageMapper::getTableName(),
+            WebPageSettingsMapper::getTableName(),
+            WebPageVotesMapper::getTableName()
         );
     }
 }
