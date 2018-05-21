@@ -15,8 +15,8 @@ $options = $this->translateArray(array(
         <div class="col-lg-6">
             <?= Element::hidden('id', $webPage->getId()); ?>
             <?= Element::hidden('web_page_id', $entity->getWebPageId()); ?>
-            <?= Element::text('name', $webPage->getName(), array('class' => 'form-control', 'placeholder' => $this->translate('Poll title'))); ?>
-            <?= Element::select('published', $options, $webPage->getPublished(), array('class' => 'form-control')); ?>
+            <?= Element::text('name', $webPage->getName(), array('class' => 'form-control input-lg', 'placeholder' => $this->translate('Poll title'))); ?>
+            <?= Element::select('published', $options, $webPage->getPublished(), array('class' => 'form-control input-lg')); ?>
         </div>
 
         <div class="col-lg-6">
