@@ -3,7 +3,28 @@
 use Krystal\Form\Element;
 defined('KRYSTAL') or die;
 
+$options = $this->translateArray(array(
+    '1' => 'This poll is published', 
+    '0' => 'This poll is not published'
+));
+
 ?>
+
+<form method="POST">
+    <div class="row">
+        <div class="col-lg-6">
+            <?= Element::hidden('id', $webPage->getId()); ?>
+            <?= Element::hidden('web_page_id', $entity->getWebPageId()); ?>
+            <?= Element::text('name', $webPage->getName(), array('class' => 'form-control', 'placeholder' => $this->translate('Poll title'))); ?>
+            <?= Element::select('published', $options, $webPage->getPublished(), array('class' => 'form-control')); ?>
+        </div>
+
+        <div class="col-lg-6">
+            <p><button type="submit" data-button="save" data-url="<?= $this->url('Polls:Admin:WebPage@settingsAction', $entity->getWebPageId()); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button></p>
+            <p class="text-muted"><? $this->show('Display settings of this poll'); ?></p>
+        </div>
+    </div>
+</form>
 
 <div class="row">
     <div class="col-lg-6">
