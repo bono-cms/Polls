@@ -49,6 +49,10 @@ return array(
         'controller' => 'Admin:Browser@indexAction'
     ),
     
+    '/%s/module/polls/settings/(:var)' => array(
+        'controller' => 'Admin:WebPage@settingsAction'
+    ),
+    
     '/%s/module/polls/tweak' => array(
         'controller' => 'Admin:Answer@tweakAction'
     ),

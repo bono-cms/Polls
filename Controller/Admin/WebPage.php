@@ -18,6 +18,21 @@ use Krystal\Stdlib\VirtualEntity;
 final class WebPage extends AbstractController
 {
     /**
+     * Update poll settings of web page
+     * 
+     * @param int $webPageId
+     * @return int
+     */
+    public function settingsAction($webPageId)
+    {
+        $data = $this->request->getPost();
+        $this->getModuleService('webPageSettingsService')->save($data);
+
+        $this->flashBag->set('success', 'Poll settings have been updated successfully');
+        return 1;
+    }
+
+    /**
      * Creates grid
      * 
      * @param \Krystal\Stdlib\VirtualEntity $entity
@@ -31,7 +46,8 @@ final class WebPage extends AbstractController
 
         return $this->view->render('web-page-grid', array(
             'answers' => $this->getModuleService('webPageAnswerService')->findAllByWebPageId($entity->getWebPageId()),
-            'entity' => $entity
+            'entity' => $entity,
+            'webPage' => $this->getModuleService('webPageSettingsService')->findByWebPageId($entity->getWebPageId())
         ));
     }
 
