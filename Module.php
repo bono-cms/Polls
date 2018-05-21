@@ -16,6 +16,7 @@ use Polls\Service\CategoryManager;
 use Polls\Service\AnswerManager;
 use Polls\Service\SiteService;
 use Polls\Service\WebPageAnswerService;
+use Polls\Service\WebPageSettingsService;
 
 final class Module extends AbstractCmsModule
 {
@@ -37,7 +38,12 @@ final class Module extends AbstractCmsModule
             $this->getMapper('/Polls/Storage/MySQL/WebPageVotesMapper')
         );
 
+        $webPageSettingsService = new WebPageSettingsService(
+            $this->getMapper('/Polls/Storage/MySQL/WebPageSettingsMapper')
+        );
+
         return array(
+            'webPageSettingsService' => $webPageSettingsService,
             'webPageAnswerService' => $webPageAnswerService,
             'categoryManager' => $categoryManager,
             'answerManager' => $answerManager,
