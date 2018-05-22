@@ -17,7 +17,7 @@ use Cms\Service\AbstractManager;
 use Krystal\Stdlib\VirtualEntity;
 use Krystal\Text\Math;
 
-final class WebPageAnswerService extends AbstractManager
+final class WebPageAnswerService extends AbstractManager implements WebPageAnswerServiceInterface
 {
     /**
      * Any compliant web page mapper
@@ -82,8 +82,8 @@ final class WebPageAnswerService extends AbstractManager
     /**
      * Tracks a vote
      * 
-     * @param string $webPageId Web Page ID
-     * @param string $answerId Answer id
+     * @param int $webPageId Web Page ID
+     * @param int $answerId Answer id
      * @param string $ip User IP
      * @return boolean Depending on success
      */
