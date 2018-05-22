@@ -1,0 +1,30 @@
+<?php
+
+$poll = $polls->getAllByWebPageId($id);
+
+?>
+
+<?php if ($poll !== false): ?>
+<div class="polls-wrapper form-horizontal">
+    <h4><?php echo $poll->getName(); ?></h4>
+
+    <form data-type="polls" action="<?php echo $this->url('Polls:WebPage@voteAction'); ?>" method="POST">
+        <input type="hidden" name="web_page_id" value="<?php echo $poll->getWebPageId(); ?>" />
+
+        <div class="form-group">
+            <div class="col-lg-10">
+                <?php foreach ($poll->getAnswers() as $answer): ?>
+                <div class="radio">
+                    <input type="radio" name="answer_id" value="<?php echo $answer->getId(); ?>" /> <?php echo $answer->getTitle(); ?>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" disabled="true"><i class="glyphicon glyphicon-ok"></i> <?php $this->show('Vote'); ?></button>
+            <button type="results" data-url="<?php echo $this->url('Polls:WebPage@resultsAction', $poll->getWebPageId()); ?>" class="btn btn-info"><i class="glyphicon glyphicon-signal"></i> <?php $this->show('Results'); ?></button>
+        </div>
+    </form>
+</div>
+<?php endif; ?>
