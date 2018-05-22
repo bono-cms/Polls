@@ -22,6 +22,14 @@ interface WebPageSettingsServiceInterface
     public function save(array $input);
 
     /**
+     * Finds the name by attached web page id
+     * 
+     * @param int $webPageId
+     * @return string
+     */
+    public function findNameByWebPageId($webPageId);
+
+    /**
      * Find entity by attached web page ID
      * 
      * @param mixed $webPageId

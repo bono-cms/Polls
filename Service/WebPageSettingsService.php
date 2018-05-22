@@ -62,6 +62,17 @@ final class WebPageSettingsService extends AbstractManager implements WebPageSet
     }
 
     /**
+     * Finds the name by attached web page id
+     * 
+     * @param int $webPageId
+     * @return string
+     */
+    public function findNameByWebPageId($webPageId)
+    {
+        return $this->webPageSettingsMapper->findNameByWebPageId($webPageId);
+    }
+
+    /**
      * Find entity by attached web page ID
      * 
      * @param mixed $webPageId
