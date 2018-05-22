@@ -13,6 +13,7 @@ namespace Polls\Service;
 
 use Krystal\Stdlib\VirtualEntity;
 use Polls\Storage\CategoryMapperInterface;
+use Polls\Storage\WebPageSettingsMapperInterface;
 
 final class SiteService implements SiteServiceInterface
 {
@@ -38,18 +39,31 @@ final class SiteService implements SiteServiceInterface
     private $webPageAnswerService;
 
     /**
+     * Web page settings mapper
+     * 
+     * @var \Polls\Storage\WebPageSettingsMapperInterface
+     */
+    private $webPageSettingsMapper;
+
+    /**
      * State initialization
      * 
      * @param \Polls\Service\AnswerManagerInterface $answerManager
      * @param \Polls\Storage\CategoryMapperInterface $categoryMapper
      * @param \Site\Service\WebPageAnswerService $webPageAnswerService
+     * @param \Polls\Storage\WebPageSettingsMapperInterface $webPageSettingsMapper
      * @return void
      */
-    public function __construct(AnswerManagerInterface $answerManager, CategoryMapperInterface $categoryMapper, WebPageAnswerService $webPageAnswerService)
-    {
+    public function __construct(
+        AnswerManagerInterface $answerManager, 
+        CategoryMapperInterface $categoryMapper, 
+        WebPageAnswerService $webPageAnswerService, 
+        WebPageSettingsMapperInterface $webPageSettingsMapper
+    ){
         $this->answerManager = $answerManager;
         $this->categoryMapper = $categoryMapper;
         $this->webPageAnswerService = $webPageAnswerService;
+        $this->webPageSettingsMapper = $webPageSettingsMapper;
     }
 
     /**
@@ -60,7 +74,19 @@ final class SiteService implements SiteServiceInterface
      */
     public function getAllByWebPageId($webPageId)
     {
-        return $this->webPageAnswerService->findAllByWebPageId($webPageId);
+        $name = $this->webPageSettingsMapper->findNameByWebPageId($webPageId);
+        $answers = $this->webPageAnswerService->findAllByWebPageId($webPageId);
+
+        if (!empty($name) && !empty($answers)) {
+            $entity = new VirtualEntity();
+            $entity->setName($name, VirtualEntity::FILTER_TAGS)
+                   ->setWebPageId($webPageId, VirtualEntity::FILTER_INT)
+                   ->setAnswers($answers);
+
+            return $entity;
+        } else {
+            return false;
+        }
     }
 
     /**

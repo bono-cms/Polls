@@ -38,16 +38,15 @@ final class Module extends AbstractCmsModule
             $this->getMapper('/Polls/Storage/MySQL/WebPageVotesMapper')
         );
 
-        $webPageSettingsService = new WebPageSettingsService(
-            $this->getMapper('/Polls/Storage/MySQL/WebPageSettingsMapper')
-        );
+        $webPageSettingsMapper = $this->getMapper('/Polls/Storage/MySQL/WebPageSettingsMapper');
+        $webPageSettingsService = new WebPageSettingsService($webPageSettingsMapper);
 
         return array(
             'webPageSettingsService' => $webPageSettingsService,
             'webPageAnswerService' => $webPageAnswerService,
             'categoryManager' => $categoryManager,
             'answerManager' => $answerManager,
-            'siteService' => new SiteService($answerManager, $categoryMapper, $webPageAnswerService)
+            'siteService' => new SiteService($answerManager, $categoryMapper, $webPageAnswerService, $webPageSettingsMapper)
         );
     }
 }
