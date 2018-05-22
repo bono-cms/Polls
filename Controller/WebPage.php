@@ -42,5 +42,17 @@ final class WebPage extends AbstractController
      */
     public function resultsAction($webPageId)
     {
+        // Configure view
+        $this->view->setModule('Polls')
+                   ->setTheme('partials')
+                   ->disableLayout();
+
+        $result = $this->getModuleService('webPageAnswerService')->fetchResultSet($webPageId);
+
+        return $this->view->render('poll-results', array(
+            'answers' => $result['answers'],
+            'total' => $result['total'],
+            'category' => $this->getModuleService('webPageSettingsService')->findNameByWebPageId($webPageId)
+        ));
     }
 }
