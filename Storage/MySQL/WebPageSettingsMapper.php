@@ -39,6 +39,17 @@ final class WebPageSettingsMapper extends AbstractMapper implements WebPageSetti
      * Finds by web column id
      * 
      * @param int $webPageId
+     * @return string
+     */
+    public function findNameByWebPageId($webPageId)
+    {
+        return $this->fetchOneColumn('name', 'web_page_id', $webPageId);
+    }
+
+    /**
+     * Finds by web column id
+     * 
+     * @param int $webPageId
      * @return array
      */
     public function findByWebPageId($webPageId)

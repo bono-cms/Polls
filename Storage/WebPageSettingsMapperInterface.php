@@ -25,6 +25,14 @@ interface WebPageSettingsMapperInterface
      * Finds by web column id
      * 
      * @param int $webPageId
+     * @return string
+     */
+    public function findNameByWebPageId($webPageId);
+
+    /**
+     * Finds by web column id
+     * 
+     * @param int $webPageId
      * @return array
      */
     public function findByWebPageId($webPageId);
