@@ -15,6 +15,7 @@ use Polls\Storage\AnswerWebPageMapperInterface;
 use Polls\Storage\VotesMapperInterface;
 use Cms\Service\AbstractManager;
 use Krystal\Stdlib\VirtualEntity;
+use Krystal\Text\Math;
 
 final class WebPageAnswerService extends AbstractManager
 {
@@ -43,6 +44,39 @@ final class WebPageAnswerService extends AbstractManager
     {
         $this->answerWebPageMapper = $answerWebPageMapper;
         $this->webPageVotesMapper = $webPageVotesMapper;
+    }
+
+    /**
+     * Fetches the result-set by web page id
+     * 
+     * @param int $webPageId
+     * @return array
+     */
+    public function fetchResultSet($webPageId)
+    {
+        $answers = $this->findAllByWebPageId($webPageId);
+
+        // Total votes counter
+        $count = 0;
+
+        // Iterate the get the total count
+        foreach ($answers as $answer) {
+            $count += $answer->getVotes();
+        }
+
+        // Append new virtual getter
+        foreach ($answers as $answer) {
+            // Votes in percentage
+            $percentage = (int) Math::percentage($count, $answer->getVotes());
+
+            // Append new getter getVotesPercentage()
+            $answer->setVotesPercentage($percentage);
+        }
+
+        return array(
+            'answers' => $answers,
+            'total' => $count
+        );
     }
 
     /**
