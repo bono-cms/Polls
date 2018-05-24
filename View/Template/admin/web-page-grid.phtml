@@ -50,10 +50,10 @@ $options = $this->translateArray(array(
                     <td><?php echo $answer->getId(); ?></td>
                     <td><?php echo $answer->getTitle(); ?></td>
                     <td><?php echo $answer->getOrder(); ?></td>
-                    <td><?php echo $answer->getPublished(); ?></td>
+                    <td><?php $this->show($answer->getPublished() ? 'Yes' : 'No'); ?></td>
                     <td><?php echo $answer->getVotes(); ?></td>
                     <td>
-                        <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this answer'); ?>" data-button="edit" href="<?php echo $this->createQueryUrl('Polls:Admin:WebPage@editAction', array('id' => $answer->getId(), 'title' => $title)); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this answer'); ?>" data-button="edit" href="<?php echo $this->createQueryUrl('Polls:Admin:WebPage@editAction', array('id' => $answer->getId(), 'title' => $title, 'module' => $module, 'back_url' => rawurlencode($backUrl))); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
                         <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Remove this answer'); ?>" data-button="delete" href="#" data-url="<?php echo $this->url('Polls:Admin:WebPage@deleteAction', $answer->getId()); ?>"><i class="glyphicon glyphicon-remove"></i></a>
                     </td>
                 </tr>
@@ -104,7 +104,7 @@ $options = $this->translateArray(array(
             <button data-button="save" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button>
 
             <?php endif; ?>
-            <button data-button="cancel" data-url="<?php echo $this->url('Polls:Admin:Browser@indexAction'); ?>" class="btn btn-default"><i class="glyphicon glyphicon-floppy-remove"></i> <?php $this->show('Cancel'); ?></button>
+            <button data-button="cancel" data-url="<?php echo $entity->getId() ? $this->createQueryUrl('Polls:Admin:WebPage@indexAction', array('web_page_id' => $entity->getWebPageId(), 'title' => $title, 'module' => $module, 'back_url' => rawurlencode($backUrl))) : $backUrl; ?>" class="btn btn-default"><i class="glyphicon glyphicon-floppy-remove"></i> <?php $this->show('Cancel'); ?></button>
         </form>
     </div>
 </div>

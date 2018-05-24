@@ -36,20 +36,27 @@ final class WebPage extends AbstractController
      * Creates grid
      * 
      * @param \Krystal\Stdlib\VirtualEntity $entity
-     * @param string $title
      * @return string
      */
-    private function createGrid(VirtualEntity $entity, $title = null)
+    private function createGrid(VirtualEntity $entity)
     {
+        // Target module we're in
+        $module = $this->request->getQuery('module');
+        $backUrl = $this->request->getQuery('back_url');
+        $title = $this->request->getQuery('title');
+
         // Append a breadcrumb
         $this->view->getBreadcrumbBag()
-                   ->addOne('Web page answers');
+                   ->addOne($module, $backUrl)
+                   ->addOne('Web page poll');
 
         return $this->view->render('web-page-grid', array(
             'answers' => $this->getModuleService('webPageAnswerService')->findAllByWebPageId($entity->getWebPageId()),
             'entity' => $entity,
             'webPage' => $this->getModuleService('webPageSettingsService')->findByWebPageId($entity->getWebPageId()),
-            'title' => $title
+            'title' => $title,
+            'module' => $module,
+            'backUrl' => $backUrl
         ));
     }
 
@@ -60,16 +67,15 @@ final class WebPage extends AbstractController
      */
     public function indexAction()
     {
-        if ($this->request->hasQuery('web_page_id', 'title')) {
+        if ($this->request->hasQuery('web_page_id')) {
             // Request parameters
             $webPageId = $this->request->getQuery('web_page_id');
-            $title = $this->request->getQuery('title');
 
             $entity = new VirtualEntity();
             $entity->setPublished(true)
                    ->setWebPageId($webPageId);
 
-            return $this->createGrid($entity, $title);
+            return $this->createGrid($entity);
 
         } else {
             return false;
@@ -83,15 +89,14 @@ final class WebPage extends AbstractController
      */
     public function editAction()
     {
-        if ($this->request->hasQuery('id', 'title')) {
+        if ($this->request->hasQuery('id')) {
             // Request parameters
             $id = $this->request->getQuery('id');
-            $title = $this->request->getQuery('title');
 
             $entity = $this->getModuleService('webPageAnswerService')->fetchById($id);
 
             if ($entity !== false) {
-                return $this->createGrid($entity, $title);
+                return $this->createGrid($entity);
             } else {
                 return false;
             }
