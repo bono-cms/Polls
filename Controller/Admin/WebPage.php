@@ -60,7 +60,7 @@ final class WebPage extends AbstractController
      */
     public function indexAction()
     {
-        if ($this->request->hasQuery('id', 'title')) {
+        if ($this->request->hasQuery('web_page_id', 'title')) {
             // Request parameters
             $webPageId = $this->request->getQuery('web_page_id');
             $title = $this->request->getQuery('title');
