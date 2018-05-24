@@ -10,6 +10,8 @@ $options = $this->translateArray(array(
 
 ?>
 
+<h3 class="page-header"><?php echo $title; ?></h3>
+
 <form method="POST">
     <div class="row">
         <div class="col-lg-6">
@@ -51,7 +53,7 @@ $options = $this->translateArray(array(
                     <td><?php echo $answer->getPublished(); ?></td>
                     <td><?php echo $answer->getVotes(); ?></td>
                     <td>
-                        <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this answer'); ?>" data-button="edit" href="<?php echo $this->url('Polls:Admin:WebPage@editAction', $answer->getId()); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this answer'); ?>" data-button="edit" href="<?php echo $this->createQueryUrl('Polls:Admin:WebPage@editAction', array('id' => $answer->getId(), 'title' => $title)); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
                         <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Remove this answer'); ?>" data-button="delete" href="#" data-url="<?php echo $this->url('Polls:Admin:WebPage@deleteAction', $answer->getId()); ?>"><i class="glyphicon glyphicon-remove"></i></a>
                     </td>
                 </tr>
@@ -95,7 +97,7 @@ $options = $this->translateArray(array(
             </div>
 
             <?php if (!$entity->getId()): ?>
-            <button data-button="add" data-back-url="<?php echo $this->url('Polls:Admin:WebPage@editAction', null); ?>" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add'); ?></button>
+            <button data-button="add" data-back-url="<?php echo $this->createQueryUrl('Polls:Admin:WebPage@editAction', array('title' => $title, 'id' => '')); ?>" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add'); ?></button>
             <button data-button="add-create" data-back-url="<?php echo $this->url('Polls:Admin:WebPage@addAction'); ?>" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add & Create new'); ?></button>
 
             <?php else: ?>
