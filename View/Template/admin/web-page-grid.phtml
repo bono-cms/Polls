@@ -96,15 +96,24 @@ $options = $this->translateArray(array(
                 </div>
             </div>
 
-            <?php if (!$entity->getId()): ?>
-            <button data-button="add" data-back-url="<?php echo $this->createQueryUrl('Polls:Admin:WebPage@editAction', array('title' => $title, 'back_url' => rawurlencode($backUrl), 'module' => $module, 'id' => '')); ?>" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add'); ?></button>
-            <button data-button="add-create" data-back-url="<?php echo $this->url('Polls:Admin:WebPage@addAction'); ?>" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add & Create new'); ?></button>
+            <?php $this->loadPartial('actions', array(
+                'new' => !$entity->getId(),
+                'add' => 'Polls:Admin:WebPage@addAction',
+                'edit' => $this->createQueryUrl('Polls:Admin:WebPage@editAction', array(
+                    'title' => $title,
+                    'back_url' => rawurlencode($backUrl),
+                    'module' => $module,
+                    'id' => ''
+                )),
+                'save' => 'Polls:Admin:WebPage@saveAction',
+                'cancel' => $entity->getId() ? $this->createQueryUrl('Polls:Admin:WebPage@indexAction', array(
+                    'web_page_id' => $entity->getWebPageId(), 
+                    'title' => $title, 
+                    'module' => $module, 
+                    'back_url' => rawurlencode($backUrl))
+                ) : $backUrl
+            )); ?>
 
-            <?php else: ?>
-            <button data-button="save" data-url="<?php echo $this->url('Polls:Admin:WebPage@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button>
-
-            <?php endif; ?>
-            <button data-button="cancel" data-url="<?php echo $entity->getId() ? $this->createQueryUrl('Polls:Admin:WebPage@indexAction', array('web_page_id' => $entity->getWebPageId(), 'title' => $title, 'module' => $module, 'back_url' => rawurlencode($backUrl))) : $backUrl; ?>" class="btn btn-default"><i class="glyphicon glyphicon-floppy-remove"></i> <?php $this->show('Cancel'); ?></button>
         </form>
     </div>
 </div>

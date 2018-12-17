@@ -1,7 +1,7 @@
-<?php defined('KRYSTAL') or die; ?>
 <?php
 
 use Krystal\Form\Element;
+defined('KRYSTAL') or die;
 
 ?>
 <form data-group="answer">
@@ -42,16 +42,13 @@ use Krystal\Form\Element;
             </div>
         </div>
     </div>
-    
-    <?php if (!$answer->getId()): ?>
-    <button data-button="add" data-back-url="<?php echo $this->url('Polls:Admin:Answer@editAction', null); ?>" data-url="<?php echo $this->url('Polls:Admin:Answer@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add'); ?></button>
-    <button data-button="add-create" data-back-url="<?php echo $this->url('Polls:Admin:Answer@addAction'); ?>" data-url="<?php echo $this->url('Polls:Admin:Answer@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Add & Create new'); ?></button>
-    
-    <?php else: ?>
-    <button data-button="save" data-url="<?php echo $this->url('Polls:Admin:Answer@saveAction'); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button>
-    
-    <?php endif; ?>
-    
-    <button data-button="cancel" data-url="<?php echo $this->url('Polls:Admin:Browser@indexAction'); ?>" class="btn btn-default"><i class="glyphicon glyphicon-floppy-remove"></i> <?php $this->show('Cancel'); ?></button>
-    
+
+    <?php $this->loadPartial('actions', array(
+        'new' => !$answer->getId(),
+        'add' => array('Polls:Admin:Answer@addAction', $answer->getCategoryId()),
+        'edit' => 'Polls:Admin:Answer@editAction',
+        'save' => 'Polls:Admin:Answer@saveAction',
+        'cancel' => 'Polls:Admin:Browser@indexAction'
+    )); ?>
+
 </form>
