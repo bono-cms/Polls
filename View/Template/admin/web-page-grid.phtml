@@ -1,6 +1,9 @@
 <?php
 
 use Krystal\Form\Element;
+use Krystal\Grid\Grid;
+use Cms\View\Icon;
+
 defined('KRYSTAL') or die;
 
 $options = $this->translateArray(array(
@@ -32,34 +35,64 @@ $options = $this->translateArray(array(
     <div class="col-lg-6">
         <h2 class="page-header"><i class="fa fa-bar-chart"></i> <?php $this->show('Answers'); ?> (<?php echo count($answers); ?>)</h2>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th><? $this->show('Title'); ?></th>
-                    <th><? $this->show('Order'); ?></th>
-                    <th><? $this->show('Published'); ?></th>
-                    <th><? $this->show('Votes'); ?></th>
-                    <th><? $this->show('Actions'); ?></th>
-                </tr>
-            </thead>
+        <?= Grid::render($answers, array(
+            'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
+            'rowAttributes' => array(
+                'class' => function($answer) use ($entity){
+                    return $answer->getId() == $entity->getId() ? 'success' : null;
+                }
+            ),
 
-            <tbody>
-                <?php foreach ($answers as $answer): ?>
-                <tr class="<?php echo $answer->getId() == $entity->getId() ? 'success' : ''; ?>">
-                    <td><?php echo $answer->getId(); ?></td>
-                    <td><?php echo $answer->getTitle(); ?></td>
-                    <td><?php echo $answer->getOrder(); ?></td>
-                    <td><?php $this->show($answer->getPublished() ? 'Yes' : 'No'); ?></td>
-                    <td><?php echo $answer->getVotes(); ?></td>
-                    <td>
-                        <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Edit this answer'); ?>" data-button="edit" href="<?php echo $this->createQueryUrl('Polls:Admin:WebPage@editAction', array('id' => $answer->getId(), 'title' => $title, 'module' => $module, 'back_url' => rawurlencode($backUrl))); ?>"><i class="glyphicon glyphicon-pencil"></i></a>
-                        <a data-toggle="tooltip" data-placement="left" data-original-title="<?php $this->show('Remove this answer'); ?>" data-button="delete" href="#" data-url="<?php echo $this->url('Polls:Admin:WebPage@deleteAction', $answer->getId()); ?>"><i class="glyphicon glyphicon-remove"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>        
+            'columns' => array(
+                array(
+                    'column' => 'id',
+                    'label' => '#'
+                ),
+
+                array(
+                    'column' => 'title'
+                ),
+
+                array(
+                    'column' => 'order'
+                ),
+
+                array(
+                    'column' => 'published',
+                    'translateable' => true,
+                    'value' => function($answer){
+                        return $answer->getPublished() ? 'Yes' : 'No';
+                    }
+                ),
+
+                array(
+                    'column' => 'votes'
+                )
+            ),
+
+            'actions' => array(
+                'edit' => function($answer) use ($title, $module, $backUrl){
+                    // Generate URL
+                    $url = $this->createQueryUrl('Polls:Admin:WebPage@editAction', array(
+                        'id' => $answer->getId(),
+                        'title' => $title,
+                        'module' => $module,
+                        'back_url' => rawurlencode($backUrl))
+                    );
+
+                    return Icon::edit($url, $this->translate('Edit this answer'));
+                },
+
+                'remove' => function($answer){
+                    return Icon::remove(
+                        $this->url('Polls:Admin:WebPage@deleteAction', $answer->getId()),
+                        $this->translate('Remove this answer')
+                    );
+                }
+            )
+
+        ), $this->translator); ?>        
+        
     </div>
 
     <div class="col-lg-6">
