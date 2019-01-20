@@ -129,9 +129,21 @@ $options = $this->translateArray(array(
                 </div>
             </div>
 
+            <div class="clearfix"></div>
+
+            <?php
+                $indexUrl =  $this->createQueryUrl('Polls:Admin:WebPage@indexAction', array(
+                    'web_page_id' => $entity->getWebPageId(), 
+                    'title' => $title, 
+                    'module' => $module, 
+                    'back_url' => rawurlencode($backUrl))
+                );
+            ?>
+
             <?php $this->loadPartial('actions', array(
+                'wrapperClass' => false,
                 'new' => !$entity->getId(),
-                'add' => 'Polls:Admin:WebPage@addAction',
+                'add' => $indexUrl,
                 'edit' => $this->createQueryUrl('Polls:Admin:WebPage@editAction', array(
                     'title' => $title,
                     'back_url' => rawurlencode($backUrl),
@@ -139,12 +151,7 @@ $options = $this->translateArray(array(
                     'id' => ''
                 )),
                 'save' => 'Polls:Admin:WebPage@saveAction',
-                'cancel' => $entity->getId() ? $this->createQueryUrl('Polls:Admin:WebPage@indexAction', array(
-                    'web_page_id' => $entity->getWebPageId(), 
-                    'title' => $title, 
-                    'module' => $module, 
-                    'back_url' => rawurlencode($backUrl))
-                ) : $backUrl
+                'cancel' => $entity->getId() ? $indexUrl: $backUrl
             )); ?>
 
         </form>
