@@ -1,7 +1,7 @@
 <?php
 
 use Krystal\Form\Element;
-use Krystal\Widget\GridWidget;
+use Krystal\Widget\GridView\GridViewWidget;
 use Cms\View\Icon;
 
 defined('KRYSTAL') or die;
@@ -35,7 +35,7 @@ $options = $this->translateArray(array(
     <div class="col-lg-6">
         <h2 class="page-header"><i class="fa fa-bar-chart"></i> <?php $this->show('Answers'); ?> (<?php echo count($answers); ?>)</h2>
 
-        <?= $this->widget(new GridWidget($answers, array(
+        <?= $this->widget(new GridViewWidget($answers, array(
             'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
             'rowAttributes' => array(
                 'class' => function($answer) use ($entity){
