@@ -4,42 +4,41 @@ use Krystal\Form\Element;
 defined('KRYSTAL') or die;
 
 ?>
-<form data-group="answer">
-    <div class="well">
-        <?php echo Element::hidden('answer[id]', $answer->getId()); ?>
-        
-        <div class="form-group">
-            <label class="col-lg-2 control-label"><?php $this->show('Answer'); ?></label>
-            <div class="col-lg-10">
-                <div class="input-group">
-                    <?php echo Element::text('answer[title]', $answer->getTitle(), array('class' => 'form-control', 'placeholder' => $this->translate('Option name'))); ?>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                </div>
+
+<form class="card" data-group="answer" autocomplete="off">
+    <?php echo Element::hidden('answer[id]', $answer->getId()); ?>
+
+    <div class="form-group">
+        <label class="col-lg-12 control-label"><?php $this->show('Answer'); ?></label>
+        <div class="col-lg-10">
+            <div class="input-group">
+                <?php echo Element::text('answer[title]', $answer->getTitle(), array('class' => 'form-control', 'placeholder' => $this->translate('Option name'))); ?>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             </div>
         </div>
-        
-        <div class="form-group">
-            <label class="col-lg-2 control-label"><?php $this->show('Category'); ?></label>
-            <div class="col-lg-10">
-                <?php echo Element::select('answer[category_id]', $categories, $answer->getCategoryId(), array('class' => 'form-control')); ?>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-12 control-label"><?php $this->show('Category'); ?></label>
+        <div class="col-lg-10">
+            <?php echo Element::select('answer[category_id]', $categories, $answer->getCategoryId(), array('class' => 'form-control')); ?>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-12 control-label"><?php $this->show('Order'); ?></label>
+        <div class="col-lg-10">
+            <div class="input-group">
+                <?php echo Element::number('answer[order]', $answer->getOrder(), array('min' => '0', 'class' => 'form-control', 'placeholder' => $this->translate('Sorting order of this option to be displayed in a category'))); ?>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             </div>
         </div>
-        
-        <div class="form-group">
-            <label class="col-lg-2 control-label"><?php $this->show('Order'); ?></label>
-            <div class="col-lg-10">
-                <div class="input-group">
-                    <?php echo Element::number('answer[order]', $answer->getOrder(), array('min' => '0', 'class' => 'form-control', 'placeholder' => $this->translate('Sorting order of this option to be displayed in a category'))); ?>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-lg-2 control-label"><?php $this->show('Published'); ?></label>
-            <div class="col-lg-10">
-                <?php echo Element::checkbox('answer[published]', $answer->getPublished(), array('class' => 'form-control')); ?>
-            </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-12 control-label"><?php $this->show('Published'); ?></label>
+        <div class="col-lg-10">
+            <?php echo Element::checkbox('answer[published]', $answer->getPublished(), array('class' => 'form-control')); ?>
         </div>
     </div>
 

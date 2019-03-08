@@ -15,144 +15,145 @@ $options = $this->translateArray(array(
 
 <h3 class="page-header"><?php echo $title; ?></h3>
 
-<form method="POST">
-    <div class="row">
-        <div class="col-lg-6">
-            <?= Element::hidden('id', $webPage->getId()); ?>
-            <?= Element::hidden('web_page_id', $entity->getWebPageId()); ?>
-            <?= Element::text('name', $webPage->getName(), array('class' => 'form-control input-lg', 'placeholder' => $this->translate('Poll title'))); ?>
-            <?= Element::select('published', $options, $webPage->getPublished(), array('class' => 'form-control input-lg')); ?>
+<div class="card">
+    <form method="POST" autocomplete="off">
+        <div class="row">
+            <div class="col-lg-6">
+                <?= Element::hidden('id', $webPage->getId()); ?>
+                <?= Element::hidden('web_page_id', $entity->getWebPageId()); ?>
+                <?= Element::text('name', $webPage->getName(), array('class' => 'form-control form-control-lg', 'placeholder' => $this->translate('Poll title'))); ?>
+                <?= Element::select('published', $options, $webPage->getPublished(), array('class' => 'form-control form-control-lg')); ?>
+            </div>
+
+            <div class="col-lg-6">
+                <p>
+                    <button type="submit" data-button="save" data-url="<?= $this->url('Polls:Admin:WebPage@settingsAction', $entity->getWebPageId()); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button>
+                    <br />
+                    <? $this->show('Display settings of this poll'); ?>
+                </p>
+            </div>
         </div>
+    </form>
+</div>
 
-        <div class="col-lg-6">
-            <p><button type="submit" data-button="save" data-url="<?= $this->url('Polls:Admin:WebPage@settingsAction', $entity->getWebPageId()); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button></p>
-            <p class="text-muted"><? $this->show('Display settings of this poll'); ?></p>
-        </div>
-    </div>
-</form>
+<div class="card">
+    <h2 class="page-header"><i class="fa fa-bar-chart"></i> <?php $this->show('Answers'); ?> (<?php echo count($answers); ?>)</h2>
 
-<div class="row">
-    <div class="col-lg-6">
-        <h2 class="page-header"><i class="fa fa-bar-chart"></i> <?php $this->show('Answers'); ?> (<?php echo count($answers); ?>)</h2>
+    <?= $this->widget(new GridViewWidget($answers, array(
+        'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
+        'rowAttributes' => array(
+            'class' => function($answer) use ($entity){
+                return $answer->getId() == $entity->getId() ? 'table-info' : null;
+            }
+        ),
 
-        <?= $this->widget(new GridViewWidget($answers, array(
-            'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
-            'rowAttributes' => array(
-                'class' => function($answer) use ($entity){
-                    return $answer->getId() == $entity->getId() ? 'success' : null;
+        'columns' => array(
+            array(
+                'column' => 'id',
+                'label' => '#'
+            ),
+
+            array(
+                'column' => 'title'
+            ),
+
+            array(
+                'column' => 'order'
+            ),
+
+            array(
+                'column' => 'published',
+                'translateable' => true,
+                'value' => function($answer){
+                    return $answer->getPublished() ? 'Yes' : 'No';
                 }
             ),
 
-            'columns' => array(
-                array(
-                    'column' => 'id',
-                    'label' => '#'
-                ),
-
-                array(
-                    'column' => 'title'
-                ),
-
-                array(
-                    'column' => 'order'
-                ),
-
-                array(
-                    'column' => 'published',
-                    'translateable' => true,
-                    'value' => function($answer){
-                        return $answer->getPublished() ? 'Yes' : 'No';
-                    }
-                ),
-
-                array(
-                    'column' => 'votes'
-                )
-            ),
-
-            'actions' => array(
-                'edit' => function($answer) use ($title, $module, $backUrl){
-                    // Generate URL
-                    $url = $this->createQueryUrl('Polls:Admin:WebPage@editAction', array(
-                        'id' => $answer->getId(),
-                        'title' => $title,
-                        'module' => $module,
-                        'back_url' => rawurlencode($backUrl))
-                    );
-
-                    return Icon::edit($url, $this->translate('Edit this answer'));
-                },
-
-                'remove' => function($answer){
-                    return Icon::remove(
-                        $this->url('Polls:Admin:WebPage@deleteAction', $answer->getId()),
-                        $this->translate('Remove this answer')
-                    );
-                }
+            array(
+                'column' => 'votes'
             )
-        ))); ?>
-    </div>
+        ),
 
-    <div class="col-lg-6">
-        <h2 class="page-header"><i class="glyphicon glyphicon-pencil"></i> <?php $this->show($entity->getId() ? 'Edit the answer' : 'Add new answer'); ?></h2>
-
-        <form data-group="answer">
-            <?php echo Element::hidden('answer[id]', $entity->getId()); ?>
-            <?php echo Element::hidden('answer[web_page_id]', $entity->getWebPageId()); ?>
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label"><?php $this->show('Answer'); ?></label>
-                <div class="col-lg-10">
-                    <div class="input-group">
-                        <?php echo Element::text('answer[title]', $entity->getTitle(), array('class' => 'form-control', 'placeholder' => $this->translate('Option name'))); ?>
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label"><?php $this->show('Order'); ?></label>
-                <div class="col-lg-10">
-                    <div class="input-group">
-                        <?php echo Element::text('answer[order]', $entity->getOrder(), array('class' => 'form-control', 'placeholder' => $this->translate('Sorting order'))); ?>
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label"><?php $this->show('Published'); ?></label>
-                <div class="col-lg-10">
-                    <?php echo Element::checkbox('answer[published]', $entity->getPublished(), array('class' => 'form-control')); ?>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <?php
-                $indexUrl =  $this->createQueryUrl('Polls:Admin:WebPage@indexAction', array(
-                    'web_page_id' => $entity->getWebPageId(), 
-                    'title' => $title, 
-                    'module' => $module, 
+        'actions' => array(
+            'edit' => function($answer) use ($title, $module, $backUrl){
+                // Generate URL
+                $url = $this->createQueryUrl('Polls:Admin:WebPage@editAction', array(
+                    'id' => $answer->getId(),
+                    'title' => $title,
+                    'module' => $module,
                     'back_url' => rawurlencode($backUrl))
                 );
-            ?>
 
-            <?php $this->loadPartial('actions', array(
-                'wrapperClass' => false,
-                'new' => !$entity->getId(),
-                'add' => $indexUrl,
-                'edit' => $this->createQueryUrl('Polls:Admin:WebPage@editAction', array(
-                    'title' => $title,
-                    'back_url' => rawurlencode($backUrl),
-                    'module' => $module,
-                    'id' => ''
-                )),
-                'save' => 'Polls:Admin:WebPage@saveAction',
-                'cancel' => $entity->getId() ? $indexUrl: $backUrl
-            )); ?>
+                return Icon::edit($url, $this->translate('Edit this answer'));
+            },
 
-        </form>
-    </div>
+            'remove' => function($answer){
+                return Icon::remove(
+                    $this->url('Polls:Admin:WebPage@deleteAction', $answer->getId()),
+                    $this->translate('Remove this answer')
+                );
+            }
+        )
+    ))); ?>
+</div>
+
+<div class="card">
+    <h2 class="page-header"><i class="glyphicon glyphicon-pencil"></i> <?php $this->show($entity->getId() ? 'Edit the answer' : 'Add new answer'); ?></h2>
+
+    <form data-group="answer" autocomplete="off">
+        <?php echo Element::hidden('answer[id]', $entity->getId()); ?>
+        <?php echo Element::hidden('answer[web_page_id]', $entity->getWebPageId()); ?>
+
+        <div class="form-group">
+            <label class="col-lg-12 control-label"><?php $this->show('Answer'); ?></label>
+            <div class="col-lg-10">
+                <div class="input-group">
+                    <?php echo Element::text('answer[title]', $entity->getTitle(), array('class' => 'form-control', 'placeholder' => $this->translate('Option name'))); ?>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-12 control-label"><?php $this->show('Order'); ?></label>
+            <div class="col-lg-10">
+                <div class="input-group">
+                    <?php echo Element::text('answer[order]', $entity->getOrder(), array('class' => 'form-control', 'placeholder' => $this->translate('Sorting order'))); ?>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-12 control-label"><?php $this->show('Published'); ?></label>
+            <div class="col-lg-10">
+                <?php echo Element::checkbox('answer[published]', $entity->getPublished(), array('class' => 'form-control')); ?>
+            </div>
+        </div>
+
+        <?php
+            $indexUrl =  $this->createQueryUrl('Polls:Admin:WebPage@indexAction', array(
+                'web_page_id' => $entity->getWebPageId(), 
+                'title' => $title, 
+                'module' => $module, 
+                'back_url' => rawurlencode($backUrl))
+            );
+        ?>
+
+        <?php $this->loadPartial('actions', array(
+            'wrapperClass' => false,
+            'new' => !$entity->getId(),
+            'add' => $indexUrl,
+            'edit' => $this->createQueryUrl('Polls:Admin:WebPage@editAction', array(
+                'title' => $title,
+                'back_url' => rawurlencode($backUrl),
+                'module' => $module,
+                'id' => ''
+            )),
+            'save' => 'Polls:Admin:WebPage@saveAction',
+            'cancel' => $entity->getId() ? $indexUrl: $backUrl
+        )); ?>
+
+    </form>
 </div>
 

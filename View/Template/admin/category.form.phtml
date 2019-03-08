@@ -4,35 +4,34 @@ use Krystal\Form\Element;
 defined('KRYSTAL') or die;
 
 ?>
-<form data-group="category">
-    <div class="well clearfix">
-        <?php echo Element::hidden('category[id]', $category->getId()); ?>
 
-        <div class="form-group">
-            <label class="col-lg-2 control-label"><?php $this->show('Name'); ?></label>
-            <div class="col-lg-10">
-                <div class="input-group">
-                    <?php echo Element::text('category[name]', $category->getName(), array('class' => 'form-control', 'placeholder' => $this->translate('Category name'))); ?>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                </div>
+<form class="card" data-group="category" autocomplete="off">
+    <?php echo Element::hidden('category[id]', $category->getId()); ?>
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label"><?php $this->show('Name'); ?></label>
+        <div class="col-lg-10">
+            <div class="input-group">
+                <?php echo Element::text('category[name]', $category->getName(), array('class' => 'form-control', 'placeholder' => $this->translate('Category name'))); ?>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <label class="col-lg-2 control-label"><?php $this->show('Class'); ?></label>
-            <div class="col-lg-10">
-                <div class="input-group">
-                    <?php echo Element::text('category[class]', $category->getClass(), array('class' => 'form-control', 'placeholder' => $this->translate('Class name to be used when rendering on site'))); ?>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label"><?php $this->show('Class'); ?></label>
+        <div class="col-lg-10">
+            <div class="input-group">
+                <?php echo Element::text('category[class]', $category->getClass(), array('class' => 'form-control', 'placeholder' => $this->translate('Class name to be used when rendering on site'))); ?>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             </div>
         </div>
-        
-        <div class="form-group">
-            <label class="col-lg-2 control-label"><?php $this->show('Active'); ?></label>
-            <div class="col-lg-10">
-                <?php echo Element::checkbox('category[active]', $category->getActive(), array('class' => 'form-control')); ?>
-            </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label"><?php $this->show('Active'); ?></label>
+        <div class="col-lg-10">
+            <?php echo Element::checkbox('category[active]', $category->getActive(), array('class' => 'form-control')); ?>
         </div>
     </div>
 
