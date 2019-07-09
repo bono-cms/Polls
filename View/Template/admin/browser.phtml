@@ -8,25 +8,19 @@ defined('KRYSTAL') or die;
 
 ?>
 
-<div class="dropdown">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-    <i class="glyphicon glyphicon-list"></i> <?php $this->show('Menu'); ?>
-  </button>
+<div class="btn-toolbar">
+    <?php $this->loadPartial('menu', array(
+        'items' => array(
+            $this->url('Polls:Admin:Answer@addAction', $categoryId) => 'Add new answer',
+            'Polls:Admin:Category@addAction' => 'Add new category'
+        ),
 
-  <div class="dropdown-menu">
-     <a class="dropdown-item" href="<?php echo $this->url('Polls:Admin:Answer@addAction', $categoryId); ?>"><i class="glyphicon glyphicon-file"></i> <?php $this->show('Add new answer'); ?></a>
-     <a class="dropdown-item" href="<?php echo $this->url('Polls:Admin:Category@addAction'); ?>"><i class="glyphicon glyphicon-folder-open"></i> <?php $this->show('Add new category'); ?></a>
-     <div class="dropdown-divider"></div>
-     <div class="dropdown-header"><?php $this->show('Actions'); ?></div>
-     
-     <?php if(!empty($answers)): ?>
-     <a class="dropdown-item" href="#" data-button="save-changes" data-url="<?php echo $this->url('Polls:Admin:Answer@tweakAction'); ?>"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save changes'); ?></a>
-     <a class="dropdown-item" href="#" data-button="remove-selected" data-url="<?php echo $this->url('Polls:Admin:Answer@deleteAction', null); ?>"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('Remove selected'); ?></a>
-     <?php else: ?>
-     <a class="dropdown-item"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save changes'); ?></a>
-     <a class="dropdown-item"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('Remove selected'); ?></a>
-     <?php endif; ?>
-  </div>
+        'actions' => array(
+            'data' => $answers,
+            'save' => 'Polls:Admin:Answer@tweakAction',
+            'delete' => 'Polls:Admin:Answer@deleteAction'
+        )
+    )); ?>
 </div>
 
 <div class="row">
