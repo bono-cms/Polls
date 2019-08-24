@@ -61,7 +61,7 @@ final class Answer extends AbstractController
         $answer = $this->getModuleService('answerManager')->fetchById($id);
 
         if ($answer !== false) {
-            return $this->createForm($answer, 'Edit the answer');
+            return $this->createForm($answer, $this->translator->translate('Edit the answer "%s"', $answer->getTitle()));
         } else {
             return false;
         }
