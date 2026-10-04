@@ -9,18 +9,18 @@ defined('KRYSTAL') or die;
 ?>
 
 <div class="btn-toolbar">
-    <?php $this->loadPartial('menu', array(
-        'items' => array(
+    <?php $this->loadPartial('menu', [
+        'items' => [
             $this->url('Polls:Admin:Answer@addAction', $categoryId) => 'Add new answer',
             'Polls:Admin:Category@addAction' => 'Add new category'
-        ),
+        ],
 
-        'actions' => array(
+        'actions' => [
             'data' => $answers,
             'save' => 'Polls:Admin:Answer@tweakAction',
             'delete' => 'Polls:Admin:Answer@deleteAction'
-        )
-    )); ?>
+        ]
+    ]); ?>
 </div>
 
 <div class="row">
@@ -32,55 +32,55 @@ defined('KRYSTAL') or die;
 
             <form>
                 <div class="table-responsive">
-                    <?= $this->widget(new GridViewWidget($answers, array(
+                    <?= $this->widget(new GridViewWidget($answers, [
                         'pk' => 'id',
                         'batch' => true,
                         'tableClass' => 'table table-hover table-bordered table-striped',
-                        'columns' => array(
-                            array(
+                        'columns' => [
+                            [
                                 'column' => 'id',
                                 'label' => '#'
-                            ),
+                            ],
 
-                            array(
+                            [
                                 'column' => 'title'
-                            ),
+                            ],
 
-                            array(
+                            [
                                 'column' => 'order',
                                 'value' => function($answer){
-                                    return Element::number(sprintf('order[%s]', $answer->getId()), $answer->getOrder(), array('class' => 'form-control', 'min' => '0'));
+                                    return Element::number(sprintf('order[%s]', $answer->getId()), $answer->getOrder(), ['class' => 'form-control', 'min' => '0']);
                                 }
-                            ),
+                            ],
 
-                            array(
+                            [
                                 'column' => 'published',
                                 'value' => function($answer){
                                     return Element::checkbox(sprintf('published[%s]', $answer->getId()), $answer->getPublished());
                                 }
-                            ),
+                            ],
 
-                            array(
+                            [
                                 'column' => 'votes'
-                            )
-                        ),
+                            ]
+                        ],
 
-                        'actions' => array(
-                            'edit' => function($answer){
+                        'actions' => [
+                            function($answer){
                                 return Icon::edit(
                                     $this->url('Polls:Admin:Answer@editAction', $answer->getId()),
                                     $this->translate('Edit this answer')
                                 );
                             },
 
-                            'remove' => function($answer){
+                            function($answer){
                                 return Icon::remove(
                                     $this->url('Polls:Admin:Answer@deleteAction', $answer->getId()), 
                                     $this->translate('Remove this answer')
                                 );
                             }
-                        )
-                    ))); ?>
+                        ]
+                    ])); ?>
                     
                     <?php if (empty($answers)): ?>
                     <div class="center-block">
@@ -101,39 +101,39 @@ defined('KRYSTAL') or die;
             </div>
 
             <div class="table-responsive">
-                <?= $this->widget(new GridViewWidget($categories, array(
+                <?= $this->widget(new GridViewWidget($categories, [
                     'tableClass' => 'table table-hover table-bordered table-striped',
-                    'rowAttributes' => array(
+                    'rowAttributes' => [
                         'class' => function($category) use ($categoryId){
                             return $category->getId() == $categoryId ? 'table-info' : null;
                         }
-                    ),
-                    'columns' => array(
-                        array(
+                    ],
+                    'columns' => [
+                        [
                             'column' => 'id',
                             'label' => '#'
-                        ),
+                        ],
 
-                        array(
+                        [
                             'column' => 'name'
-                        ),
+                        ],
 
-                        array(
+                        [
                             'column' => 'active',
                             'translateable' => true,
                             'value' => function($category){
                                 return $category->getActive() ? 'Yes' : 'No';
                             }
-                        ),
+                        ],
 
-                        array(
+                        [
                             'column' => 'options_count',
                             'label' => 'Amount of answers'
-                        )
-                    ),
+                        ]
+                    ],
 
-                    'actions' => array(
-                        'reset' => function($category){
+                    'actions' => [
+                        function($category){
                             return Icon::reset(
                                 $this->url('Polls:Admin:Answer@resetVotesAction', $category->getId()),
                                 $this->translate('Reset votes count'),
@@ -141,21 +141,21 @@ defined('KRYSTAL') or die;
                             );
                         },
                         
-                        'edit' => function($category){
+                        function($category){
                             return Icon::edit(
                                 $this->url('Polls:Admin:Category@editAction', $category->getId()),
                                 $this->translate('Edit this category')
                             );
                         },
 
-                        'remove' => function($category){
+                        function($category){
                             return Icon::remove(
                                 $this->url('Polls:Admin:Category@deleteAction', $category->getId()), 
                                 $this->translate('Remove this category')
                             );
                         }
-                    )
-                ))); ?>
+                    ]
+                ])); ?>
 
                 <?php if (empty($categories)): ?>
                 <div class="center-block">

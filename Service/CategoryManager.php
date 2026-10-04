@@ -3,8 +3,6 @@
 /**
  * This file is part of the Bono CMS
  * 
- * Copyright (c) No Global State Lab
- * 
  * For the full copyright and license information, please view
  * the license file that was distributed with this source code.
  */
@@ -16,7 +14,7 @@ use Polls\Storage\CategoryMapperInterface;
 use Polls\Storage\AnswerMapperInterface;
 use Krystal\Stdlib\VirtualEntity;
 
-final class CategoryManager extends AbstractManager implements CategoryManagerInterface
+final class CategoryManager extends AbstractManager
 {
     /**
      * Any compliant category mapper
@@ -109,7 +107,7 @@ final class CategoryManager extends AbstractManager implements CategoryManagerIn
      */
     public function fetchAsList()
     {
-        $result = array();
+        $result = [];
         $entities = $this->fetchAll();
 
         foreach ($entities as $category) {

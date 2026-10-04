@@ -3,8 +3,6 @@
 /**
  * This file is part of the Bono CMS
  * 
- * Copyright (c) No Global State Lab
- * 
  * For the full copyright and license information, please view
  * the license file that was distributed with this source code.
  */
@@ -21,7 +19,7 @@ use Polls\Service\WebPageSettingsService;
 final class Module extends AbstractCmsModule
 {
     /**
-     * {@inhertiDoc}
+     * {@inheritDoc}
      */
     public function getServiceProviders()
     {
@@ -41,12 +39,12 @@ final class Module extends AbstractCmsModule
         $webPageSettingsMapper = $this->getMapper('/Polls/Storage/MySQL/WebPageSettingsMapper');
         $webPageSettingsService = new WebPageSettingsService($webPageSettingsMapper);
 
-        return array(
+        return [
             'webPageSettingsService' => $webPageSettingsService,
             'webPageAnswerService' => $webPageAnswerService,
             'categoryManager' => $categoryManager,
             'answerManager' => $answerManager,
             'siteService' => new SiteService($answerManager, $categoryMapper, $webPageAnswerService, $webPageSettingsMapper)
-        );
+        ];
     }
 }

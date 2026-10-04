@@ -3,8 +3,6 @@
 /**
  * This file is part of the Bono CMS
  * 
- * Copyright (c) No Global State Lab
- * 
  * For the full copyright and license information, please view
  * the license file that was distributed with this source code.
  */
@@ -49,10 +47,10 @@ final class Vote extends AbstractController
 
         $result = $this->getModuleService('answerManager')->fetchResultSet($categoryId);
 
-        return $this->view->render('poll-results', array(
+        return $this->view->render('poll-results', [
             'answers' => $result['answers'],
             'total' => $result['total'],
             'category' => $this->getModuleService('categoryManager')->fetchNameById($categoryId)
-        ));
+        ]);
     }
 }

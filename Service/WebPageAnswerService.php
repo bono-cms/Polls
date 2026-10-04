@@ -3,8 +3,6 @@
 /**
  * This file is part of the Bono CMS
  * 
- * Copyright (c) No Global State Lab
- * 
  * For the full copyright and license information, please view
  * the license file that was distributed with this source code.
  */
@@ -17,7 +15,7 @@ use Cms\Service\AbstractManager;
 use Krystal\Stdlib\VirtualEntity;
 use Krystal\Text\Math;
 
-final class WebPageAnswerService extends AbstractManager implements WebPageAnswerServiceInterface
+final class WebPageAnswerService extends AbstractManager
 {
     /**
      * Any compliant web page mapper
@@ -73,10 +71,10 @@ final class WebPageAnswerService extends AbstractManager implements WebPageAnswe
             $answer->setVotesPercentage($percentage);
         }
 
-        return array(
+        return [
             'answers' => $answers,
             'total' => $count
-        );
+        ];
     }
 
     /**

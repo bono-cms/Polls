@@ -4,25 +4,25 @@
  * Module configuration container
  */
 
-return array(
+return [
     'name'  => 'Polls',
     'description' => 'Polls module lets you to easily manage polls on your site',
-    'menu' => array(
+    'menu' => [
         'name' => 'Polls',
         'icon' => 'fas fa-poll',
-        'items' => array(
-            array(
+        'items' => [
+            [
                 'route' => 'Polls:Admin:Browser@indexAction',
                 'name' => 'View all polls'
-            ),
-            array(
+            ],
+            [
                 'route' => 'Polls:Admin:Answer@addAction',
                 'name' => 'Add new answer'
-            ),
-            array(
+            ],
+            [
                 'route' => 'Polls:Admin:Category@addAction',
                 'name' => 'Add new category'
-            )
-        )
-    )
-);
+            ]
+        ]
+    ]
+];

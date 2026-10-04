@@ -6,13 +6,13 @@ defined('KRYSTAL') or die;
 ?>
 
 <form class="card" data-group="category" autocomplete="off">
-    <?php echo Element::hidden('category[id]', $category->getId()); ?>
+    <?= Element::hidden('category[id]', $category->getId()); ?>
 
     <div class="form-group">
         <label class="col-lg-2 control-label"><?php $this->show('Name'); ?></label>
         <div class="col-lg-10">
             <div class="input-group">
-                <?php echo Element::text('category[name]', $category->getName(), array('class' => 'form-control', 'placeholder' => $this->translate('Category name'))); ?>
+                <?= Element::text('category[name]', $category->getName(), ['class' => 'form-control', 'placeholder' => $this->translate('Category name')]); ?>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             </div>
         </div>
@@ -22,7 +22,7 @@ defined('KRYSTAL') or die;
         <label class="col-lg-2 control-label"><?php $this->show('Class'); ?></label>
         <div class="col-lg-10">
             <div class="input-group">
-                <?php echo Element::text('category[class]', $category->getClass(), array('class' => 'form-control', 'placeholder' => $this->translate('Class name to be used when rendering on site'))); ?>
+                <?= Element::text('category[class]', $category->getClass(), ['class' => 'form-control', 'placeholder' => $this->translate('Class name to be used when rendering on site')]); ?>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             </div>
         </div>
@@ -31,16 +31,16 @@ defined('KRYSTAL') or die;
     <div class="form-group">
         <label class="col-lg-2 control-label"><?php $this->show('Active'); ?></label>
         <div class="col-lg-10">
-            <?php echo Element::checkbox('category[active]', $category->getActive(), array('class' => 'form-control')); ?>
+            <?= Element::checkbox('category[active]', $category->getActive(), ['class' => 'form-control']); ?>
         </div>
     </div>
 
-    <?php $this->loadPartial('actions', array(
+    <?php $this->loadPartial('actions', [
         'new' => !$category->getId(),
         'add' => 'Polls:Admin:Category@addAction',
         'edit' => 'Polls:Admin:Category@editAction',
         'save' => 'Polls:Admin:Category@saveAction',
         'cancel' => 'Polls:Admin:Browser@indexAction'
-    )); ?>
+    ]); ?>
 
 </form>

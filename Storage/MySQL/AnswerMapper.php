@@ -3,8 +3,6 @@
 /**
  * This file is part of the Bono CMS
  * 
- * Copyright (c) No Global State Lab
- * 
  * For the full copyright and license information, please view
  * the license file that was distributed with this source code.
  */
@@ -32,7 +30,7 @@ final class AnswerMapper extends AbstractMapper implements AnswerMapperInterface
      */
     public function resetVoteCountByCategoryId($categoryId)
     {
-        return $this->db->update(self::getTableName(), array('votes' => '0'))
+        return $this->db->update(self::getTableName(), ['votes' => '0'])
                         ->whereEquals('category_id', $categoryId)
                         ->execute();
     }

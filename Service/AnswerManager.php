@@ -3,8 +3,6 @@
 /**
  * This file is part of the Bono CMS
  * 
- * Copyright (c) No Global State Lab
- * 
  * For the full copyright and license information, please view
  * the license file that was distributed with this source code.
  */
@@ -17,7 +15,7 @@ use Polls\Storage\VotesMapperInterface;
 use Krystal\Stdlib\VirtualEntity;
 use Krystal\Text\Math;
 
-final class AnswerManager extends AbstractManager implements AnswerManagerInterface
+final class AnswerManager extends AbstractManager
 {
     /**
      * Any compliant Answer mapper
@@ -153,10 +151,10 @@ final class AnswerManager extends AbstractManager implements AnswerManagerInterf
             $answer->setVotesPercentage($percentage);
         }
 
-        return array(
+        return [
             'answers' => $answers,
             'total' => $count
-        );
+        ];
     }
 
     /**

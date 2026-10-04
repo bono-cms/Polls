@@ -3,8 +3,6 @@
 /**
  * This file is part of the Bono CMS
  * 
- * Copyright (c) No Global State Lab
- * 
  * For the full copyright and license information, please view
  * the license file that was distributed with this source code.
  */
@@ -12,7 +10,6 @@
 namespace Polls\Controller\Admin;
 
 use Cms\Controller\Admin\AbstractController;
-use Krystal\Validate\Pattern;
 use Krystal\Stdlib\VirtualEntity;
 
 final class WebPage extends AbstractController
@@ -25,11 +22,25 @@ final class WebPage extends AbstractController
      */
     public function settingsAction($webPageId)
     {
-        $data = $this->request->getPost();
-        $this->getModuleService('webPageSettingsService')->save($data);
+        $validator = $this->createValidation();
 
-        $this->flashBag->set('success', 'Poll settings have been updated successfully');
-        return 1;
+        $validator->field('name')
+                  ->required();
+
+        if ($validator->isPassed()) {
+            $data = $this->request->getPost();
+            $this->getModuleService('webPageSettingsService')->save($data);
+
+            $this->flashBag->set('success', 'Poll settings have been updated successfully');
+
+            return $this->json([
+                'refresh' => true
+            ]);
+        } else {
+            return $this->json([
+                'errors' => $validator->getErrors()
+            ]);
+        }
     }
 
     /**
@@ -50,14 +61,14 @@ final class WebPage extends AbstractController
                    ->addOne($module, $backUrl)
                    ->addOne('Web page poll');
 
-        return $this->view->render('web-page-grid', array(
+        return $this->view->render('web-page-grid', [
             'answers' => $this->getModuleService('webPageAnswerService')->findAllByWebPageId($entity->getWebPageId()),
             'entity' => $entity,
             'webPage' => $this->getModuleService('webPageSettingsService')->findByWebPageId($entity->getWebPageId()),
             'title' => $title,
             'module' => $module,
             'backUrl' => $backUrl
-        ));
+        ]);
     }
 
     /**
@@ -118,7 +129,10 @@ final class WebPage extends AbstractController
         $service->deleteById($id);
 
         $this->flashBag->set('success', 'Selected element has been removed successfully');
-        return 1;
+
+        return $this->json([
+            'refresh' => true
+        ]);
     }
 
     /**
@@ -131,19 +145,42 @@ final class WebPage extends AbstractController
         // Grab raw input data
         $input = $this->request->getPost('answer');
 
-        $service = $this->getModuleService('webPageAnswerService');
+        $validator = $this->createValidation();
 
-        if ($input['id']) {
-            $service->update($input);
+        $validator->field('answer.title')
+                  ->required();
 
-            $this->flashBag->set('success', 'The element has been updated successfully');
-            return 1;
+        $validator->field('answer.order')
+                  ->addRule('numeric');
+
+        if ($validator->isPassed()) {
+            $service = $this->getModuleService('webPageAnswerService');
+
+            if ($input['id']) {
+                $service->update($input);
+
+                $this->flashBag->set('success', 'The element has been updated successfully');
+
+                return $this->json([
+                    'refresh' => true
+                ]);
+
+            } else {
+                $service->add($input);
+
+                $this->flashBag->set('success', 'The element has been created successfully');
+
+                return $this->json([
+                    'redirect' => $this->createQueryUrl('Polls:Admin:WebPage@editAction', [
+                        'id' => $service->getLastId()
+                    ]),
+                ]);
+            }
 
         } else {
-            $service->add($input);
-
-            $this->flashBag->set('success', 'The element has been created successfully');
-            return $service->getLastId();
+            return $this->json([
+                'errors' => $validator->getErrors()
+            ]);
         }
     }
 }

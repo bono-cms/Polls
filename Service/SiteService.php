@@ -3,8 +3,6 @@
 /**
  * This file is part of the Bono CMS
  * 
- * Copyright (c) No Global State Lab
- * 
  * For the full copyright and license information, please view
  * the license file that was distributed with this source code.
  */
@@ -15,7 +13,7 @@ use Krystal\Stdlib\VirtualEntity;
 use Polls\Storage\CategoryMapperInterface;
 use Polls\Storage\WebPageSettingsMapperInterface;
 
-final class SiteService implements SiteServiceInterface
+final class SiteService
 {
     /**
      * Answer service
@@ -48,14 +46,14 @@ final class SiteService implements SiteServiceInterface
     /**
      * State initialization
      * 
-     * @param \Polls\Service\AnswerManagerInterface $answerManager
+     * @param \Polls\Service\AnswerManager $answerManager
      * @param \Polls\Storage\CategoryMapperInterface $categoryMapper
      * @param \Site\Service\WebPageAnswerService $webPageAnswerService
      * @param \Polls\Storage\WebPageSettingsMapperInterface $webPageSettingsMapper
      * @return void
      */
     public function __construct(
-        AnswerManagerInterface $answerManager, 
+        AnswerManager $answerManager, 
         CategoryMapperInterface $categoryMapper, 
         WebPageAnswerService $webPageAnswerService, 
         WebPageSettingsMapperInterface $webPageSettingsMapper

@@ -6,13 +6,13 @@ defined('KRYSTAL') or die;
 ?>
 
 <form class="card" data-group="answer" autocomplete="off">
-    <?php echo Element::hidden('answer[id]', $answer->getId()); ?>
+    <?= Element::hidden('answer[id]', $answer->getId()); ?>
 
     <div class="form-group">
         <label class="col-lg-12 control-label"><?php $this->show('Answer'); ?></label>
         <div class="col-lg-10">
             <div class="input-group">
-                <?php echo Element::text('answer[title]', $answer->getTitle(), array('class' => 'form-control', 'placeholder' => $this->translate('Option name'))); ?>
+                <?= Element::text('answer[title]', $answer->getTitle(), ['class' => 'form-control', 'placeholder' => $this->translate('Option name')]); ?>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             </div>
         </div>
@@ -21,7 +21,7 @@ defined('KRYSTAL') or die;
     <div class="form-group">
         <label class="col-lg-12 control-label"><?php $this->show('Category'); ?></label>
         <div class="col-lg-10">
-            <?php echo Element::select('answer[category_id]', $categories, $answer->getCategoryId(), array('class' => 'form-control')); ?>
+            <?= Element::select('answer[category_id]', $categories, $answer->getCategoryId(), ['class' => 'form-control']); ?>
         </div>
     </div>
 
@@ -29,7 +29,7 @@ defined('KRYSTAL') or die;
         <label class="col-lg-12 control-label"><?php $this->show('Order'); ?></label>
         <div class="col-lg-10">
             <div class="input-group">
-                <?php echo Element::number('answer[order]', $answer->getOrder(), array('min' => '0', 'class' => 'form-control', 'placeholder' => $this->translate('Sorting order of this option to be displayed in a category'))); ?>
+                <?= Element::number('answer[order]', $answer->getOrder(), ['min' => '0', 'class' => 'form-control', 'placeholder' => $this->translate('Sorting order of this option to be displayed in a category')]); ?>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
             </div>
         </div>
@@ -38,16 +38,16 @@ defined('KRYSTAL') or die;
     <div class="form-group">
         <label class="col-lg-12 control-label"><?php $this->show('Published'); ?></label>
         <div class="col-lg-10">
-            <?php echo Element::checkbox('answer[published]', $answer->getPublished(), array('class' => 'form-control')); ?>
+            <?= Element::checkbox('answer[published]', $answer->getPublished(), ['class' => 'form-control']); ?>
         </div>
     </div>
 
-    <?php $this->loadPartial('actions', array(
+    <?php $this->loadPartial('actions', [
         'new' => !$answer->getId(),
-        'add' => array('Polls:Admin:Answer@addAction', $answer->getCategoryId()),
+        'add' => ['Polls:Admin:Answer@addAction', $answer->getCategoryId()],
         'edit' => 'Polls:Admin:Answer@editAction',
         'save' => 'Polls:Admin:Answer@saveAction',
         'cancel' => 'Polls:Admin:Browser@indexAction'
-    )); ?>
+    ]); ?>
 
 </form>
