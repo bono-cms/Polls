@@ -4,11 +4,9 @@ use Krystal\Form\Element;
 use Krystal\Widget\GridView\GridViewWidget;
 use Cms\View\Icon;
 
-defined('KRYSTAL') or die;
-
 ?>
 
-<div class="btn-toolbar">
+<div class="btn-toolbar mb-3">
     <?php $this->loadPartial('menu', [
         'items' => [
             $this->url('Polls:Admin:Answer@addAction', $categoryId) => 'Add new answer',
@@ -25,9 +23,9 @@ defined('KRYSTAL') or die;
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header">
-                <h4 class="card-title"><?php $this->show('Answers'); ?> (<?php echo count($answers); ?>)</h4>
+                <h4 class="card-title"><?= $this->translate('Answers'); ?> (<?= count($answers); ?>)</h4>
             </div>
 
             <form>
@@ -56,7 +54,7 @@ defined('KRYSTAL') or die;
                             [
                                 'column' => 'published',
                                 'value' => function($answer){
-                                    return Element::checkbox(sprintf('published[%s]', $answer->getId()), $answer->getPublished());
+                                    return Element::checkbox(sprintf('published[%s]', $answer->getId()), $answer->getPublished(), ['class' => 'form-check-input']);
                                 }
                             ],
 
@@ -84,7 +82,7 @@ defined('KRYSTAL') or die;
                     
                     <?php if (empty($answers)): ?>
                     <div class="center-block">
-                        <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No answers'); ?></h2>
+                        <h2 class="text-center text-muted"><i class="bi bi-x-circle"></i> <?= $this->translate('No answers'); ?></h2>
                     </div>
                     <?php endif; ?>
 
@@ -97,7 +95,7 @@ defined('KRYSTAL') or die;
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"><?php $this->show('Categories'); ?> (<?php echo count($categories); ?>)</h4>
+                <h4 class="card-title"><?= $this->translate('Categories'); ?> (<?= count($categories); ?>)</h4>
             </div>
 
             <div class="table-responsive">
@@ -159,7 +157,7 @@ defined('KRYSTAL') or die;
 
                 <?php if (empty($categories)): ?>
                 <div class="center-block">
-                    <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No categories'); ?></h2>
+                    <h2 class="text-center text-muted"><i class="bi bi-x-circle"></i> <?= $this->translate('No categories'); ?></h2>
                 </div>
                 <?php endif; ?>
             </div>

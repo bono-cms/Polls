@@ -4,8 +4,6 @@ use Krystal\Form\Element;
 use Krystal\Widget\GridView\GridViewWidget;
 use Cms\View\Icon;
 
-defined('KRYSTAL') or die;
-
 $options = $this->translateArray([
     '1' => 'This poll is published', 
     '0' => 'This poll is not published'
@@ -13,34 +11,34 @@ $options = $this->translateArray([
 
 ?>
 
-<h3 class="page-header"><?= $title; ?></h3>
+<h3 class="page-header mb-3"><?= $title; ?></h3>
 
-<div class="card">
+<div class="card card-body mb-3">
     <form method="POST" autocomplete="off">
         <div class="row">
             <div class="col-lg-6">
                 <?= Element::hidden('id', $webPage->getId()); ?>
                 <?= Element::hidden('web_page_id', $entity->getWebPageId()); ?>
-                <?= Element::text('name', $webPage->getName(), ['class' => 'form-control form-control-lg', 'placeholder' => $this->translate('Poll title')]); ?>
-                <?= Element::select('published', $options, $webPage->getPublished(), ['class' => 'form-control form-control-lg']); ?>
+                <?= Element::text('name', $webPage->getName(), ['class' => 'form-control form-control-lg mb-2', 'placeholder' => $this->translate('Poll title')]); ?>
+                <?= Element::select('published', $options, $webPage->getPublished(), ['class' => 'form-select form-select-lg']); ?>
             </div>
 
             <div class="col-lg-6">
                 <p>
-                    <button type="submit" data-button="save" data-url="<?= $this->url('Polls:Admin:WebPage@settingsAction', $entity->getWebPageId()); ?>" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i> <?php $this->show('Save'); ?></button>
+                    <button type="submit" data-button="save" data-url="<?= $this->url('Polls:Admin:WebPage@settingsAction', $entity->getWebPageId()); ?>" class="btn btn-primary"><i class="bi bi-save"></i> <?= $this->translate('Save'); ?></button>
                     <br />
-                    <? $this->show('Display settings of this poll'); ?>
+                    <?= $this->translate('Display settings of this poll'); ?>
                 </p>
             </div>
         </div>
     </form>
 </div>
 
-<div class="card">
-    <h2 class="page-header"><i class="fa fa-bar-chart"></i> <?php $this->show('Answers'); ?> (<?= count($answers); ?>)</h2>
+<div class="card card-body mb-3">
+    <h2 class="page-header mb-3"><i class="fas fa-bar-chart"></i> <?= $this->translate('Answers'); ?> (<?= count($answers); ?>)</h2>
 
     <?= $this->widget(new GridViewWidget($answers, [
-        'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
+        'tableClass' => 'table table-hover table-bordered table-striped table-sm',
         'rowAttributes' => [
             'class' => function($answer) use ($entity){
                 return $answer->getId() == $entity->getId() ? 'table-info' : null;
@@ -97,37 +95,39 @@ $options = $this->translateArray([
     ])); ?>
 </div>
 
-<div class="card">
-    <h2 class="page-header"><i class="glyphicon glyphicon-pencil"></i> <?php $this->show($entity->getId() ? 'Edit the answer' : 'Add new answer'); ?></h2>
+<div class="card card-body">
+    <h2 class="page-header mb-3"><i class="bi bi-pencil"></i> <?= $this->translate($entity->getId() ? 'Edit the answer' : 'Add new answer'); ?></h2>
 
-    <form data-group="answer" autocomplete="off">
+    <form autocomplete="off">
         <?= Element::hidden('answer[id]', $entity->getId()); ?>
         <?= Element::hidden('answer[web_page_id]', $entity->getWebPageId()); ?>
 
-        <div class="form-group">
-            <label class="col-lg-12 control-label"><?php $this->show('Answer'); ?></label>
+        <div class="row mb-3">
+            <label class="col-lg-12 col-form-label"><?= $this->translate('Answer'); ?></label>
             <div class="col-lg-10">
                 <div class="input-group">
                     <?= Element::text('answer[title]', $entity->getTitle(), ['class' => 'form-control', 'placeholder' => $this->translate('Option name')]); ?>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    <span class="input-group-text"><i class="bi bi-pencil"></i></span>
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-lg-12 control-label"><?php $this->show('Order'); ?></label>
+        <div class="row mb-3">
+            <label class="col-lg-12 col-form-label"><?= $this->translate('Order'); ?></label>
             <div class="col-lg-10">
                 <div class="input-group">
                     <?= Element::text('answer[order]', $entity->getOrder(), ['class' => 'form-control', 'placeholder' => $this->translate('Sorting order')]); ?>
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    <span class="input-group-text"><i class="bi bi-pencil"></i></span>
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-lg-12 control-label"><?php $this->show('Published'); ?></label>
+        <div class="row mb-3">
+            <label class="col-lg-12 col-form-label"><?= $this->translate('Published'); ?></label>
             <div class="col-lg-10">
-                <?= Element::checkbox('answer[published]', $entity->getPublished(), ['class' => 'form-control']); ?>
+                <div class="form-check">
+                    <?= Element::checkbox('answer[published]', $entity->getPublished(), ['class' => 'form-check-input']); ?>
+                </div>
             </div>
         </div>
 

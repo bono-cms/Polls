@@ -1,18 +1,18 @@
 <?php if (!empty($answers)): ?>
 
-<h4><?php echo $category; ?></h4>
+<h4><?= $category; ?></h4>
 
 <?php foreach ($answers as $answer): ?>
-<strong><?php echo $answer->getTitle(); ?></strong><span class="pull-right"><?php echo $answer->getVotes(); ?></span>
+<strong><?= $answer->getTitle(); ?></strong><span class="float-end"><?= $answer->getVotes(); ?></span>
 
 <div class="progress">
-    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $answer->getVotesPercentage(); ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $answer->getVotesPercentage(); ?>%">
+    <div class="progress-bar bg-info progress-bar-striped" role="progressbar" aria-valuenow="<?= $answer->getVotesPercentage(); ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?= $answer->getVotesPercentage(); ?>%">
     </div>
 </div>
 <?php endforeach; ?>
 
-<p><?php $this->show('Total votes'); ?>: <?php echo $total; ?></p>
+<p><?= $this->translate('Total votes'); ?>: <?= $total; ?></p>
 
 <?php else: ?>
-<p class="text-muted"><?php $this->show('No votes at the moment'); ?></p>
+<p class="text-muted"><?= $this->translate('No votes at the moment'); ?></p>
 <?php endif; ?>
